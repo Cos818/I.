@@ -4,3 +4,5 @@ src/img/
 src/_data/imageManifest.json
 .cache/
 qa/
+_preview/
+src/img-preview/

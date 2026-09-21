@@ -173,7 +173,7 @@ body.menu-open { overflow: hidden; }
 .panel__media picture, .panel__media img { width: 100%; height: 100%; }
 .panel__media img { object-fit: cover; background-size: cover; background-position: center; }
 .panel__scrim { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
-.scrim--left { background: linear-gradient(100deg, rgba(var(--navy-rgb), 0.82) 0%, rgba(var(--navy-rgb), 0.5) 42%, rgba(var(--navy-rgb), 0.06) 78%); }
+.scrim--left { background: linear-gradient(100deg, rgba(var(--navy-rgb), 0.86) 0%, rgba(var(--navy-rgb), 0.55) 42%, rgba(var(--navy-rgb), 0.06) 78%), linear-gradient(180deg, rgba(var(--navy-rgb), 0) 55%, rgba(var(--navy-rgb), 0.35) 100%); }
 .scrim--right { background: linear-gradient(260deg, rgba(var(--navy-rgb), 0.82) 0%, rgba(var(--navy-rgb), 0.5) 42%, rgba(var(--navy-rgb), 0.06) 78%); }
 .scrim--bottom { background: linear-gradient(180deg, rgba(var(--navy-rgb), 0.14) 0%, rgba(var(--navy-rgb), 0.08) 35%, rgba(var(--navy-rgb), 0.78) 100%); }
 .scrim--top { background: linear-gradient(180deg, rgba(var(--navy-rgb), 0.72) 0%, rgba(var(--navy-rgb), 0.35) 45%, rgba(var(--navy-rgb), 0.1) 100%); }

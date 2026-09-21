@@ -7,11 +7,12 @@ import path from "node:path";
 
 const ROOT = path.resolve(new URL(".", import.meta.url).pathname, "..");
 const MASTERS = path.join(ROOT, "src/assets/masters");
-const OUT = path.join(ROOT, "src/img");
+const PREVIEW = process.env.PREVIEW === "1"; // smaller set for the flattened preview build
+const OUT = path.join(ROOT, PREVIEW ? "src/img-preview" : "src/img");
 const MANIFEST = path.join(ROOT, "src/_data/imageManifest.json");
 
-const LANDSCAPE_WIDTHS = [768, 1024, 1280, 1536, 1920, 2560];
-const PORTRAIT_WIDTHS = [480, 720, 960];
+const LANDSCAPE_WIDTHS = PREVIEW ? [1280, 1920] : [768, 1024, 1280, 1536, 1920, 2560];
+const PORTRAIT_WIDTHS = PREVIEW ? [720] : [480, 720, 960];
 const PORTRAIT_ASPECT = 4 / 5;
 
 const photos = JSON.parse(await readFile(path.join(ROOT, "src/assets/photos.json"), "utf8")).images;
@@ -25,7 +26,7 @@ async function encode(pipeline, base, width) {
     ["avif", (s) => s.avif({ quality: 55, effort: 4 })],
     ["webp", (s) => s.webp({ quality: 78 })],
     ["jpg", (s) => s.jpeg({ quality: 80, mozjpeg: true, progressive: true })],
-  ];
+  ].filter(([ext]) => !PREVIEW || ext !== "avif");
   for (const [ext, fn] of jobs) {
     const file = `${base}-${width}.${ext}`;
     const target = path.join(OUT, file);

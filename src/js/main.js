@@ -84,18 +84,32 @@
 
   /* ---- Panel reveals ---- */
   var panels = Array.prototype.slice.call(document.querySelectorAll(".panel"));
+  function revealInView() {
+    var vh = window.innerHeight;
+    panels.forEach(function (p) {
+      if (p.classList.contains("is-visible")) return;
+      var r = p.getBoundingClientRect();
+      if (r.top < vh * 0.85 && r.bottom > vh * 0.15) p.classList.add("is-visible");
+    });
+  }
   if ("IntersectionObserver" in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) { entry.target.classList.add("is-visible"); io.unobserve(entry.target); }
       });
-    }, { threshold: 0.18 });
+    }, { threshold: 0.12 });
     panels.forEach(function (p) { io.observe(p); });
-  } else {
-    panels.forEach(function (p) { p.classList.add("is-visible"); });
   }
-  // Belt and braces: never leave content hidden if observation is delayed.
-  window.setTimeout(function () { panels.forEach(function (p) { if (p.getBoundingClientRect().top < window.innerHeight) p.classList.add("is-visible"); }); }, 1200);
+  // Safety nets: a scroll check (throttled to animation frames) and a timer,
+  // so content is never left hidden if observation is delayed or unsupported.
+  var ticking = false;
+  window.addEventListener("scroll", function () {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(function () { revealInView(); ticking = false; });
+  }, { passive: true });
+  window.setTimeout(revealInView, 300);
+  window.setTimeout(revealInView, 1500);
 
   /* ---- Gentle scroll snapping on desktop, only while panels fit the viewport ---- */
   function updateSnap() {

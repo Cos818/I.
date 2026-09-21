@@ -1,7 +1,8 @@
 // Eleventy configuration for the Axe Capital website.
 // Pages live in src/, copy lives in src/_data, photography in src/assets/masters.
 export default function (eleventyConfig) {
-  eleventyConfig.addPassthroughCopy({ "src/css": "css", "src/js": "js", "src/img": "img", "src/assets/favicon.svg": "favicon.svg", "src/assets/fonts": "fonts" });
+  const imgDir = process.env.IMG_DIR || "src/img";
+  eleventyConfig.addPassthroughCopy({ "src/css": "css", "src/js": "js", [imgDir]: "img", "src/assets/favicon.svg": "favicon.svg", "src/assets/fonts": "fonts" });
   eleventyConfig.addWatchTarget("src/css");
   eleventyConfig.addWatchTarget("src/js");
 
@@ -19,9 +20,9 @@ export default function (eleventyConfig) {
     const priority = loading === "eager" ? ` fetchpriority="high"` : "";
     const cls = className ? ` class="${className}"` : "";
     return `<picture${cls}>` +
-      `<source type="image/avif" media="${portraitMedia}" sizes="100vw" srcset="${set(entry.portrait, "avif")}">` +
+      (entry.landscape[0].avif ? `<source type="image/avif" media="${portraitMedia}" sizes="100vw" srcset="${set(entry.portrait, "avif")}">` : "") +
       `<source type="image/webp" media="${portraitMedia}" sizes="100vw" srcset="${set(entry.portrait, "webp")}">` +
-      `<source type="image/avif" sizes="${sizes}" srcset="${set(entry.landscape, "avif")}">` +
+      (entry.landscape[0].avif ? `<source type="image/avif" sizes="${sizes}" srcset="${set(entry.landscape, "avif")}">` : "") +
       `<source type="image/webp" sizes="${sizes}" srcset="${set(entry.landscape, "webp")}">` +
       `<img src="/img/${largest.jpg}" srcset="${set(entry.landscape, "jpg")}" sizes="${sizes}" width="${entry.width}" height="${entry.height}" alt="${alt.replace(/"/g, "&quot;")}" loading="${loading}" decoding="async"${priority} style="object-position:${fx}% ${fy}%;background-image:url(${entry.placeholder})">` +
       `</picture>`;

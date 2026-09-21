@@ -39,7 +39,7 @@ Items that could not be completed from the supplied brief alone. Nothing in this
 | facade-detail | About, Growth Capital | https://www.rawpixel.com/image/3283970/free-photo-image-pattern-artwork-abstract |
 | desk-work | About, Growth Capital, Private Equity | https://www.foodiesfeed.com/free-food-photo/laptop-work-with-coffee/ |
 | pendant-interior | About closing, Private Equity closing | https://stocksnap.io/photo/architecture-house-9QLIF5KSSQ |
-| panelled-room | Asset Management | https://www.rawpixel.com/image/3303438/free-photo-image-wood-paneling-door-panel |
+| panelled-room | Asset Management | https://www.rawpixel.com/image/3303438/free-photo-image-wood-paneling-door-panel (upper two-thirds of the photograph, cropped for the panel) |
 | lounge | Contact | https://www.rawpixel.com/image/3283247/free-photo-image-interior-cafe-home-design |
 
 The photographs show buildings and people unconnected with Axe Capital. Nothing on the site presents them as Axe Capital offices, staff or clients.

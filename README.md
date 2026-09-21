@@ -23,6 +23,8 @@ npm run build     # generates responsive images, then builds the site into _site
 npm start         # same, then serves with live reload at http://localhost:8080
 ```
 
+`node scripts/build-preview.mjs` writes a flattened copy to `_preview/` with relative links and a smaller image set, which opens from disk or hosts under any sub-path; it is for review only.
+
 `npm run images` alone regenerates the responsive image set from `src/assets/masters/`. Generated images (`src/img/`) and the manifest are not committed; they are rebuilt on every `npm run build`.
 
 The output in `_site/` is plain HTML, CSS, JS, fonts and images. It can be hosted on any static host (Netlify, Vercel, Cloudflare Pages, S3, a plain web server). No production domain has been configured; see `docs/HANDOVER.md`.

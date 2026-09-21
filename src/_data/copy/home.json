@@ -1,62 +1,136 @@
 {
   "panels": [
     {
-      "id": "top", "type": "hero", "image": "hero-diagrid", "scrim": "left", "align": "left", "valign": "end", "cue": "introduction",
+      "id": "top",
+      "type": "hero",
+      "image": "hero-diagrid",
+      "scrim": "left",
+      "align": "left",
+      "valign": "end",
+      "cue": "introduction",
       "label": "Growth Capital · Asset Management · Private Equity",
       "heading": "Capital with <em>perspective.</em>",
       "lead": "Growth capital, asset management and private equity, guided by long-term thinking.",
       "actions": [
-        { "label": "Explore Our Expertise", "url": "#growth-capital", "style": "light", "arrow": true },
-        { "label": "Start a Conversation", "url": "/contact/", "style": "outline-light" }
+        {
+          "label": "Explore Our Expertise",
+          "url": "#growth-capital",
+          "style": "light",
+          "arrow": true
+        },
+        {
+          "label": "Start a Conversation",
+          "url": "/contact/",
+          "style": "outline-light"
+        }
       ]
     },
     {
-      "id": "introduction", "type": "split", "image": "museum-hall",
+      "id": "introduction",
+      "type": "split",
+      "image": "museum-hall",
       "imageAlt": "A long, quiet gallery corridor with pale stone walls and a glazed roof",
       "label": "The firm",
       "heading": "A considered approach to capital.",
       "text": "Axe Capital combines capital, strategic guidance and genuine partnership. We work alongside business owners, management teams and investors who value disciplined decisions and a long-term view over short-term noise.",
-      "link": { "label": "About Axe Capital", "url": "/about/" }
+      "link": {
+        "label": "About Axe Capital",
+        "url": "/about/"
+      }
     },
     {
-      "id": "growth-capital", "type": "full", "image": "timber-soffit", "scrim": "bottom", "align": "left", "valign": "end",
+      "id": "growth-capital",
+      "type": "full",
+      "image": "timber-soffit",
+      "scrim": "bottom",
+      "align": "left",
+      "valign": "end",
       "label": "01 — Expertise",
       "heading": "Growth Capital",
       "text": "Financial support, strategic guidance and partnership for ambitious businesses ready to expand. We structure capital around your plans and stay closely involved as they take shape.",
-      "link": { "label": "Explore Growth Capital", "url": "/growth-capital/" }
+      "link": {
+        "label": "Explore Growth Capital",
+        "url": "/growth-capital/"
+      }
     },
     {
-      "id": "asset-management", "type": "full", "image": "balconies", "scrim": "left", "align": "left", "valign": "middle",
+      "id": "asset-management",
+      "type": "full",
+      "image": "balconies",
+      "scrim": "left",
+      "align": "left",
+      "valign": "middle",
       "label": "02 — Expertise",
       "heading": "Asset Management",
       "text": "Tailored investment strategies, disciplined management and ongoing monitoring, built around your objectives and a long-term perspective.",
-      "link": { "label": "Explore Asset Management", "url": "/asset-management/" }
+      "link": {
+        "label": "Explore Asset Management",
+        "url": "/asset-management/"
+      }
     },
     {
-      "id": "private-equity", "type": "full", "image": "spiral-stair", "scrim": "right", "align": "right", "valign": "end",
+      "id": "private-equity",
+      "type": "full",
+      "image": "spiral-stair",
+      "scrim": "right",
+      "align": "right",
+      "valign": "end",
       "label": "03 — Expertise",
       "heading": "Private Equity",
       "text": "We invest in businesses and collaborate actively with their management teams to create strategic value, with patience and a long-term perspective.",
-      "link": { "label": "Explore Private Equity", "url": "/private-equity/" }
+      "link": {
+        "label": "Explore Private Equity",
+        "url": "/private-equity/"
+      }
     },
     {
-      "id": "approach", "type": "full", "image": "window-grid", "scrim": "full", "align": "left", "valign": "start", "wide": true,
+      "id": "approach",
+      "type": "full",
+      "image": "window-grid",
+      "scrim": "full",
+      "align": "left",
+      "valign": "start",
+      "wide": true,
       "label": "Our approach",
       "heading": "Four commitments, consistently applied.",
       "text": "However we work with you, the same principles shape every decision.",
       "items": [
-        { "title": "Tailored strategies", "text": "Every mandate starts with your objectives and circumstances, never with a template." },
-        { "title": "Active partnership", "text": "We work alongside owners and management teams rather than observing from a distance." },
-        { "title": "Disciplined management", "text": "Clear criteria, careful monitoring and honest reporting throughout the relationship." },
-        { "title": "A long-term perspective", "text": "Decisions are made for durable outcomes, not the next quarter." }
+        {
+          "title": "Tailored strategies",
+          "text": "Every mandate starts with your objectives and circumstances, never with a template."
+        },
+        {
+          "title": "Active partnership",
+          "text": "We work alongside owners and management teams rather than observing from a distance."
+        },
+        {
+          "title": "Disciplined management",
+          "text": "Clear criteria, careful monitoring and honest reporting throughout the relationship."
+        },
+        {
+          "title": "A long-term perspective",
+          "text": "Decisions are made for durable outcomes, not the next quarter."
+        }
       ]
     },
     {
-      "id": "conversation", "type": "final", "image": "roof-sky", "scrim": "bottom", "align": "left", "valign": "middle",
+      "id": "conversation",
+      "type": "final",
+      "image": "roof-sky",
+      "scrim": "left",
+      "align": "left",
+      "valign": "middle",
       "label": "Next steps",
       "heading": "Let’s discuss what comes next.",
       "text": "Whether you are exploring a capital partnership or considering how your assets are managed, a conversation is the right place to start.",
-      "actions": [ { "label": "Start a Conversation", "url": "/contact/", "style": "light", "arrow": true } ]
+      "actions": [
+        {
+          "label": "Start a Conversation",
+          "url": "/contact/",
+          "style": "light",
+          "arrow": true
+        }
+      ]
     }
   ]
 }

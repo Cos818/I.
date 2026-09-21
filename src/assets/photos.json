@@ -3,7 +3,10 @@
   "images": {
     "hero-diagrid": {
       "file": "hero-diagrid.jpg",
-      "focus": [62, 60],
+      "focus": [
+        62,
+        60
+      ],
       "description": "Close view of a contemporary building facade with a diagonal grid of pale panels against a bright sky",
       "source": "https://pxhere.com/en/photo/56714",
       "via": "Automattic/themes (brute)",
@@ -11,7 +14,10 @@
     },
     "facade-detail": {
       "file": "facade-detail.webp",
-      "focus": [50, 50],
+      "focus": [
+        50,
+        50
+      ],
       "description": "Detail of a facade made of angled pale stone panels in soft daylight",
       "source": "https://www.rawpixel.com/image/3283970/free-photo-image-pattern-artwork-abstract",
       "via": "WordPress/twentytwentyfour",
@@ -19,7 +25,10 @@
     },
     "timber-soffit": {
       "file": "timber-soffit.webp",
-      "focus": [50, 62],
+      "focus": [
+        50,
+        62
+      ],
       "description": "Upward view of a building with a warm timber soffit, concrete columns and a wide staircase",
       "source": "https://www.rawpixel.com/image/3289063/free-photo-image-architectural-detail-architecture",
       "via": "WordPress/twentytwentyfour",
@@ -27,7 +36,10 @@
     },
     "balconies": {
       "file": "balconies.webp",
-      "focus": [60, 50],
+      "focus": [
+        60,
+        50
+      ],
       "description": "Rows of balconies on a tall facade, lit by a sweep of light against deep shadow",
       "source": "https://www.rawpixel.com/image/3286725/free-photo-image-black-and-white-background-photos",
       "via": "WordPress/twentytwentyfour",
@@ -35,7 +47,10 @@
     },
     "spiral-stair": {
       "file": "spiral-stair.webp",
-      "focus": [40, 50],
+      "focus": [
+        40,
+        50
+      ],
       "description": "A person walking down a curved timber staircase seen from above",
       "source": "https://www.rawpixel.com/image/3286187/free-photo-image-person-stairs-architecture",
       "via": "WordPress/twentytwentyfour",
@@ -43,7 +58,10 @@
     },
     "museum-hall": {
       "file": "museum-hall.webp",
-      "focus": [50, 55],
+      "focus": [
+        50,
+        55
+      ],
       "description": "A long, quiet gallery corridor with pale stone walls and a glazed roof",
       "source": "https://www.rawpixel.com/image/3297419/free-photo-image-interior-hallway-architecture",
       "via": "WordPress/twentytwentyfour",
@@ -51,7 +69,10 @@
     },
     "window-grid": {
       "file": "window-grid.webp",
-      "focus": [50, 50],
+      "focus": [
+        50,
+        50
+      ],
       "description": "A calm grid of shuttered windows on a pale rendered facade",
       "source": "https://www.rawpixel.com/image/3286615/free-photo-image-texture-architecture-building",
       "via": "WordPress/twentytwentyfour",
@@ -59,7 +80,10 @@
     },
     "roof-sky": {
       "file": "roof-sky.webp",
-      "focus": [30, 40],
+      "focus": [
+        30,
+        40
+      ],
       "description": "The underside of a cantilevered timber roof against a clear sky",
       "source": "https://www.rawpixel.com/image/430335/free-photo-image-architecture-building-roof",
       "via": "WordPress/twentytwentyfour",
@@ -67,7 +91,10 @@
     },
     "concrete-upward": {
       "file": "concrete-upward.jpg",
-      "focus": [55, 45],
+      "focus": [
+        55,
+        45
+      ],
       "description": "Upward view of a concrete building with strong cantilevered forms under a dramatic sky",
       "source": "https://pxhere.com/en/photo/1571681",
       "via": "Automattic/themes (brute)",
@@ -75,7 +102,10 @@
     },
     "pendant-interior": {
       "file": "pendant-interior.webp",
-      "focus": [40, 45],
+      "focus": [
+        40,
+        45
+      ],
       "description": "A bright interior with white pendant lamps, a pale timber cabinet and a shelf",
       "source": "https://stocksnap.io/photo/architecture-house-9QLIF5KSSQ",
       "via": "Automattic/themes (ron)",
@@ -83,15 +113,21 @@
     },
     "panelled-room": {
       "file": "panelled-room.jpg",
-      "focus": [50, 30],
-      "description": "Dark timber wall panelling and a panelled door in warm light",
+      "focus": [
+        50,
+        50
+      ],
+      "description": "Dark timber wall panelling and a panelled door in warm light (upper part of the source photograph)",
       "source": "https://www.rawpixel.com/image/3303438/free-photo-image-wood-paneling-door-panel",
       "via": "Automattic/themes (margarethe)",
       "license": "CC0 1.0"
     },
     "lounge": {
       "file": "lounge.jpg",
-      "focus": [55, 45],
+      "focus": [
+        55,
+        45
+      ],
       "description": "A quiet panelled room with a brass lamp and tall windows looking over the city",
       "source": "https://www.rawpixel.com/image/3283247/free-photo-image-interior-cafe-home-design",
       "via": "Automattic/themes (margarethe)",
@@ -99,7 +135,10 @@
     },
     "desk-work": {
       "file": "desk-work.jpg",
-      "focus": [50, 45],
+      "focus": [
+        50,
+        45
+      ],
       "description": "A person in a camel jacket working at a laptop beside a cup of coffee",
       "source": "https://www.foodiesfeed.com/free-food-photo/laptop-work-with-coffee/",
       "via": "Automattic/themes (cortado)",
