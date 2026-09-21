@@ -1,0 +1,38 @@
+/* Axe Capital design tokens. Colours, type and spacing live here; components
+   reference these variables only. Proposed redesign palette, not confirmed
+   brand standards (see docs/HANDOVER.md). */
+:root {
+  --navy: #0B1C2A;
+  --navy-rgb: 11, 28, 42;
+  --ivory: #F5F4EF;
+  --ivory-rgb: 245, 244, 239;
+  --blue: #92B7C5;
+  --teal: #245567;
+  --teal-deep: #1B4352;
+  --charcoal: #1D2B34;
+  --grey: #DCE3E7;
+  --white: #FFFFFF;
+
+  --font-serif: "Cormorant Garamond", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+  --font-sans: "Manrope", "Avenir Next", "Segoe UI", Helvetica, Arial, system-ui, sans-serif;
+
+  --text-body: clamp(1.0625rem, 1rem + 0.2vw, 1.125rem); /* 17-18px */
+  --text-lead: clamp(1.125rem, 1.05rem + 0.35vw, 1.3125rem);
+  --text-label: 0.75rem;
+  --text-hero: clamp(2.75rem, 1.4rem + 5.2vw, 6.25rem);   /* 44px -> 100px */
+  --text-h2: clamp(2.25rem, 1.3rem + 3.4vw, 4.5rem);       /* 36px -> 72px */
+  --text-h3: clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem);
+
+  --gutter: clamp(20px, 6vw, 7vw);
+  --header-h: 64px;
+  --measure: 34rem;
+  --radius: 2px;
+
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast: 220ms;
+  --dur: 420ms;
+  --dur-slow: 900ms;
+}
+@media (min-width: 768px) {
+  :root { --header-h: 76px; }
+}

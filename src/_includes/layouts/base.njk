@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.url == "/" %}{{ site.name }} | {{ site.tagline }}{% else %}{{ title }} | {{ site.name }}{% endif %}</title>
+  <meta name="description" content="{{ description }}">
+  <meta name="theme-color" content="#0B1C2A">
+  <meta property="og:title" content="{% if page.url == "/" %}{{ site.name }} | {{ site.tagline }}{% else %}{{ title }} | {{ site.name }}{% endif %}">
+  <meta property="og:description" content="{{ description }}">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/fonts/CormorantGaramond-500-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/Manrope-500-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/main.css">
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  {% include "partials/header.njk" %}
+  {% include "partials/mobile-menu.njk" %}
+  <main id="main">
+    {{ content | safe }}
+  </main>
+  <script src="/js/main.js" defer></script>
+</body>
+</html>

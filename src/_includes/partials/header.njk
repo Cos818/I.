@@ -1,0 +1,23 @@
+{% set isService = false %}{% for s in site.services %}{% if page.url == s.url %}{% set isService = true %}{% endif %}{% endfor %}
+<header class="header{% if headerTheme == "light" %} header--light{% endif %}">
+  {% include "partials/wordmark.njk" %}
+  <nav class="nav" aria-label="Primary">
+    <a class="nav__link" href="/about/" {% if page.url == "/about/" %}aria-current="page"{% endif %}>About</a>
+    <div class="nav__item">
+      <button class="nav__trigger{% if isService %} is-active{% endif %}" type="button" aria-expanded="false" aria-controls="expertise-menu">
+        Expertise
+        <svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+      </button>
+      <ul class="nav__menu" id="expertise-menu" aria-label="Expertise">
+        {% for s in site.services %}
+        <li><a href="{{ s.url }}" {% if page.url == s.url %}aria-current="page"{% endif %}><span>{{ s.label }}</span><span aria-hidden="true">{{ s.num }}</span></a></li>
+        {% endfor %}
+      </ul>
+    </div>
+    <a class="nav__link" href="/contact/" {% if page.url == "/contact/" %}aria-current="page"{% endif %}>Contact</a>
+    <a class="btn btn--light btn--small" href="{{ site.cta.url }}">{{ site.cta.label }}</a>
+  </nav>
+  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu">
+    <span>Menu</span><span class="menu-toggle__lines" aria-hidden="true"></span>
+  </button>
+</header>

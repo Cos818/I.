@@ -1,0 +1,37 @@
+{
+  "panels": [
+    {
+      "id": "top", "type": "hero", "image": "balconies", "scrim": "left", "align": "left", "valign": "end", "cue": "strategies",
+      "label": "02 — Asset Management",
+      "heading": "Disciplined management, <em>long-term</em> perspective.",
+      "lead": "Tailored investment strategies, disciplined management and ongoing monitoring, built around your objectives.",
+      "actions": [ { "label": "Discuss Your Objectives", "url": "/contact/", "style": "light", "arrow": true } ]
+    },
+    {
+      "id": "strategies", "type": "split", "image": "museum-hall",
+      "imageAlt": "A long, quiet gallery corridor with pale stone walls and a glazed roof",
+      "label": "Tailored strategies",
+      "heading": "Built around your objectives.",
+      "text": "Each strategy starts with what you are trying to achieve and how much risk you are prepared to accept. Depending on the mandate, portfolios may draw on equities, fixed income and alternative investments, combined with a long-term view.",
+      "link": { "label": "Talk to us about a mandate", "url": "/contact/" }
+    },
+    {
+      "id": "oversight", "type": "full", "image": "panelled-room", "scrim": "left", "align": "left", "valign": "middle", "wide": true,
+      "label": "Oversight and monitoring",
+      "heading": "Attention that does not stop at the start.",
+      "items": [
+        { "title": "Portfolio oversight", "text": "Positions are managed against clear criteria and reviewed with discipline." },
+        { "title": "Ongoing monitoring", "text": "Markets and holdings are watched continuously, and adjustments are made when the case for them is clear." },
+        { "title": "Clear reporting", "text": "You see how the portfolio is positioned and why, in plain terms." },
+        { "title": "A long-term perspective", "text": "Strategies are designed to hold up over years, not weeks." }
+      ]
+    },
+    {
+      "id": "conversation", "type": "final", "image": "roof-sky", "scrim": "bottom", "align": "left", "valign": "middle",
+      "label": "Next steps",
+      "heading": "Considering how your assets are managed?",
+      "text": "A first conversation is simply that: an opportunity to understand your objectives and explain how we work.",
+      "actions": [ { "label": "Start a Conversation", "url": "/contact/", "style": "light", "arrow": true } ]
+    }
+  ]
+}

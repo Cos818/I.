@@ -1,0 +1,56 @@
+{#- Renders one full-screen panel from a copy object `p`.
+    type: hero | full | split | final     align: left | right | center
+    valign: end | start | middle           scrim: left | right | bottom | top | center | full
+    image, imageAlt, label, heading, lead, text, items[], actions[], list (two|three), footer, cue, light -#}
+{%- set classes = "panel" -%}
+{%- if p.type == "split" %}{% set classes = classes + " panel--split panel--light" %}{% if p.flip %}{% set classes = classes + " panel--flip" %}{% endif %}{% endif -%}
+{%- if p.light and p.type != "split" %}{% set classes = classes + " panel--light" %}{% endif -%}
+{%- if p.align == "right" %}{% set classes = classes + " panel--right" %}{% elif p.align == "center" %}{% set classes = classes + " panel--center" %}{% endif -%}
+{%- if p.valign == "start" %}{% set classes = classes + " panel--top" %}{% elif p.valign == "middle" %}{% set classes = classes + " panel--middle" %}{% endif -%}
+{%- if p.type == "final" %}{% set classes = classes + " panel--final" %}{% endif -%}
+{%- set idx = 0 -%}
+<section class="{{ classes }}"{% if p.id %} id="{{ p.id }}"{% endif %}{% if p.ariaLabel %} aria-label="{{ p.ariaLabel }}"{% endif %}>
+  {%- if p.image %}
+  <div class="panel__media">
+    {%- set loadMode = "eager" if p.type == "hero" else "lazy" -%}
+    {%- set sizesAttr = "(min-width: 900px) 68vw, 100vw" if p.type == "split" else "100vw" -%}
+    {% picture p.image, (p.imageAlt or ""), { loading: loadMode, sizes: sizesAttr } %}
+  </div>
+  <div class="panel__scrim scrim--{{ p.scrim or 'left' }}" aria-hidden="true"></div>
+  {%- if p.type == "hero" %}<div class="panel__scrim scrim--header" aria-hidden="true"></div>{% endif %}
+  {%- endif %}
+  <div class="panel__inner">
+    <div class="panel__body{% if p.wide %} panel__body--wide{% endif %}">
+      {%- if p.label %}<p class="label reveal" style="--i:0">{{ p.label }}</p>{% endif %}
+      {%- if p.heading %}
+        {%- if p.type == "hero" %}<h1 class="hero-title reveal" style="--i:1">{{ p.heading | safe }}</h1>
+        {%- else %}<h2 class="panel__title reveal" style="--i:1">{{ p.heading | safe }}</h2>{% endif %}
+      {%- endif %}
+      {%- if p.lead %}<p class="panel__lead reveal" style="--i:2">{{ p.lead | safe }}</p>{% endif %}
+      {%- if p.text %}<p class="panel__text reveal" style="--i:3">{{ p.text | safe }}</p>{% endif %}
+      {%- if p.actions %}
+      <div class="panel__actions reveal" style="--i:4">
+        {%- for a in p.actions %}
+        <a class="btn btn--{{ a.style or 'light' }}" href="{{ a.url }}">{{ a.label }}{% if a.arrow %}{% include "partials/icon-arrow.njk" %}{% endif %}</a>
+        {%- endfor %}
+      </div>
+      {%- endif %}
+      {%- if p.link %}
+      <p class="reveal" style="--i:4"><a class="link" href="{{ p.link.url }}"><span>{{ p.link.label }}</span>{% include "partials/icon-arrow.njk" %}</a></p>
+      {%- endif %}
+    </div>
+    {%- if p.items %}
+    <ul class="panel__list{% if p.list == 'three' %} panel__list--three{% endif %}">
+      {%- for item in p.items %}
+      <li class="reveal" style="--i:{{ loop.index + 2 }}">
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.text }}</p>
+        {%- if item.link %}<a class="link" href="{{ item.link.url }}"><span>{{ item.link.label }}</span>{% include "partials/icon-arrow.njk" %}</a>{% endif %}
+      </li>
+      {%- endfor %}
+    </ul>
+    {%- endif %}
+  </div>
+  {%- if p.cue %}<a class="scroll-cue" href="#{{ p.cue }}"><span>Scroll</span><span class="scroll-cue__line" aria-hidden="true"></span></a>{% endif %}
+  {%- if p.type == "final" %}{% include "partials/footer.njk" %}{% endif %}
+</section>

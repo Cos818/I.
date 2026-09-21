@@ -1,0 +1,30 @@
+{
+  "name": "axe-capital-website",
+  "version": "0.1.0",
+  "description": "Axe Capital corporate website: a static multipage site built with Eleventy.",
+  "scripts": {
+    "images": "node scripts/build-images.mjs",
+    "build": "npm run images && eleventy",
+    "start": "npm run images && eleventy --serve",
+    "preview": "eleventy --serve",
+    "clean": "rm -rf _site src/img src/_data/imageManifest.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cos818/I..git"
+  },
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/Cos818/I./issues"
+  },
+  "homepage": "https://github.com/Cos818/I.#readme",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.6",
+    "sharp": "^0.35.4"
+  },
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  }
+}

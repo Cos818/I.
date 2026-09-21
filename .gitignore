@@ -1,0 +1,6 @@
+node_modules/
+_site/
+src/img/
+src/_data/imageManifest.json
+.cache/
+qa/

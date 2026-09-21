@@ -1,0 +1,39 @@
+{
+  "panels": [
+    {
+      "id": "top", "type": "hero", "image": "concrete-upward", "scrim": "left", "align": "left", "valign": "end", "cue": "purpose",
+      "label": "About Axe Capital",
+      "heading": "Built for the <em>long term.</em>",
+      "lead": "Axe Capital is an investment company working across growth capital, asset management and private equity. We bring capital, strategic guidance and partnership to the businesses and investors we work with."
+    },
+    {
+      "id": "purpose", "type": "split", "image": "desk-work", "flip": true,
+      "imageAlt": "A person in a camel jacket working at a laptop beside a cup of coffee",
+      "label": "Our purpose",
+      "heading": "More than capital.",
+      "text": "We exist to help ambitious businesses grow and to help investors manage their assets with discipline. That means providing more than money: clear thinking, practical guidance and a partner who stays engaged as circumstances change."
+    },
+    {
+      "id": "expertise", "type": "full", "image": "facade-detail", "scrim": "full", "align": "left", "valign": "start", "list": "three", "wide": true,
+      "label": "What we do",
+      "heading": "Three areas, one perspective.",
+      "items": [
+        { "title": "Growth Capital", "text": "Financial support, strategic guidance and partnership for ambitious businesses seeking expansion.", "link": { "label": "Growth Capital", "url": "/growth-capital/" } },
+        { "title": "Asset Management", "text": "Tailored investment strategies, disciplined management and ongoing monitoring with a long-term view.", "link": { "label": "Asset Management", "url": "/asset-management/" } },
+        { "title": "Private Equity", "text": "Investment in businesses, active collaboration with management and strategic value creation.", "link": { "label": "Private Equity", "url": "/private-equity/" } }
+      ]
+    },
+    {
+      "id": "principles", "type": "final", "image": "pendant-interior", "scrim": "left", "align": "left", "valign": "middle", "wide": true,
+      "label": "How we partner",
+      "heading": "Principles we hold to.",
+      "items": [
+        { "title": "Collaboration", "text": "We work with owners and management teams, sharing decisions rather than dictating them." },
+        { "title": "Risk awareness", "text": "Every opportunity is weighed against what could go wrong, not only what could go right." },
+        { "title": "Ongoing adaptation", "text": "Plans are revisited as markets and businesses evolve, and adjusted where they need to be." },
+        { "title": "A long-term perspective", "text": "We measure success over years, and structure relationships accordingly." }
+      ],
+      "actions": [ { "label": "Start a Conversation", "url": "/contact/", "style": "light", "arrow": true } ]
+    }
+  ]
+}

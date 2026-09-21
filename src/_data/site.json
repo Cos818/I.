@@ -1,0 +1,14 @@
+{
+  "name": "Axe Capital",
+  "tagline": "Capital with perspective.",
+  "nav": [
+    { "label": "About", "url": "/about/" },
+    { "label": "Contact", "url": "/contact/" }
+  ],
+  "services": [
+    { "num": "01", "label": "Growth Capital", "url": "/growth-capital/" },
+    { "num": "02", "label": "Asset Management", "url": "/asset-management/" },
+    { "num": "03", "label": "Private Equity", "url": "/private-equity/" }
+  ],
+  "cta": { "label": "Start a Conversation", "url": "/contact/" }
+}

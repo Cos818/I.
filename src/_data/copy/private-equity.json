@@ -1,0 +1,36 @@
+{
+  "panels": [
+    {
+      "id": "top", "type": "hero", "image": "spiral-stair", "scrim": "right", "align": "right", "valign": "end", "cue": "investing",
+      "label": "03 — Private Equity",
+      "heading": "Partnership that <em>creates value.</em>",
+      "lead": "Investment in businesses, active collaboration with management and strategic value creation.",
+      "actions": [ { "label": "Discuss a Partnership", "url": "/contact/", "style": "light", "arrow": true } ]
+    },
+    {
+      "id": "investing", "type": "split", "image": "desk-work", "flip": true,
+      "imageAlt": "A person in a camel jacket working at a laptop beside a cup of coffee",
+      "label": "Investing in businesses",
+      "heading": "Alongside management, not above it.",
+      "text": "We invest in businesses and work actively with the people who run them. Management teams keep the knowledge of their markets; we contribute capital, structure and an outside perspective, and we stay involved."
+    },
+    {
+      "id": "value", "type": "full", "image": "concrete-upward", "scrim": "left", "align": "left", "valign": "middle", "wide": true,
+      "label": "Strategic value creation",
+      "heading": "Patient, practical and hands-on.",
+      "items": [
+        { "title": "Strategic direction", "text": "Working with management to sharpen priorities and the plan for reaching them." },
+        { "title": "Operational collaboration", "text": "Practical involvement where it helps, from planning to execution." },
+        { "title": "Disciplined decisions", "text": "Investments and follow-on decisions are made against clear criteria." },
+        { "title": "A long-term perspective", "text": "Value is built over the life of a partnership, not extracted at the first opportunity." }
+      ]
+    },
+    {
+      "id": "conversation", "type": "final", "image": "pendant-interior", "scrim": "left", "align": "left", "valign": "middle",
+      "label": "Next steps",
+      "heading": "Exploring a partner for your business?",
+      "text": "Tell us about the company, its management and what a partnership would need to achieve. We will respond to arrange a conversation.",
+      "actions": [ { "label": "Start a Conversation", "url": "/contact/", "style": "light", "arrow": true } ]
+    }
+  ]
+}

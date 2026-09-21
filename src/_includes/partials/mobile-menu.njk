@@ -1,0 +1,17 @@
+<div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="mobile-menu__bar">
+    {% include "partials/wordmark.njk" %}
+    <button class="mobile-menu__close" type="button">
+      <span>Close</span>
+      <svg viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M2 2l14 14M16 2L2 16" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+    </button>
+  </div>
+  <ul class="mobile-menu__list">
+    <li style="--i:0"><a href="/about/" {% if page.url == "/about/" %}aria-current="page"{% endif %}>About</a></li>
+    {% for s in site.services %}
+    <li class="is-sub" style="--i:{{ loop.index }}"><a href="{{ s.url }}" {% if page.url == s.url %}aria-current="page"{% endif %}>{{ s.label }}<small>{{ s.num }}</small></a></li>
+    {% endfor %}
+    <li style="--i:4"><a href="/contact/" {% if page.url == "/contact/" %}aria-current="page"{% endif %}>Contact</a></li>
+  </ul>
+  <p class="mobile-menu__cta"><a class="btn btn--light" href="{{ site.cta.url }}">{{ site.cta.label }}</a></p>
+</div>

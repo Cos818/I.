@@ -1,0 +1,60 @@
+---
+layout: layouts/base.njk
+title: Contact
+headerTheme: light
+description: "Start a conversation with Axe Capital about growth capital, asset management or private equity. Tell us about your business or objectives and we will respond."
+---
+<section class="panel panel--split panel--flip panel--light panel--contact panel--final" id="top" aria-label="Contact Axe Capital">
+  <div class="panel__media">
+    {% picture "lounge", "A quiet panelled room with a brass lamp and tall windows looking over the city", { loading: "eager", sizes: "(min-width: 900px) 68vw, 100vw" } %}
+  </div>
+  <div class="panel__scrim scrim--full" aria-hidden="true"></div>
+  <div class="panel__inner">
+    <div class="panel__body">
+      <p class="label reveal" style="--i:0">Contact</p>
+      <h1 class="panel__title reveal" style="--i:1">Start a conversation.</h1>
+      <p class="panel__text reveal" style="--i:2">Tell us who you are and what you would like to discuss. Please do not include confidential financial details at this stage.</p>
+      <form class="contact-form reveal" id="enquiry-form" method="post" novalidate style="--i:3">
+        <div class="form-notice" role="note">
+          <strong>Preview:</strong> enquiry submission is not yet connected, so messages entered here are not delivered.
+        </div>
+        <div class="field">
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" autocomplete="name" required aria-required="true" aria-describedby="name-error" data-validate>
+          <p class="field__error" id="name-error" aria-live="polite"></p>
+        </div>
+        <div class="field">
+          <label for="email">Work email</label>
+          <input id="email" name="email" type="email" autocomplete="email" inputmode="email" required aria-required="true" aria-describedby="email-error" data-validate>
+          <p class="field__error" id="email-error" aria-live="polite"></p>
+        </div>
+        <div class="field">
+          <label for="company">Company <small>(optional)</small></label>
+          <input id="company" name="company" type="text" autocomplete="organization">
+        </div>
+        <div class="field">
+          <label for="interest">Area of interest</label>
+          <select id="interest" name="interest" required aria-required="true" aria-describedby="interest-error" data-validate>
+            <option value="">Please choose</option>
+            <option value="growth-capital">Growth Capital: a capital partnership for my business</option>
+            <option value="private-equity">Private Equity: a partner for my business</option>
+            <option value="asset-management">Asset Management: managing my assets</option>
+            <option value="general">Something else</option>
+          </select>
+          <p class="field__error" id="interest-error" aria-live="polite"></p>
+        </div>
+        <div class="field field--full">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" required aria-required="true" aria-describedby="message-error" data-validate></textarea>
+          <p class="field__error" id="message-error" aria-live="polite"></p>
+        </div>
+        <div class="panel__actions">
+          <button class="btn btn--teal" type="submit">Send Enquiry{% include "partials/icon-arrow.njk" %}</button>
+        </div>
+        <div class="form-notice form-notice--result" id="enquiry-result" role="status" tabindex="-1" hidden></div>
+        <noscript><p class="form-notice">This form needs JavaScript to validate and is not yet connected to a delivery destination.</p></noscript>
+      </form>
+    </div>
+  </div>
+  {% include "partials/footer.njk" %}
+</section>

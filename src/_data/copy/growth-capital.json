@@ -1,0 +1,39 @@
+{
+  "panels": [
+    {
+      "id": "top", "type": "hero", "image": "timber-soffit", "scrim": "bottom", "align": "left", "valign": "end", "cue": "what-we-provide",
+      "label": "01 — Growth Capital",
+      "heading": "Capital and guidance for the <em>next stage.</em>",
+      "lead": "Financial support, strategic guidance and partnership for ambitious businesses seeking expansion.",
+      "actions": [ { "label": "Discuss a Growth Plan", "url": "/contact/", "style": "light", "arrow": true } ]
+    },
+    {
+      "id": "what-we-provide", "type": "full", "image": "facade-detail", "scrim": "full", "align": "left", "valign": "start", "list": "three", "wide": true,
+      "label": "What we provide",
+      "heading": "Support that fits the plan.",
+      "items": [
+        { "title": "Capital", "text": "Funding structured around your expansion plans and the pace at which you intend to grow." },
+        { "title": "Strategic guidance", "text": "Experienced input on priorities, structure and the decisions that shape the next phase." },
+        { "title": "Tailored solutions", "text": "Arrangements designed for your business rather than drawn from a standard menu." }
+      ]
+    },
+    {
+      "id": "how-we-work", "type": "split", "image": "desk-work",
+      "imageAlt": "A person in a camel jacket working at a laptop beside a cup of coffee",
+      "label": "How we work together",
+      "heading": "A partnership, not a transaction.",
+      "items": [
+        { "title": "Collaboration", "text": "We work closely with owners and management from the first conversation onwards." },
+        { "title": "Risk awareness", "text": "Growth plans are stress-tested honestly before capital is committed." },
+        { "title": "Ongoing adaptation", "text": "As the business evolves, so does the support around it." }
+      ]
+    },
+    {
+      "id": "conversation", "type": "final", "image": "window-grid", "scrim": "full", "align": "left", "valign": "middle",
+      "label": "Next steps",
+      "heading": "Planning your next phase of growth?",
+      "text": "Tell us about your business and what you are working towards. We will come back to you to arrange a conversation.",
+      "actions": [ { "label": "Start a Conversation", "url": "/contact/", "style": "light", "arrow": true } ]
+    }
+  ]
+}
