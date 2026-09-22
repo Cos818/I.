@@ -346,27 +346,20 @@ main { position: relative; z-index: 1; }
   .panel--split .panel__inner { margin: 12vh var(--gutter); padding: clamp(28px, 6vw, 48px); }
 }
 
-/* White cards: every text block sits on its own white surface. */
+/* Glass cards: every text block sits on the same frosted surface as the
+   CTA button. One width, one padding; sides alternate left, right, left. */
 .card {
-  background: rgba(255, 255, 255, 0.94); color: var(--charcoal);
-  -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px);
-  padding: clamp(28px, 4vw, 56px); border-radius: var(--radius);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+  width: min(100%, 44rem);
+  padding: clamp(28px, 4vw, 52px);
+  background: linear-gradient(160deg, rgba(var(--ivory-rgb), 0.12), rgba(var(--ivory-rgb), 0.04)), rgba(var(--navy-rgb), 0.42);
+  -webkit-backdrop-filter: blur(22px) saturate(140%); backdrop-filter: blur(22px) saturate(140%);
+  border: 1px solid rgba(var(--ivory-rgb), 0.28); border-radius: var(--radius);
+  box-shadow: inset 0 1px 0 rgba(var(--ivory-rgb), 0.3), 0 24px 60px rgba(0, 0, 0, 0.28);
   display: grid; gap: clamp(28px, 4vh, 40px);
-  max-width: min(100%, 42rem);
 }
-.card:has(.panel__list) { max-width: min(100%, 64rem); }
-.card .panel__body { max-width: none; }
-.card .panel__title, .card .hero-title, .card .link { color: var(--navy); }
-.panel .card .panel__text, .panel .card .panel__lead { color: var(--charcoal); }
-.card .panel__list li { border-top-color: rgba(var(--navy-rgb), 0.18); }
-.card .panel__list { max-width: none; }
-.card .btn--light {
-  background: var(--teal); color: var(--white); border-color: var(--teal);
-  -webkit-backdrop-filter: none; backdrop-filter: none; box-shadow: none;
-}
-.card .btn--light:hover { background: var(--teal-deep); border-color: var(--teal-deep); }
-.panel--end .panel__inner { justify-items: end; }
+.card .panel__body, .card .panel__body--wide, .card .panel__list { max-width: none; }
+.card .panel__list li { border-top-color: rgba(var(--ivory-rgb), 0.24); }
+.panel:nth-of-type(even) .panel__inner { justify-items: end; }
 @media (max-width: 899px) { .card { padding: clamp(22px, 6vw, 36px); } }
 
 /* Scroll cue */
@@ -532,7 +525,7 @@ html.js .panel.is-visible .reveal { opacity: 1; transform: none; }
     </div></div>
   </div>
 </section>
-<section class="panel panel--end" id="introduction">
+<section class="panel" id="introduction">
   
   <div class="panel__inner">
     <div class="card">
