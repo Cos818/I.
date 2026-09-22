@@ -287,6 +287,7 @@ main { position: relative; z-index: 1; }
 }
 .panel__body { max-width: var(--measure); display: grid; gap: clamp(14px, 2.2vh, 24px); }
 .panel__body--wide { max-width: 44rem; }
+.card .panel__body--wide { max-width: 44rem; }
 
 
 .label {
@@ -344,6 +345,29 @@ main { position: relative; z-index: 1; }
 @media (max-width: 899px) {
   .panel--split .panel__inner { margin: 12vh var(--gutter); padding: clamp(28px, 6vw, 48px); }
 }
+
+/* White cards: every text block sits on its own white surface. */
+.card {
+  background: rgba(255, 255, 255, 0.94); color: var(--charcoal);
+  -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px);
+  padding: clamp(28px, 4vw, 56px); border-radius: var(--radius);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+  display: grid; gap: clamp(28px, 4vh, 40px);
+  max-width: min(100%, 42rem);
+}
+.card:has(.panel__list) { max-width: min(100%, 64rem); }
+.card .panel__body { max-width: none; }
+.card .panel__title, .card .hero-title, .card .link { color: var(--navy); }
+.panel .card .panel__text, .panel .card .panel__lead { color: var(--charcoal); }
+.card .panel__list li { border-top-color: rgba(var(--navy-rgb), 0.18); }
+.card .panel__list { max-width: none; }
+.card .btn--light {
+  background: var(--teal); color: var(--white); border-color: var(--teal);
+  -webkit-backdrop-filter: none; backdrop-filter: none; box-shadow: none;
+}
+.card .btn--light:hover { background: var(--teal-deep); border-color: var(--teal-deep); }
+.panel--end .panel__inner { justify-items: end; }
+@media (max-width: 899px) { .card { padding: clamp(22px, 6vw, 36px); } }
 
 /* Scroll cue */
 .scroll-cue {
@@ -499,56 +523,60 @@ html.js .panel.is-visible .reveal { opacity: 1; transform: none; }
     <section class="panel" id="top">
   
   <div class="panel__inner">
+    <div class="card">
     <div class="panel__body"><h1 class="hero-title reveal" style="--i:1"><strong>Invest</strong> with <strong>confidence.</strong></h1><p class="panel__lead reveal" style="--i:2">A growth capital, private equity and asset management firm committed to driving growth, innovation and success.</p>
       <div class="panel__actions reveal" style="--i:4">
         <a class="btn btn--light" href="#growth-capital">Explore Our Expertise<svg viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M2 9h13M10 4l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </a>
       </div>
-    </div>
+    </div></div>
   </div>
 </section>
-<section class="panel panel--split panel--light" id="introduction">
-  <div class="panel__media" aria-hidden="true"></div>
+<section class="panel panel--end" id="introduction">
   
   <div class="panel__inner">
+    <div class="card">
     <div class="panel__body"><h2 class="panel__title reveal" style="--i:1">Capital, expertise and the connections companies need to thrive.</h2>
       <p class="reveal" style="--i:4"><a class="link" href="about.html"><span>About Axe Capital</span><svg viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M2 9h13M10 4l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </a></p>
-    </div>
+    </div></div>
   </div>
 </section>
 <section class="panel" id="growth-capital">
   
   
   <div class="panel__inner">
+    <div class="card">
     <div class="panel__body"><h2 class="panel__title reveal" style="--i:1">Growth Capital</h2><p class="panel__text reveal" style="--i:3">We empower ambitious businesses to reach new heights through a strategic blend of financial support, strategic guidance and industry expertise. With a focus on custom-tailored solutions and risk management, we are a trusted partner on the journey to growth.</p>
       <p class="reveal" style="--i:4"><a class="link" href="growth-capital.html"><span>Explore Growth Capital</span><svg viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M2 9h13M10 4l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </a></p>
-    </div>
+    </div></div>
   </div>
 </section>
 <section class="panel" id="asset-management">
   
   <div class="panel__inner">
+    <div class="card">
     <div class="panel__body"><h2 class="panel__title reveal" style="--i:1">Asset Management</h2><p class="panel__text reveal" style="--i:3">We are dedicated to preserving and growing your wealth. Our mission is to protect and grow our clients’ assets through careful, strategic and disciplined investment management across equities, fixed income and alternative investments.</p>
       <p class="reveal" style="--i:4"><a class="link" href="asset-management.html"><span>Explore Asset Management</span><svg viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M2 9h13M10 4l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </a></p>
-    </div>
+    </div></div>
   </div>
 </section>
 <section class="panel" id="private-equity">
   
   <div class="panel__inner">
+    <div class="card">
     <div class="panel__body"><h2 class="panel__title reveal" style="--i:1">Private Equity</h2><p class="panel__text reveal" style="--i:3">We invest in and partner with businesses to unlock their full potential. We are not passive investors: we work closely with management to identify and implement strategies that enhance operations, increase efficiency and drive growth.</p>
       <p class="reveal" style="--i:4"><a class="link" href="private-equity.html"><span>Explore Private Equity</span><svg viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M2 9h13M10 4l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </a></p>
-    </div>
+    </div></div>
   </div>
 </section>
-<section class="panel panel--split panel--flip panel--light" id="approach">
-  <div class="panel__media" aria-hidden="true"></div>
+<section class="panel" id="approach">
   
   <div class="panel__inner">
+    <div class="card">
     <div class="panel__body panel__body--wide"><h2 class="panel__title reveal" style="--i:1">What guides every decision we make.</h2><p class="panel__text reveal" style="--i:3">Whether we are investing in a business or managing your wealth, the same principles apply.</p>
     </div>
     <ul class="panel__list">
@@ -568,18 +596,19 @@ html.js .panel.is-visible .reveal { opacity: 1; transform: none; }
         <h3>Long-term perspective</h3>
         <p>Our investments are not quick turnarounds. We focus on lasting value that benefits all stakeholders well beyond the initial investment.</p>
       </li>
-    </ul>
+    </ul></div>
   </div>
 </section>
 <section class="panel panel--final" id="conversation">
   
   <div class="panel__inner">
+    <div class="card">
     <div class="panel__body"><h2 class="panel__title reveal" style="--i:1">It is never too early to get started.</h2><p class="panel__text reveal" style="--i:3">Tell us more about your goals and we will get you started on a plan to achieve them.</p>
       <div class="panel__actions reveal" style="--i:4">
         <a class="btn btn--light" href="contact.html">Start a Conversation<svg viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M2 9h13M10 4l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </a>
       </div>
-    </div>
+    </div></div>
   </div><footer class="site-footer">
   <a class="wordmark" href="index.html" aria-label="Axe Capital, home">
   <svg class="wordmark__mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M32 8 50 56h-7.4l-4.3-11.6H25.7L21.4 56H14Zm0 12.4L27.8 38h8.4Z" fill="currentColor"/></svg>
