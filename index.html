@@ -287,8 +287,7 @@ main { position: relative; z-index: 1; }
 }
 .panel__body { max-width: var(--measure); display: grid; gap: clamp(14px, 2.2vh, 24px); }
 .panel__body--wide { max-width: 44rem; }
-.panel__body .label { margin-bottom: 4px; }
-.panel__body .label::before { content: ""; width: 28px; height: 1px; background: currentColor; opacity: 0.7; }
+
 
 .label {
   display: inline-flex; align-items: center; gap: 14px; margin: 0;
@@ -320,33 +319,30 @@ main { position: relative; z-index: 1; }
 @media (min-width: 900px) {
   .panel--split { display: grid; grid-template-columns: minmax(0, 58fr) minmax(0, 42fr); }
   .panel--split .panel__title { font-size: clamp(1.375rem, 1rem + 1.1vw, 1.875rem); line-height: 1.3; }
-  .panel--split { background: transparent; }
-  /* Content column as a dark glass surface so the scene keeps running behind it. */
-  .panel--split .panel__inner {
-    background: rgba(var(--navy-rgb), 0.62);
-    -webkit-backdrop-filter: blur(22px) saturate(120%); backdrop-filter: blur(22px) saturate(120%);
-    border-left: 1px solid rgba(var(--ivory-rgb), 0.12);
-  }
+
   .panel--split .panel__media { position: relative; inset: auto; min-height: 100vh; min-height: 100svh; }
-  .panel--split .panel__list { grid-template-columns: 1fr; gap: 14px; }
+  .panel--split .panel__list { grid-template-columns: 1fr; gap: 16px; max-width: 100%; }
   .panel--split .panel__list h3 { font-size: 1.0625rem; }
   .panel--split .panel__inner { gap: 24px; }
   .panel--split .panel__scrim { display: none; }
   .panel--split .panel__inner { align-content: center; padding: calc(var(--header-h) + 4vh) clamp(40px, 5vw, 88px) 8vh; }
-  .panel--split .panel__body { max-width: 26rem; }
+  .panel--split .panel__body { max-width: 28rem; }
   .panel--split.panel--flip { grid-template-columns: minmax(0, 32fr) minmax(0, 68fr); }
   .panel--split.panel--flip .panel__media { order: 2; }
   .panel--split .site-footer { grid-column: 1 / -1; order: 3; background: var(--navy); color: rgba(var(--ivory-rgb), 0.82); border-top: 0; }
   .panel--split.panel--final { grid-template-rows: minmax(0, 1fr) auto; }
   .panel--split.panel--final .panel__media { min-height: 0; }
 }
+/* Light surfaces: the content column is ivory glass, so the scene still
+   shows faintly through it and the page alternates between dark and light. */
+.panel--split.panel--light { background: transparent; }
+.panel--split.panel--light .panel__inner {
+  background: rgba(var(--ivory-rgb), 0.9);
+  -webkit-backdrop-filter: blur(24px) saturate(120%); backdrop-filter: blur(24px) saturate(120%);
+}
+.panel--split.panel--light .link, .panel--split.panel--light .panel__title { color: var(--navy); }
 @media (max-width: 899px) {
-  .panel--split { color: var(--ivory); background: transparent; }
-  .panel--split .label { color: var(--blue); }
-  .panel--split .panel__list li { border-top-color: rgba(var(--ivory-rgb), 0.28); }
-  .panel--split .panel__lead, .panel--split .panel__text { color: rgba(var(--ivory-rgb), 0.9); }
-  .panel--split .btn--teal { background: var(--ivory); color: var(--navy); border-color: var(--ivory); }
-  .panel--split .btn--outline-dark { color: var(--ivory); border-color: rgba(var(--ivory-rgb), 0.55); }
+  .panel--split .panel__inner { margin: 12vh var(--gutter); padding: clamp(28px, 6vw, 48px); }
 }
 
 /* Scroll cue */
@@ -511,11 +507,11 @@ html.js .panel.is-visible .reveal { opacity: 1; transform: none; }
     </div>
   </div>
 </section>
-<section class="panel panel--split" id="introduction">
+<section class="panel panel--split panel--light" id="introduction">
   <div class="panel__media" aria-hidden="true"></div>
   
   <div class="panel__inner">
-    <div class="panel__body"><p class="label reveal" style="--i:0">Introduction</p><h2 class="panel__title reveal" style="--i:1">Capital, expertise and the connections companies need to thrive.</h2>
+    <div class="panel__body"><h2 class="panel__title reveal" style="--i:1">Capital, expertise and the connections companies need to thrive.</h2>
       <p class="reveal" style="--i:4"><a class="link" href="about.html"><span>About Axe Capital</span><svg viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M2 9h13M10 4l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </a></p>
     </div>
@@ -525,7 +521,7 @@ html.js .panel.is-visible .reveal { opacity: 1; transform: none; }
   
   
   <div class="panel__inner">
-    <div class="panel__body"><p class="label reveal" style="--i:0">Expertise &middot; 01</p><h2 class="panel__title reveal" style="--i:1">Growth Capital</h2><p class="panel__text reveal" style="--i:3">We empower ambitious businesses to reach new heights through a strategic blend of financial support, strategic guidance and industry expertise. With a focus on custom-tailored solutions and risk management, we are a trusted partner on the journey to growth.</p>
+    <div class="panel__body"><h2 class="panel__title reveal" style="--i:1">Growth Capital</h2><p class="panel__text reveal" style="--i:3">We empower ambitious businesses to reach new heights through a strategic blend of financial support, strategic guidance and industry expertise. With a focus on custom-tailored solutions and risk management, we are a trusted partner on the journey to growth.</p>
       <p class="reveal" style="--i:4"><a class="link" href="growth-capital.html"><span>Explore Growth Capital</span><svg viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M2 9h13M10 4l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </a></p>
     </div>
@@ -534,7 +530,7 @@ html.js .panel.is-visible .reveal { opacity: 1; transform: none; }
 <section class="panel" id="asset-management">
   
   <div class="panel__inner">
-    <div class="panel__body"><p class="label reveal" style="--i:0">Expertise &middot; 02</p><h2 class="panel__title reveal" style="--i:1">Asset Management</h2><p class="panel__text reveal" style="--i:3">We are dedicated to preserving and growing your wealth. Our mission is to protect and grow our clients’ assets through careful, strategic and disciplined investment management across equities, fixed income and alternative investments.</p>
+    <div class="panel__body"><h2 class="panel__title reveal" style="--i:1">Asset Management</h2><p class="panel__text reveal" style="--i:3">We are dedicated to preserving and growing your wealth. Our mission is to protect and grow our clients’ assets through careful, strategic and disciplined investment management across equities, fixed income and alternative investments.</p>
       <p class="reveal" style="--i:4"><a class="link" href="asset-management.html"><span>Explore Asset Management</span><svg viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M2 9h13M10 4l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </a></p>
     </div>
@@ -543,16 +539,17 @@ html.js .panel.is-visible .reveal { opacity: 1; transform: none; }
 <section class="panel" id="private-equity">
   
   <div class="panel__inner">
-    <div class="panel__body"><p class="label reveal" style="--i:0">Expertise &middot; 03</p><h2 class="panel__title reveal" style="--i:1">Private Equity</h2><p class="panel__text reveal" style="--i:3">We invest in and partner with businesses to unlock their full potential. We are not passive investors: we work closely with management to identify and implement strategies that enhance operations, increase efficiency and drive growth.</p>
+    <div class="panel__body"><h2 class="panel__title reveal" style="--i:1">Private Equity</h2><p class="panel__text reveal" style="--i:3">We invest in and partner with businesses to unlock their full potential. We are not passive investors: we work closely with management to identify and implement strategies that enhance operations, increase efficiency and drive growth.</p>
       <p class="reveal" style="--i:4"><a class="link" href="private-equity.html"><span>Explore Private Equity</span><svg viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M2 9h13M10 4l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </a></p>
     </div>
   </div>
 </section>
-<section class="panel" id="approach">
+<section class="panel panel--split panel--flip panel--light" id="approach">
+  <div class="panel__media" aria-hidden="true"></div>
   
   <div class="panel__inner">
-    <div class="panel__body panel__body--wide"><p class="label reveal" style="--i:0">Our approach</p><h2 class="panel__title reveal" style="--i:1">What guides every decision we make.</h2><p class="panel__text reveal" style="--i:3">Whether we are investing in a business or managing your wealth, the same principles apply.</p>
+    <div class="panel__body panel__body--wide"><h2 class="panel__title reveal" style="--i:1">What guides every decision we make.</h2><p class="panel__text reveal" style="--i:3">Whether we are investing in a business or managing your wealth, the same principles apply.</p>
     </div>
     <ul class="panel__list">
       <li class="reveal" style="--i:3">
@@ -577,7 +574,7 @@ html.js .panel.is-visible .reveal { opacity: 1; transform: none; }
 <section class="panel panel--final" id="conversation">
   
   <div class="panel__inner">
-    <div class="panel__body"><p class="label reveal" style="--i:0">Get in touch</p><h2 class="panel__title reveal" style="--i:1">It is never too early to get started.</h2><p class="panel__text reveal" style="--i:3">Tell us more about your goals and we will get you started on a plan to achieve them.</p>
+    <div class="panel__body"><h2 class="panel__title reveal" style="--i:1">It is never too early to get started.</h2><p class="panel__text reveal" style="--i:3">Tell us more about your goals and we will get you started on a plan to achieve them.</p>
       <div class="panel__actions reveal" style="--i:4">
         <a class="btn btn--light" href="contact.html">Start a Conversation<svg viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M2 9h13M10 4l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </a>
