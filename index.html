@@ -245,7 +245,20 @@ body.menu-open { overflow: hidden; }
   background: linear-gradient(180deg, rgba(var(--navy-rgb), 0) 0%, rgba(var(--navy-rgb), 0.55) 100%);
 }
 .scene__tile:last-child::after { display: none; }
-.scene__tint { position: absolute; inset: 0; background: rgba(var(--navy-rgb), 0.28); }
+.scene__tint {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(180deg, rgba(var(--navy-rgb), 0.55) 0%, rgba(var(--navy-rgb), 0) 220px),
+    linear-gradient(90deg, rgba(var(--navy-rgb), 0.9) 0%, rgba(var(--navy-rgb), 0.78) 36%, rgba(var(--navy-rgb), 0.36) 60%, rgba(var(--navy-rgb), 0.04) 80%),
+    rgba(var(--navy-rgb), 0.18);
+}
+@media (max-width: 899px) {
+  .scene__tint {
+    background:
+      linear-gradient(180deg, rgba(var(--navy-rgb), 0.55) 0%, rgba(var(--navy-rgb), 0.2) 30%, rgba(var(--navy-rgb), 0.3) 60%, rgba(var(--navy-rgb), 0.86) 100%),
+      rgba(var(--navy-rgb), 0.3);
+  }
+}
 main { position: relative; z-index: 1; }
 
 /* ---------- Panels ---------- */
@@ -268,18 +281,14 @@ main { position: relative; z-index: 1; }
 .scrim--header { background: linear-gradient(180deg, rgba(var(--navy-rgb), 0.45) 0%, rgba(var(--navy-rgb), 0) 180px); }
 .panel__inner {
   position: relative; z-index: 2; flex: 1 1 auto;
-  display: grid; align-content: end;
-  padding: calc(var(--header-h) + 5vh) var(--gutter) clamp(40px, 8vh, 96px);
-  gap: 32px;
+  display: grid; align-content: center; justify-items: start;
+  padding: calc(var(--header-h) + 4vh) var(--gutter) clamp(40px, 8vh, 96px);
+  gap: clamp(28px, 5vh, 48px);
 }
-.panel--top .panel__inner { align-content: start; padding-top: calc(var(--header-h) + 8vh); }
-.panel--middle .panel__inner { align-content: center; }
-.panel--right .panel__inner { justify-items: end; text-align: left; }
-.panel--right .panel__body { margin-left: auto; }
-.panel--center .panel__inner { justify-items: center; text-align: center; }
-.panel--center .panel__body, .panel--center .panel__actions { margin-inline: auto; justify-content: center; }
-.panel__body { max-width: var(--measure); display: grid; gap: clamp(16px, 2.4vh, 28px); }
-.panel__body--wide { max-width: 52rem; } 
+.panel__body { max-width: var(--measure); display: grid; gap: clamp(14px, 2.2vh, 24px); }
+.panel__body--wide { max-width: 44rem; }
+.panel__body .label { margin-bottom: 4px; }
+.panel__body .label::before { content: ""; width: 28px; height: 1px; background: currentColor; opacity: 0.7; }
 
 .label {
   display: inline-flex; align-items: center; gap: 14px; margin: 0;
@@ -295,7 +304,7 @@ main { position: relative; z-index: 1; }
 .panel--light .panel__lead { color: var(--charcoal); }
 .panel:not(.panel--light) .panel__text, .panel:not(.panel--light) .panel__lead { color: rgba(var(--ivory-rgb), 0.9); }
 .panel__actions { display: flex; flex-wrap: wrap; gap: 14px 18px; align-items: center; }
-.panel__list { display: grid; gap: 18px 40px; max-width: 60rem; }
+.panel__list { display: grid; gap: 22px 36px; max-width: 48rem; }
 @media (min-width: 720px) { .panel__list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .panel__list--three { max-width: 72rem; }
 @media (min-width: 1024px) { .panel__list--three { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
@@ -309,16 +318,22 @@ main { position: relative; z-index: 1; }
 /* Split composition: image 68% / content 32% on desktop. On small screens the
    image becomes the full-panel background with a scrim so it stays dominant. */
 @media (min-width: 900px) {
-  .panel--split { display: grid; grid-template-columns: minmax(0, 68fr) minmax(0, 32fr); }
+  .panel--split { display: grid; grid-template-columns: minmax(0, 58fr) minmax(0, 42fr); }
+  .panel--split .panel__title { font-size: clamp(1.375rem, 1rem + 1.1vw, 1.875rem); line-height: 1.3; }
   .panel--split { background: transparent; }
-  .panel--split .panel__inner { background: var(--ivory); }
+  /* Content column as a dark glass surface so the scene keeps running behind it. */
+  .panel--split .panel__inner {
+    background: rgba(var(--navy-rgb), 0.62);
+    -webkit-backdrop-filter: blur(22px) saturate(120%); backdrop-filter: blur(22px) saturate(120%);
+    border-left: 1px solid rgba(var(--ivory-rgb), 0.12);
+  }
   .panel--split .panel__media { position: relative; inset: auto; min-height: 100vh; min-height: 100svh; }
   .panel--split .panel__list { grid-template-columns: 1fr; gap: 14px; }
   .panel--split .panel__list h3 { font-size: 1.0625rem; }
   .panel--split .panel__inner { gap: 24px; }
   .panel--split .panel__scrim { display: none; }
-  .panel--split .panel__inner { align-content: center; padding: calc(var(--header-h) + 5vh) clamp(32px, 4vw, 64px) 8vh; }
-  .panel--split .panel__body { max-width: 30rem; }
+  .panel--split .panel__inner { align-content: center; padding: calc(var(--header-h) + 4vh) clamp(40px, 5vw, 88px) 8vh; }
+  .panel--split .panel__body { max-width: 26rem; }
   .panel--split.panel--flip { grid-template-columns: minmax(0, 32fr) minmax(0, 68fr); }
   .panel--split.panel--flip .panel__media { order: 2; }
   .panel--split .site-footer { grid-column: 1 / -1; order: 3; background: var(--navy); color: rgba(var(--ivory-rgb), 0.82); border-top: 0; }
@@ -351,9 +366,13 @@ main { position: relative; z-index: 1; }
   padding: 28px var(--gutter) 28px; border-top: 1px solid rgba(var(--ivory-rgb), 0.2);
   display: grid; gap: 18px 40px; font-size: 0.875rem; color: rgba(var(--ivory-rgb), 0.82);
 }
-@media (min-width: 900px) { .site-footer { grid-template-columns: auto 1fr auto; align-items: center; } }
+@media (min-width: 900px) {
+  .site-footer { grid-template-columns: auto 1fr auto; align-items: center; column-gap: clamp(32px, 4vw, 64px); }
+  .site-footer__nav { flex-wrap: nowrap; }
+  .site-footer__meta { flex-direction: column; align-items: flex-end; text-align: right; gap: 2px; }
+}
 .site-footer .wordmark { font-size: 1rem; }
-.site-footer__nav { display: flex; flex-wrap: wrap; gap: 6px 26px; }
+.site-footer__nav { display: flex; flex-wrap: wrap; gap: 6px clamp(18px, 2vw, 30px); }
 .site-footer__nav a { text-decoration: none; padding: 6px 0; min-height: 36px; display: inline-flex; align-items: center; }
 .site-footer__nav a:hover { color: var(--ivory); text-decoration: underline; text-underline-offset: 4px; }
 .site-footer__meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 18px; }
@@ -483,7 +502,6 @@ html.js .panel.is-visible .reveal { opacity: 1; transform: none; }
   <main id="main">
     <section class="panel" id="top">
   
-  <div class="panel__scrim scrim--left" aria-hidden="true"></div><div class="panel__scrim scrim--header" aria-hidden="true"></div>
   <div class="panel__inner">
     <div class="panel__body"><h1 class="hero-title reveal" style="--i:1"><strong>Invest</strong> with <strong>confidence.</strong></h1><p class="panel__lead reveal" style="--i:2">A growth capital, private equity and asset management firm committed to driving growth, innovation and success.</p>
       <div class="panel__actions reveal" style="--i:4">
@@ -493,12 +511,11 @@ html.js .panel.is-visible .reveal { opacity: 1; transform: none; }
     </div>
   </div>
 </section>
-<section class="panel panel--split panel--light" id="introduction">
+<section class="panel panel--split" id="introduction">
   <div class="panel__media" aria-hidden="true"></div>
   
-  <div class="panel__scrim scrim--left" aria-hidden="true"></div>
   <div class="panel__inner">
-    <div class="panel__body"><h2 class="panel__title reveal" style="--i:1">Capital, expertise and the connections companies need to thrive.</h2>
+    <div class="panel__body"><p class="label reveal" style="--i:0">Introduction</p><h2 class="panel__title reveal" style="--i:1">Capital, expertise and the connections companies need to thrive.</h2>
       <p class="reveal" style="--i:4"><a class="link" href="about.html"><span>About Axe Capital</span><svg viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M2 9h13M10 4l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </a></p>
     </div>
@@ -508,37 +525,34 @@ html.js .panel.is-visible .reveal { opacity: 1; transform: none; }
   
   
   <div class="panel__inner">
-    <div class="panel__body"><h2 class="panel__title reveal" style="--i:1">Growth Capital</h2><p class="panel__text reveal" style="--i:3">We empower ambitious businesses to reach new heights through a strategic blend of financial support, strategic guidance and industry expertise. With a focus on custom-tailored solutions and risk management, we are a trusted partner on the journey to growth.</p>
+    <div class="panel__body"><p class="label reveal" style="--i:0">Expertise &middot; 01</p><h2 class="panel__title reveal" style="--i:1">Growth Capital</h2><p class="panel__text reveal" style="--i:3">We empower ambitious businesses to reach new heights through a strategic blend of financial support, strategic guidance and industry expertise. With a focus on custom-tailored solutions and risk management, we are a trusted partner on the journey to growth.</p>
       <p class="reveal" style="--i:4"><a class="link" href="growth-capital.html"><span>Explore Growth Capital</span><svg viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M2 9h13M10 4l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </a></p>
     </div>
   </div>
 </section>
-<section class="panel panel--middle" id="asset-management">
+<section class="panel" id="asset-management">
   
-  <div class="panel__scrim scrim--left" aria-hidden="true"></div>
   <div class="panel__inner">
-    <div class="panel__body"><h2 class="panel__title reveal" style="--i:1">Asset Management</h2><p class="panel__text reveal" style="--i:3">We are dedicated to preserving and growing your wealth. Our mission is to protect and grow our clients’ assets through careful, strategic and disciplined investment management across equities, fixed income and alternative investments.</p>
+    <div class="panel__body"><p class="label reveal" style="--i:0">Expertise &middot; 02</p><h2 class="panel__title reveal" style="--i:1">Asset Management</h2><p class="panel__text reveal" style="--i:3">We are dedicated to preserving and growing your wealth. Our mission is to protect and grow our clients’ assets through careful, strategic and disciplined investment management across equities, fixed income and alternative investments.</p>
       <p class="reveal" style="--i:4"><a class="link" href="asset-management.html"><span>Explore Asset Management</span><svg viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M2 9h13M10 4l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </a></p>
     </div>
   </div>
 </section>
-<section class="panel panel--right" id="private-equity">
+<section class="panel" id="private-equity">
   
-  <div class="panel__scrim scrim--right" aria-hidden="true"></div>
   <div class="panel__inner">
-    <div class="panel__body"><h2 class="panel__title reveal" style="--i:1">Private Equity</h2><p class="panel__text reveal" style="--i:3">We invest in and partner with businesses to unlock their full potential. We are not passive investors: we work closely with management to identify and implement strategies that enhance operations, increase efficiency and drive growth.</p>
+    <div class="panel__body"><p class="label reveal" style="--i:0">Expertise &middot; 03</p><h2 class="panel__title reveal" style="--i:1">Private Equity</h2><p class="panel__text reveal" style="--i:3">We invest in and partner with businesses to unlock their full potential. We are not passive investors: we work closely with management to identify and implement strategies that enhance operations, increase efficiency and drive growth.</p>
       <p class="reveal" style="--i:4"><a class="link" href="private-equity.html"><span>Explore Private Equity</span><svg viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M2 9h13M10 4l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </a></p>
     </div>
   </div>
 </section>
-<section class="panel panel--top" id="approach">
+<section class="panel" id="approach">
   
-  <div class="panel__scrim scrim--full" aria-hidden="true"></div>
   <div class="panel__inner">
-    <div class="panel__body panel__body--wide"><h2 class="panel__title reveal" style="--i:1">What guides every decision we make.</h2><p class="panel__text reveal" style="--i:3">Whether we are investing in a business or managing your wealth, the same principles apply.</p>
+    <div class="panel__body panel__body--wide"><p class="label reveal" style="--i:0">Our approach</p><h2 class="panel__title reveal" style="--i:1">What guides every decision we make.</h2><p class="panel__text reveal" style="--i:3">Whether we are investing in a business or managing your wealth, the same principles apply.</p>
     </div>
     <ul class="panel__list">
       <li class="reveal" style="--i:3">
@@ -560,11 +574,10 @@ html.js .panel.is-visible .reveal { opacity: 1; transform: none; }
     </ul>
   </div>
 </section>
-<section class="panel panel--middle panel--final" id="conversation">
+<section class="panel panel--final" id="conversation">
   
-  <div class="panel__scrim scrim--left" aria-hidden="true"></div>
   <div class="panel__inner">
-    <div class="panel__body"><h2 class="panel__title reveal" style="--i:1">It is never too early to get started.</h2><p class="panel__text reveal" style="--i:3">Tell us more about your goals and we will get you started on a plan to achieve them.</p>
+    <div class="panel__body"><p class="label reveal" style="--i:0">Get in touch</p><h2 class="panel__title reveal" style="--i:1">It is never too early to get started.</h2><p class="panel__text reveal" style="--i:3">Tell us more about your goals and we will get you started on a plan to achieve them.</p>
       <div class="panel__actions reveal" style="--i:4">
         <a class="btn btn--light" href="contact.html">Start a Conversation<svg viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M2 9h13M10 4l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </a>
