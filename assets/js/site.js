@@ -1,4 +1,4 @@
-/* Axe Capital — shared behaviour for every page.
+/* Axe Capital: shared behaviour for every page.
    Header state, navigation, reveals, the connected photographic stage and the
    enquiry form. Everything degrades to plain, readable HTML if this file fails. */
 (function () {

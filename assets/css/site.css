@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Axe Capital — site stylesheet
+   Axe Capital: site stylesheet
    Shared by every page. Approved palette: deep navy, muted teal,
    soft ivory and silver blue. Typeface: Manrope (self-hosted, SIL OFL).
    ========================================================================== */
@@ -226,12 +226,10 @@ body.menu-open { overflow: hidden; }
 
 /* ---------- Labels ---------- */
 .label {
-  display: inline-flex; align-items: center; gap: 14px; margin: 0;
+  display: block; margin: 0;
   font-size: var(--text-label); font-weight: 600; letter-spacing: 0.22em;
   color: var(--blue);
 }
-.label::before { content: ""; width: 28px; height: 1px; background: currentColor; opacity: 0.7; }
-.label--bare::before { display: none; }
 
 /* ---------- Photographic panels ---------- */
 .panel {
