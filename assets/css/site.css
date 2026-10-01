@@ -573,6 +573,9 @@ html:not(.js) .ci-more,.choreo-sticky.step-1 .ci-more{pointer-events:auto}
 }
 
 /* ---------- Contact page ---------- */
+.office-grid.two{grid-template-columns:repeat(2,1fr);max-width:860px}
+.office-grid.two .office p a{word-break:break-word}
+@media (max-width:640px){.office-grid.two{grid-template-columns:1fr}}
 .contact-page{padding:96px 0 100px}
 .contact-page .office-grid{margin-bottom:64px}
 .contact-page .cf-head{max-width:620px;margin:0 auto 28px;text-align:center}
