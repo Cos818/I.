@@ -679,6 +679,52 @@ p,li,.lead,.d-head .lead,.detail.dark .d-head .lead,.page-hero .lead,.hero p.sub
 /* Fine print */
 footer,.foot-grid,.foot-contact li,.foot-legal,.foot-reg,.d-note,.cl-note,.cf-note,.corr-note,.feat.city span,.cf-error{font-size:var(--t-small);line-height:1.6}
 @media (max-width:840px){section.fs,.hero.fs{min-height:calc(100svh - 66px)}}
+
+/* ---------- One-screen panels: static "what we do", tighter rhythm ---------- */
+section.choreo{min-height:calc(100svh - 66px);display:flex;flex-direction:column;justify-content:center;padding:72px 0}
+.choreo-track,.choreo-sticky{display:contents}
+.choreo-title{transform:none !important;animation:none}
+.choreo-items{position:static;display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:48px;left:auto;right:auto;top:auto}
+.choreo-item{opacity:1;transform:none;pointer-events:auto}
+@media (max-width:1080px){.choreo-items{grid-template-columns:repeat(2,1fr);gap:24px}}
+@media (max-width:640px){.choreo-items{grid-template-columns:1fr;gap:18px;margin-top:32px}}
+
+.detail{padding:72px 0}
+.d-head{margin-bottom:32px}
+.chip{padding:11px 14px}
+.aud-card{min-height:0;padding:26px 24px 24px;gap:18px}
+.aud-ico{width:clamp(64px,5.5vw,92px)}
+.aud-top{margin-bottom:36px}
+.d-side>p{color:#C4CDD8}
+.d-side>p a{color:var(--green);font-weight:600}
+.on-light .d-side>p{color:var(--ink)}
+.on-light .d-side>p a{color:var(--green-d)}
+.contact-page{padding:72px 0}
+.contact-page .cf-head{margin-bottom:24px}
+@media (max-height:820px) and (min-width:841px){
+  .detail,.contact-page,section.choreo{padding:48px 0}
+  .d-head{margin-bottom:24px}
+  .feat{padding:20px 20px 22px}
+  .d-prose p{margin-bottom:12px}
+  .d-cta{margin-top:24px}
+  .choreo-items{margin-top:32px}
+}
+.fs{min-height:calc(100svh - 66px)}
+@supports not (min-height:100svh){.fs{min-height:calc(100vh - 66px)}}
+@media (max-height:820px) and (min-width:841px){
+  .chip{padding:8px 12px}
+  .chip-grid{gap:8px}
+  .d-side h3{margin-bottom:10px}
+}
+@media (max-height:820px) and (min-width:841px){
+  .platform{padding:40px 0}
+  .plat-title{margin-bottom:20px}
+  .phone-img{height:min(46svh,480px)}
+  .audiences{padding:48px 0}
+  .aud-top{margin-bottom:24px}
+  .aud-card{padding:20px 20px 18px;gap:12px}
+  .aud-ico{width:clamp(56px,4.5vw,72px)}
+}
 </style>
 </head>
 <body>
@@ -729,9 +775,6 @@ footer,.foot-grid,.foot-contact li,.foot-legal,.foot-reg,.d-note,.cl-note,.cf-no
         <p>With the extensive knowledge and experience of the Labuan Financial Services Authority in promoting and regulating financial activities, we are in the position to launch innovative financial products with efficient execution and pricing, in a favourable tax rate, flexible and private environment to cater to our clients' financial needs.</p>
         <p>We provide a wide range of investment banking, corporate advisory, wealth management and trade finance solutions to corporates, financial institutions, sovereign and individual clients. Our experience and capabilities across markets, currencies, countries and asset classes enable us to deliver tailored financial solutions.</p>
         <p>We take a unique hands-on approach with clients, providing in-house guidance through every step from due diligence to structuring to documentation and execution.</p>
-        <h3>Presence</h3>
-        <p>BOF BANK is a leading financial services provider in the region with a client base spread across Asia Pacific, Middle East and Europe. Our expertise in domestic and international treasury operations, investment banking, capital markets and wealth management solutions, combined with strong execution capabilities, helps us deliver tailored solutions.</p>
-        <p>We are present in key global markets, with a particular focus on providing breakthrough financing arrangements to borrowers and issuers in Asia Pacific, Europe and the Middle East and investors in the Malaysian market. This presence puts us in a uniquely well-placed position to advise and manage issuances and investments for regional clients and international investors.</p>
       </div>
       <div class="d-side">
         <h3>Values</h3>
@@ -746,19 +789,29 @@ footer,.foot-grid,.foot-contact li,.foot-legal,.foot-reg,.d-note,.cl-note,.cf-no
         </div>
       </div>
     </div>
+  </div>
+</section>
 
-    <div class="feat-grid reveal">
+<!-- ================= PRESENCE ================= -->
+<section class="detail dark" id="presence">
+  <div class="wrap">
+    <div class="d-head reveal">
+      <span class="d-kicker">Presence</span>
+      <h2>A leading provider in the region</h2>
+      <p class="lead">A client base spread across Asia Pacific, the Middle East and Europe, with expertise in treasury operations, investment banking, capital markets and wealth management, combined with strong execution capabilities.</p>
+    </div>
+    <div class="feat-grid reveal" style="margin-top:0">
       <div class="feat">
         <h3>Focus</h3>
-        <p>We deliver value through innovative research and strategic thinking. Investors have different needs that require customised solutions, so we advise you throughout the entire process, from your initial decision making right up to implementation. Our research is based on in-depth analysis of current economic conditions in Malaysia, Brunei Darussalam and the ASEAN region, with a long term view that helps policy makers lay out relevant policies.</p>
+        <p>We deliver value through innovative research and strategic thinking. Investors have different needs that require customised solutions, so we advise you throughout the entire process, from your initial decision making right up to implementation.</p>
       </div>
       <div class="feat">
         <h3>Aim</h3>
-        <p>To be the premier financial services provider in the region by offering a comprehensive range of products and services, and by being innovative in delivering them. We are at the forefront of establishing high quality industry relations and ensure our clients are updated on business news, changes in legislation, new opportunities and relevant updates from industry bodies.</p>
+        <p>To be the premier financial services provider in the region by offering a comprehensive range of products and services, and by being innovative in delivering them. We keep our clients updated on business news, changes in legislation and new opportunities.</p>
       </div>
       <div class="feat">
         <h3>Our Management</h3>
-        <p>A team of business professionals committed to mutual success for our business partners and clients. Our team possesses unique knowledge, innovative ideas and insight into global and regional markets, and is highly regarded for its expertise in treasury operations, investment banking, capital markets and wealth management. We work as one team, united as one: Together Stronger.</p>
+        <p>A team of business professionals committed to mutual success for our business partners and clients, highly regarded for its expertise in treasury operations, investment banking, capital markets and wealth management. Together Stronger.</p>
       </div>
     </div>
   </div>
@@ -991,7 +1044,7 @@ document.addEventListener('click',function(e){
 })();
 (function(){
   var title=document.getElementById('choreo-title');
-  var sticky=document.getElementById('choreo-sticky');
+  var sticky=document.getElementById('choreo-sticky')||(title&&title.parentElement);
   if(!title||!sticky)return;
   var wio=new IntersectionObserver(function(es){
     es.forEach(function(e){

@@ -679,6 +679,52 @@ p,li,.lead,.d-head .lead,.detail.dark .d-head .lead,.page-hero .lead,.hero p.sub
 /* Fine print */
 footer,.foot-grid,.foot-contact li,.foot-legal,.foot-reg,.d-note,.cl-note,.cf-note,.corr-note,.feat.city span,.cf-error{font-size:var(--t-small);line-height:1.6}
 @media (max-width:840px){section.fs,.hero.fs{min-height:calc(100svh - 66px)}}
+
+/* ---------- One-screen panels: static "what we do", tighter rhythm ---------- */
+section.choreo{min-height:calc(100svh - 66px);display:flex;flex-direction:column;justify-content:center;padding:72px 0}
+.choreo-track,.choreo-sticky{display:contents}
+.choreo-title{transform:none !important;animation:none}
+.choreo-items{position:static;display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:48px;left:auto;right:auto;top:auto}
+.choreo-item{opacity:1;transform:none;pointer-events:auto}
+@media (max-width:1080px){.choreo-items{grid-template-columns:repeat(2,1fr);gap:24px}}
+@media (max-width:640px){.choreo-items{grid-template-columns:1fr;gap:18px;margin-top:32px}}
+
+.detail{padding:72px 0}
+.d-head{margin-bottom:32px}
+.chip{padding:11px 14px}
+.aud-card{min-height:0;padding:26px 24px 24px;gap:18px}
+.aud-ico{width:clamp(64px,5.5vw,92px)}
+.aud-top{margin-bottom:36px}
+.d-side>p{color:#C4CDD8}
+.d-side>p a{color:var(--green);font-weight:600}
+.on-light .d-side>p{color:var(--ink)}
+.on-light .d-side>p a{color:var(--green-d)}
+.contact-page{padding:72px 0}
+.contact-page .cf-head{margin-bottom:24px}
+@media (max-height:820px) and (min-width:841px){
+  .detail,.contact-page,section.choreo{padding:48px 0}
+  .d-head{margin-bottom:24px}
+  .feat{padding:20px 20px 22px}
+  .d-prose p{margin-bottom:12px}
+  .d-cta{margin-top:24px}
+  .choreo-items{margin-top:32px}
+}
+.fs{min-height:calc(100svh - 66px)}
+@supports not (min-height:100svh){.fs{min-height:calc(100vh - 66px)}}
+@media (max-height:820px) and (min-width:841px){
+  .chip{padding:8px 12px}
+  .chip-grid{gap:8px}
+  .d-side h3{margin-bottom:10px}
+}
+@media (max-height:820px) and (min-width:841px){
+  .platform{padding:40px 0}
+  .plat-title{margin-bottom:20px}
+  .phone-img{height:min(46svh,480px)}
+  .audiences{padding:48px 0}
+  .aud-top{margin-bottom:24px}
+  .aud-card{padding:20px 20px 18px;gap:12px}
+  .aud-ico{width:clamp(56px,4.5vw,72px)}
+}
 </style>
 </head>
 <body>
@@ -719,43 +765,57 @@ footer,.foot-grid,.foot-contact li,.foot-legal,.foot-reg,.d-note,.cl-note,.cf-no
   </div>
 </section>
 
-<!-- ================= ACCOUNT OPENING ================= -->
+<!-- ================= FORMS ================= -->
 <section class="light on-light detail forms-page" id="accounts">
   <div class="wrap">
-    <div class="d-head reveal" style="margin-bottom:24px">
-      <span class="d-kicker">Account opening</span>
-      <h2>Open an account</h2>
+    <div class="d-grid reveal" style="grid-template-columns:1fr 1fr">
+      <div>
+        <div class="d-head" style="margin-bottom:20px">
+          <span class="d-kicker">Account opening</span>
+          <h2>Open an account</h2>
+        </div>
+        <div class="forms-grid" style="grid-template-columns:1fr">
+          <a class="form-card" href="#" id="company-account">
+            <div><span class="fc-cat">Company Account</span><span class="fc-name">Company Account Opening Application Form</span></div>
+            <span class="fc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-4-4m4 4 4-4"/><path d="M4 17v3h16v-3"/></svg></span>
+          </a>
+          <a class="form-card" href="#" id="individual-account">
+            <div><span class="fc-cat">Individual Account</span><span class="fc-name">Individual Account Opening Application Form</span></div>
+            <span class="fc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-4-4m4 4 4-4"/><path d="M4 17v3h16v-3"/></svg></span>
+          </a>
+        </div>
+      </div>
+      <div>
+        <div class="d-head" style="margin-bottom:20px">
+          <span class="d-kicker">Trade instruments</span>
+          <h2>Request an instrument</h2>
+        </div>
+        <div class="forms-grid" style="grid-template-columns:1fr">
+          <a class="form-card" href="#" id="documentary-credit">
+            <div><span class="fc-cat">Documentary Credit</span><span class="fc-name">Application for Issuance of Documentary Credit</span></div>
+            <span class="fc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m0 0-6-6m6 6-6 6"/></svg></span>
+          </a>
+          <a class="form-card" href="#" id="guarantee">
+            <div><span class="fc-cat">Request for Guarantee</span><span class="fc-name">Application for Issuance of Letter of Guarantee</span></div>
+            <span class="fc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m0 0-6-6m6 6-6 6"/></svg></span>
+          </a>
+        </div>
+      </div>
     </div>
-    <div class="forms-grid reveal">
-      <a class="form-card" href="#" id="company-account">
-        <div><span class="fc-cat">Company Account</span><span class="fc-name">Company Account Opening Application Form</span></div>
-        <span class="fc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-4-4m4 4 4-4"/><path d="M4 17v3h16v-3"/></svg></span>
-      </a>
-      <a class="form-card" href="#" id="individual-account">
-        <div><span class="fc-cat">Individual Account</span><span class="fc-name">Individual Account Opening Application Form</span></div>
-        <span class="fc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-4-4m4 4 4-4"/><path d="M4 17v3h16v-3"/></svg></span>
-      </a>
-    </div>
+  </div>
+</section>
 
-    <div class="d-head reveal" style="margin:64px 0 24px">
-      <span class="d-kicker">Trade instruments</span>
-      <h2>Request an instrument</h2>
+<!-- ================= HOW IT WORKS ================= -->
+<section class="detail dark" id="how-it-works">
+  <div class="wrap">
+    <div class="d-head reveal">
+      <span class="d-kicker">How it works</span>
+      <h2>Three steps to apply</h2>
     </div>
-    <div class="forms-grid reveal">
-      <a class="form-card" href="#" id="documentary-credit">
-        <div><span class="fc-cat">Documentary Credit</span><span class="fc-name">Application for Issuance of Documentary Credit</span></div>
-        <span class="fc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m0 0-6-6m6 6-6 6"/></svg></span>
-      </a>
-      <a class="form-card" href="#" id="guarantee">
-        <div><span class="fc-cat">Request for Guarantee</span><span class="fc-name">Application for Issuance of Letter of Guarantee</span></div>
-        <span class="fc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m0 0-6-6m6 6-6 6"/></svg></span>
-      </a>
-    </div>
-
-    <div class="feat-grid reveal forms-steps">
+    <div class="feat-grid reveal" style="margin-top:0">
       <div class="feat"><span class="num">01</span><h3>Download</h3><p>Choose the form that matches your request and download it.</p></div>
       <div class="feat"><span class="num">02</span><h3>Complete</h3><p>Fill in the form and attach the supporting documents it lists.</p></div>
-      <div class="feat"><span class="num">03</span><h3>Return</h3><p>Email the completed form to <a href="mailto:info@bofbank.com" style="color:var(--green-d);font-weight:600">info@bofbank.com</a>. Our team will confirm receipt and next steps.</p></div>
+      <div class="feat"><span class="num">03</span><h3>Return</h3><p>Email the completed form to <a href="mailto:info@bofbank.com">info@bofbank.com</a>. Our team will confirm receipt and next steps.</p></div>
     </div>
   </div>
 </section>
@@ -906,7 +966,7 @@ document.addEventListener('click',function(e){
 })();
 (function(){
   var title=document.getElementById('choreo-title');
-  var sticky=document.getElementById('choreo-sticky');
+  var sticky=document.getElementById('choreo-sticky')||(title&&title.parentElement);
   if(!title||!sticky)return;
   var wio=new IntersectionObserver(function(es){
     es.forEach(function(e){

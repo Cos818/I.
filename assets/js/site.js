@@ -81,7 +81,7 @@ document.addEventListener('click',function(e){
 })();
 (function(){
   var title=document.getElementById('choreo-title');
-  var sticky=document.getElementById('choreo-sticky');
+  var sticky=document.getElementById('choreo-sticky')||(title&&title.parentElement);
   if(!title||!sticky)return;
   var wio=new IntersectionObserver(function(es){
     es.forEach(function(e){
