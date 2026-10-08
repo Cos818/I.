@@ -126,3 +126,37 @@ document.addEventListener('click',function(e){
   function upd(){h.classList.toggle('scrolled',window.scrollY>40);}
   window.addEventListener('scroll',upd,{passive:true});upd();
 })();
+
+/* Parallax: photo backgrounds drift slower than the page */
+(function(){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var secs=[].slice.call(document.querySelectorAll('.hero,.page-hero,.photo-split,.trust'));
+  var layers=[];
+  secs.forEach(function(sec){
+    var cs=getComputedStyle(sec);
+    if(cs.backgroundImage==='none')return;
+    var d=document.createElement('div');
+    d.className='pbg';
+    d.style.backgroundImage=cs.backgroundImage;
+    d.style.backgroundPosition=cs.backgroundPosition;
+    sec.style.backgroundImage='none';
+    sec.insertBefore(d,sec.firstChild);
+    layers.push({sec:sec,el:d});
+  });
+  if(!layers.length)return;
+  var ticking=false;
+  function update(){
+    ticking=false;
+    var vh=window.innerHeight;
+    layers.forEach(function(l){
+      var r=l.sec.getBoundingClientRect();
+      if(r.bottom<0||r.top>vh)return;
+      var p=(r.top+r.height/2-vh/2)/(vh+r.height); /* -0.5 .. 0.5 */
+      l.el.style.transform='translate3d(0,'+(p*r.height*0.28).toFixed(1)+'px,0)';
+    });
+  }
+  function onScroll(){if(!ticking){ticking=true;requestAnimationFrame(update);}}
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  update();
+})();
