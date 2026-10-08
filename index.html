@@ -8,7 +8,7 @@
 <link rel="icon" type="image/png" href="assets/img/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body>
@@ -41,197 +41,107 @@
 </header>
 
 <!-- ================= HERO ================= -->
-<section class="hero fs">
-  <div class="content reveal">
-    <h1>Built to<br>move you forward</h1>
-    <p class="sub">A leading financial services provider with clients across the Asia Pacific, Middle East and Europe. Investment banking, corporate advisory, wealth management and trade finance, delivered with strong execution.</p>
+<section class="hero">
+  <div class="wrap reveal">
+    <p class="hero-kicker">Investment banking, wealth and trade finance</p>
+    <h1>Built to move you forward</h1>
     <div class="cta-row">
-      <a href="contact.html" class="btn btn-primary">Contact Us to Know More</a>
-      <a href="#services" class="btn btn-ghost">Explore our services</a>
-    </div>
-  </div>
-  <a class="scroll-cue" href="#whatwedo" aria-label="Scroll to content">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-  </a>
-</section>
-
-<!-- ================= WHAT WE DO ================= -->
-<section class="light on-light choreo" id="whatwedo">
-  <div class="wrap choreo-inner reveal">
-    <h2 class="choreo-title" id="choreo-title"><span class="cw">Investment</span> <span class="cw">banking,</span> <span class="cw">advisory,</span><br><span class="cw">wealth</span> <span class="cw">and</span> <span class="cw">trade</span> <span class="cw">finance.</span></h2>
-    <div class="choreo-items">
-      <div class="choreo-item">
-        <h3>Investment Banking</h3>
-        <p>Capital raising, M&amp;A advisory, securitisation, IPOs and Shariah compliant services through our Islamic Window.</p>
-        <a class="ci-more" href="investment-banking.html">Learn more <span aria-hidden="true">&#8594;</span></a>
-      </div>
-      <div class="choreo-item">
-        <h3>Corporate Advisory</h3>
-        <p>Strategy formulation, restructuring, stakeholder engagement and balance sheet optimisation.</p>
-        <a class="ci-more" href="investment-banking.html#corporate-advisory">Learn more <span aria-hidden="true">&#8594;</span></a>
-      </div>
-      <div class="choreo-item">
-        <h3>Wealth Management</h3>
-        <p>Ongoing investment advice and a dedicated team of specialists to grow and preserve your investments.</p>
-        <a class="ci-more" href="wealth-management.html">Learn more <span aria-hidden="true">&#8594;</span></a>
-      </div>
-      <div class="choreo-item">
-        <h3>Trade Finance</h3>
-        <p>Tailor made short, medium and long-term solutions for imports, exports, guarantees and financing.</p>
-        <a class="ci-more" href="trade-finance.html">Learn more <span aria-hidden="true">&#8594;</span></a>
-      </div>
+      <a href="about.html" class="btn btn-primary">Learn more</a>
     </div>
   </div>
 </section>
 
-<!-- ================= WEALTH STAGE ================= -->
-<section class="light moretime on-light fs">
-  <h2 class="mt-title reveal">Grow and<br>preserve</h2>
-  <div class="mt-stage">
-    <div class="arch" aria-hidden="true">
-      <img class="arch-img active" src="assets/img/wealth-1.jpg" alt="">
-      <img class="arch-img" src="assets/img/wealth-2.jpg" alt="">
-      <img class="arch-img" src="assets/img/wealth-3.jpg" alt="">
-      <img class="arch-img" src="assets/img/wealth-4.jpg" alt="">
-      <img class="arch-img" src="assets/img/wealth-5.jpg" alt="">
+<!-- ================= QUOTE ================= -->
+<section class="quote-band">
+  <div class="wrap reveal">
+    <span class="qmark" aria-hidden="true">&ldquo;</span>
+    <div>
+      <blockquote>"We approach every endeavour as an opportunity to strengthen lasting relationships with our clients and investors. Our success is a direct measure of the trust our partners place in us."</blockquote>
+      <cite>- BOF BANK Mission</cite>
     </div>
-    <div class="float-card fc-chart">
-      <span class="fc-label">Portfolio value</span>
-      <svg viewBox="0 0 220 90" preserveAspectRatio="none" aria-hidden="true">
-        <polyline points="0,70 30,62 55,66 85,44 115,50 145,28 175,36 205,16 220,20" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="175" cy="36" r="4.5" fill="#FFFFFF"/>
-      </svg>
-    </div>
-  </div>
-  <h2 class="mt-tagline reveal">Wealth<br>Management</h2>
-  <div class="mt-strip">
-    <span>Comprehensive products and a dedicated team of specialists to grow and preserve your investments</span>
-    <a href="wealth-management.html" class="mt-discover">Discover Wealth Management <span class="mt-arrow">&#8594;</span></a>
+    <span></span>
   </div>
 </section>
 
 <!-- ================= SERVICES ================= -->
-<section class="corridors fs" id="services">
+<section class="light" id="services">
   <div class="wrap">
-    <div class="head reveal">
+    <div class="sec-head reveal">
       <h2>Our Services</h2>
     </div>
-    <div class="corr-layout">
-      <div class="corr-card reveal">
-        <input type="radio" class="corr-radio" name="corr" id="corr-ib" checked>
-        <input type="radio" class="corr-radio" name="corr" id="corr-wm">
-        <input type="radio" class="corr-radio" name="corr" id="corr-if">
-        <input type="radio" class="corr-radio" name="corr" id="corr-tf">
-        <div class="corr-tabs" role="tablist" aria-label="Services">
-          <label class="corr-tab" for="corr-ib">Investment Banking &amp; Corporate Advisory</label>
-          <label class="corr-tab" for="corr-wm">Asset / Wealth Management</label>
-          <label class="corr-tab" for="corr-if">Investment Funds</label>
-          <label class="corr-tab" for="corr-tf">Trade Finance</label>
-        </div>
-        <div class="corr-detail svc" id="corr-d-ib">
-          <div class="cd-col"><span class="cd-label">Investment Banking &amp; Corporate Advisory</span><span class="cd-value">Financial advice to corporations and governments worldwide. Capital raising, merger and acquisition advisory, long-term debt or equity financing, and trading in securities and derivatives.</span></div>
-          <a href="investment-banking.html" class="corr-more">Read More <span aria-hidden="true">&#8594;</span></a>
-        </div>
-        <div class="corr-detail svc" id="corr-d-wm">
-          <div class="cd-col"><span class="cd-label">Asset / Wealth Management</span><span class="cd-value">Ongoing investment advice with comprehensive product recommendations and a dedicated team of specialists. Asset allocation, lifestyle planning, portfolio reviews, tax planning and retirement income strategy.</span></div>
-          <a href="wealth-management.html" class="corr-more">Read More <span aria-hidden="true">&#8594;</span></a>
-        </div>
-        <div class="corr-detail svc" id="corr-d-if">
-          <div class="cd-col"><span class="cd-label">Investment Funds</span><span class="cd-value">Through BOF Fund 1 you can invest in specialist and geographic areas where you might not have the expertise to invest on your own, across equities, bonds, commodities and alternative investments.</span></div>
-          <a href="investment-funds.html" class="corr-more">Read More <span aria-hidden="true">&#8594;</span></a>
-        </div>
-        <div class="corr-detail svc" id="corr-d-tf">
-          <div class="cd-col"><span class="cd-label">Trade Finance</span><span class="cd-value">Fully fledged trade finance for your working capital requirements: import and export financing, Documentary Credits and Collections, receivables and supply chain financing, guarantees and Letters of Credit.</span></div>
-          <a href="trade-finance.html" class="corr-more">Read More <span aria-hidden="true">&#8594;</span></a>
-        </div>
-        <p class="corr-note">Serving corporates, financial institutions, sovereign and individual clients across the Asia Pacific, Middle East and Europe.</p>
+    <div class="photo-grid reveal">
+      <div class="photo-card">
+        <img class="pimg" src="assets/img/services.jpg" alt="">
+        <h3>Investment Banking</h3>
+        <a href="investment-banking.html" class="btn btn-primary arrow">Learn more</a>
+      </div>
+      <div class="photo-card">
+        <img class="pimg" src="assets/img/wealth-1.jpg" alt="">
+        <h3>Wealth Management</h3>
+        <a href="wealth-management.html" class="btn btn-primary arrow">Learn more</a>
+      </div>
+      <div class="photo-card">
+        <img class="pimg" src="assets/img/wealth-3.jpg" alt="">
+        <h3>Investment Funds</h3>
+        <a href="investment-funds.html" class="btn btn-primary arrow">Learn more</a>
+      </div>
+      <div class="photo-card">
+        <img class="pimg" src="assets/img/trust.jpg" alt="">
+        <h3>Trade Finance</h3>
+        <a href="trade-finance.html" class="btn btn-primary arrow">Learn more</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================= ABOUT (teaser) ================= -->
-<section class="light on-light detail about-teaser" id="about">
+<!-- ================= BANKING (photo section) ================= -->
+<section class="photo-split img-beach" id="banking">
   <div class="wrap">
-    <div class="d-head reveal">
-      <span class="d-kicker">About us</span>
-      <h2>A boutique financial services firm with a global client base.</h2>
-    </div>
-    <div class="d-grid reveal">
-      <div class="d-prose">
-        <p>BOF BANK provides investment banking and capital markets solutions alongside bespoke financial advisory services to corporates, financial institutions, sovereign and individual clients across the Asia Pacific, Middle East and Europe.</p>
-        <p>We take a hands-on approach with every client, providing in-house guidance through every step from due diligence to structuring, documentation and execution.</p>
-        <div class="d-cta">
-          <a href="about.html" class="btn btn-primary">Read our company profile</a>
-        </div>
-      </div>
-      <div class="d-side">
-        <h3>Values</h3>
-        <ul class="values-list">
-          <li>Lead by example</li>
-          <li>Deliver quality service with utmost professionalism</li>
-          <li>Be open with no compromise on honesty and integrity</li>
-          <li>Hold the highest ethical and moral values</li>
-        </ul>
-      </div>
+    <div class="ps-copy reveal">
+      <h2>Everyday banking, built on BOF Pay</h2>
+      <p>Multi-currency accounts, a green metal card and instant payments, all managed from the BOF BANK app. Open an individual or company account and bank wherever you do business.</p>
+      <a href="banking.html" class="btn btn-primary arrow">Learn more</a>
     </div>
   </div>
 </section>
 
-<!-- ================= BANKING (BOF Pay teaser) ================= -->
-<section class="detail dark banking-teaser" id="banking">
+<!-- ================= ABOUT (text and photo grid) ================= -->
+<section class="light text-grid" id="about">
   <div class="wrap">
-    <div class="bk-grid reveal">
-      <div class="bk-copy">
-        <span class="d-kicker">Banking &middot; BOF Pay</span>
-        <h2>Everyday banking,<br>built on BOF Pay.</h2>
-        <p class="lead">Multi-currency accounts, a green metal card and instant payments, all managed from the BOF BANK app.</p>
-        <ul class="bk-list">
-          <li>Multi-currency accounts with local account details</li>
-          <li>Physical and virtual cards with instant controls</li>
-          <li>Local and international transfers at live FX rates</li>
-          <li>Business accounts with team cards and payouts</li>
-        </ul>
-        <div class="d-cta">
-          <a href="banking.html" class="btn btn-primary">Explore Banking</a>
-          <a href="forms.html" class="btn btn-ghost">Open an account</a>
-        </div>
-      </div>
-      <div class="card-stage" aria-hidden="true">
-        <div class="cc">
-          <div class="cc-top"><span class="cc-brand"><img src="assets/img/logo-bof.png" alt="BOF"><em>Pay</em></span><span class="cc-tag">Virtual</span></div>
-          <div class="cc-chip"><i></i><i></i><i></i></div>
-          <div class="cc-num">&bull;&bull;&bull;&bull;&nbsp;&nbsp;&bull;&bull;&bull;&bull;&nbsp;&nbsp;&bull;&bull;&bull;&bull;&nbsp;&nbsp;4D2C</div>
-          <div class="cc-bottom"><div><span class="cc-lbl">Card holder</span><span class="cc-val">Issued privately</span></div></div>
-        </div>
-      </div>
+    <div class="reveal">
+      <h2>A boutique financial services firm</h2>
+      <p>BOF BANK provides investment banking and capital markets solutions alongside bespoke financial advisory services to corporates, financial institutions, sovereign and individual clients across the Asia Pacific, Middle East and Europe, with offices in Canada, Malaysia and the United Kingdom.</p>
+      <a href="about.html" class="btn btn-primary">Learn more</a>
+    </div>
+    <div class="mosaic reveal" aria-hidden="true">
+      <img src="assets/img/wealth-4.jpg" alt="">
+      <img src="assets/img/hero.jpg" alt="">
+      <img src="assets/img/wealth-5.jpg" alt="">
     </div>
   </div>
 </section>
 
 <!-- ================= MOBILE APP ================= -->
-<section class="light platform on-light fs" id="platform">
+<section class="band split-row" id="platform">
   <div class="wrap">
-    <h2 class="plat-title reveal">The BOF BANK app,<br>your bank<br>on the go</h2>
-    <div class="phone-stage reveal">
-      <div class="phone-wrap"><img class="phone-img" src="assets/img/phone.png" alt="BOF BANK app on a phone"><img class="phone-logo" src="assets/img/phone-logo.png" alt=""></div>
-      <div class="phone-card">
-        <h4>Download the app</h4>
-        <p>Manage your accounts, transfer funds and view your transaction history in one place. Available on the <a href="#">App Store</a> and on <a href="#">Google Play</a>.</p>
-      </div>
-      <div class="phone-card phone-card-right">
-        <h4>Client portal</h4>
-        <p>Existing clients can <a href="#">log in to the portal</a> or open an account using our <a href="forms.html">online forms</a>.</p>
+    <div class="reveal"><img class="phone-img" src="assets/img/phone.png" alt="BOF BANK app on a phone"></div>
+    <div class="reveal">
+      <h2>The BOF BANK app, your bank on the go</h2>
+      <p>Manage your accounts, transfer funds and view your transaction history in one place. Existing clients can log in to the client portal, and new clients can open an account using our online forms.</p>
+      <div class="store-links">
+        <a href="#" class="btn btn-primary">App Store</a>
+        <a href="#" class="btn btn-primary">Google Play</a>
+        <a href="forms.html" class="btn btn-ghost on-light" style="color:var(--accent);border-color:var(--accent)">Open an account</a>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ================= LICENCE AND VISION ================= -->
-<section class="trust fs" id="trust">
+<section class="trust" id="trust">
   <div class="wrap">
     <div class="head reveal">
-      <h2>Licensed, regulated and built on trust.</h2>
+      <h2>Licensed, regulated and built on trust</h2>
     </div>
     <div class="trust-grid reveal">
       <div class="trust-item">
@@ -263,7 +173,7 @@
   <div class="wrap reveal">
     <h2>Contact Us to Know More.</h2>
     <p class="cl-lead">Tell us about your requirements in investment banking, corporate advisory, wealth management, investment funds or trade finance, and our team will be in touch.</p>
-    <div class="cta-row">
+    <div class="cta-row on-light">
       <a href="contact.html" class="btn btn-primary">Contact Us</a>
       <a href="forms.html" class="btn btn-ghost">Online forms</a>
     </div>

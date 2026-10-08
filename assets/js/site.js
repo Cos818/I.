@@ -119,3 +119,10 @@ document.addEventListener('click',function(e){
     if(!anyIn){pending.forEach(function(el){el.classList.add('in')});}
   },1500);
 })();
+
+/* Header: solid once the page is scrolled */
+(function(){
+  var h=document.querySelector('header');if(!h)return;
+  function upd(){h.classList.toggle('scrolled',window.scrollY>40);}
+  window.addEventListener('scroll',upd,{passive:true});upd();
+})();
