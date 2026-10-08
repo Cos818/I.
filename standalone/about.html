@@ -381,6 +381,15 @@ footer{background:#15191F;color:#B9C0CA;padding:72px 0 36px}
 .phone-screen{position:absolute;left:16.2%;top:1.7%;width:58%;height:80.1%;background:#F4F4F1;border-radius:9%/5.5%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9%;overflow:hidden;z-index:0;padding-bottom:4%}
 .phone-logo{width:46%;height:auto}
 .phone-card{width:88%;height:auto;filter:drop-shadow(0 10px 18px rgba(0,0,0,.28))}
+
+/* ---------- Rounded arch with cycling photos ---------- */
+.arch-stage{display:flex;justify-content:center;align-items:center}
+.arch{position:relative;width:min(100%,420px);aspect-ratio:4/5.1;border-radius:999px;overflow:hidden;background:var(--band);box-shadow:var(--shadow)}
+.arch-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .7s ease}
+.arch-img.active{opacity:1}
+@media (max-height:820px) and (min-width:841px){.arch{width:min(100%,340px)}}
+@media (max-width:640px){.arch{width:min(100%,300px)}}
+@media (prefers-reduced-motion:reduce){.arch-img{transition:none}}
 </style>
 </head>
 <body>
