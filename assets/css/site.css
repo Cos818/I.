@@ -596,13 +596,41 @@ html:not(.js) .ci-more,.choreo-sticky.step-1 .ci-more{pointer-events:auto}
 .bk-list li::before{content:"";position:absolute;left:0;top:.55em;width:8px;height:8px;border-radius:50%;background:var(--green)}
 .banking-teaser{border-top:1px solid var(--line-d)}
 
-/* Card image */
+/* Card: vector rebuild of the BOF Pay virtual card */
 .card-stage{position:relative;display:flex;justify-content:center;align-items:center;padding:40px 0}
 .card-stage::before{content:"";position:absolute;width:62%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(126,167,104,.22),rgba(126,167,104,0) 70%);filter:blur(12px);pointer-events:none}
-.cc-img{position:relative;width:min(100%,400px);height:auto;border-radius:14px;box-shadow:0 30px 60px rgba(0,0,0,.5),0 6px 18px rgba(0,0,0,.35)}
+.cc{position:relative;width:min(100%,440px);aspect-ratio:1.586;border-radius:16px;padding:6.5% 6%;color:#F1F4EC;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;
+  background:
+    repeating-conic-gradient(from 0deg at 56% 52%,rgba(255,255,255,.045) 0deg .35deg,rgba(0,0,0,0) .35deg .8deg,rgba(0,0,0,.04) .8deg 1.15deg,rgba(0,0,0,0) 1.15deg 1.6deg),
+    radial-gradient(ellipse 75% 95% at 56% 52%,#93AC7F 0%,#7B9568 18%,#60774E 40%,#4A5E3C 64%,#3A4A30 84%,#2F3D28 100%);
+  box-shadow:0 30px 60px rgba(0,0,0,.5),0 6px 18px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.18),inset 0 -1px 0 rgba(0,0,0,.45)}
+.cc::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;mix-blend-mode:overlay;opacity:.3;
+  background:repeating-radial-gradient(circle at 56% 52%,rgba(255,255,255,.12) 0 1px,rgba(0,0,0,0) 1px 3px)}
+.cc::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(135deg,rgba(255,255,255,.08) 0%,rgba(255,255,255,0) 38%,rgba(0,0,0,0) 62%,rgba(0,0,0,.2) 100%)}
+.cc>*{position:relative;z-index:1}
+.cc-top{display:flex;justify-content:space-between;align-items:flex-start}
+.cc-brand{display:flex;align-items:flex-end;gap:.18em}
+.cc-brand img{height:clamp(26px,3.2vw,40px);width:auto;filter:drop-shadow(0 1px 1px rgba(0,0,0,.35))}
+.cc-brand em{font-style:normal;font-weight:600;font-size:clamp(18px,2.2vw,28px);line-height:1;color:#7EA768;letter-spacing:0;padding-bottom:.08em;text-shadow:0 1px 1px rgba(0,0,0,.3)}
+.cc-tag{font-family:var(--mono);font-size:clamp(9px,1vw,12px);font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#F4F7F0;background:rgba(40,52,38,.72);border:1px solid rgba(255,255,255,.08);border-radius:999px;padding:.55em 1em .45em;margin-top:.3em}
+.cc-chip{position:relative;width:12%;aspect-ratio:1.28;border-radius:5px;background:linear-gradient(135deg,#8E9794,#646D6A 55%,#8C9592);box-shadow:inset 0 0 0 1px rgba(0,0,0,.35),0 1px 2px rgba(0,0,0,.35);margin-top:5%}
+.cc-chip i{position:absolute;left:0;right:0;height:1px;background:rgba(0,0,0,.4)}
+.cc-chip i:nth-child(1){top:33%}.cc-chip i:nth-child(2){top:66%}.cc-chip i:nth-child(3){top:0;bottom:0;left:50%;right:auto;width:1px;height:auto}
+.cc-num{font-family:var(--mono);font-size:clamp(14px,1.6vw,20px);font-weight:400;letter-spacing:.14em;color:#F6F8F2;text-shadow:0 1px 1px rgba(0,0,0,.45);margin-top:-3%}
+.cc-bottom{display:flex;justify-content:space-between;align-items:flex-end;gap:16px}
+.cc-bottom>div{display:flex;flex-direction:column;gap:2px}
+.cc-lbl{font-family:var(--mono);font-size:clamp(7.5px,.8vw,9.5px);letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.cc-val{font-size:clamp(13px,1.35vw,16.5px);font-weight:500;letter-spacing:.01em;color:#F6F8F2;text-shadow:0 1px 1px rgba(0,0,0,.4)}
 @media (max-width:1080px){.bk-grid{gap:40px}}
 @media (max-width:840px){
   .bk-grid{grid-template-columns:1fr}
   .card-stage{padding:24px 0 8px}
-  .cc-img{width:min(100%,360px)}
+  .cc{width:min(100%,380px)}
+  .cc-brand img{height:28px}
+  .cc-brand em{font-size:19px}
+  .cc-tag{font-size:9.5px}
+  .cc-num{font-size:15px}
+  .cc-val{font-size:13.5px}
+  .cc-lbl{font-size:8px}
 }
