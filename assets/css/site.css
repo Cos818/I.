@@ -714,3 +714,8 @@ section.choreo{min-height:calc(100svh - 66px);display:flex;flex-direction:column
   .aud-card{padding:20px 20px 18px;gap:12px}
   .aud-ico{width:clamp(56px,4.5vw,72px)}
 }
+
+/* ---------- No bullet dots anywhere ---------- */
+.chip::before,.on-light .chip::before,.values-list li::before,.detail.dark .values-list li::before,.bk-list li::before{display:none;content:none}
+.values-list li,.bk-list li{padding-left:0}
+.chip{gap:0}
