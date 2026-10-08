@@ -9,8 +9,10 @@
   --green:#7EA768;         /* brand green, as in the logo */
   --ink:#1F2328;           /* body text */
   --muted:#5B626B;
-  --bg:#E3EBDA;            /* page background: soft sage green */
-  --band:#CFDCC1;          /* deeper sage for bands */
+  --bg:#FFFFFF;            /* clean white sections */
+  --band:#55763F;          /* solid green bands, same as the buttons */
+  --ink-2:#55763F;
+  --offset:#E6E6E2;        /* grey offset behind photo cards */
   --white:#FFFFFF;
   --dark:#10151D;
   --line:rgba(31,35,40,.16);
@@ -126,7 +128,7 @@ header.scrolled .nav{height:72px}
 /* ---------- Photo cards ---------- */
 .photo-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px 32px}
 .photo-card{display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px}
-.photo-card .pimg{width:100%;aspect-ratio:4/3;object-fit:cover;box-shadow:14px 14px 0 var(--band),var(--shadow)}
+.photo-card .pimg{width:100%;aspect-ratio:4/3;object-fit:cover;box-shadow:14px 14px 0 var(--offset),var(--shadow)}
 .photo-card h3{margin-top:10px}
 .photo-card .btn{padding:16px 30px;font-size:13px}
 @media (max-width:1080px){.photo-grid{grid-template-columns:repeat(2,1fr)}}
@@ -373,7 +375,7 @@ footer{background:#15191F;color:#B9C0CA;padding:72px 0 36px}
 
 /* ---------- Rounded arch with cycling photos ---------- */
 .arch-stage{display:flex;justify-content:center;align-items:center}
-.arch{position:relative;width:min(100%,420px);aspect-ratio:4/5.1;border-radius:999px;overflow:hidden;background:var(--band);box-shadow:var(--shadow)}
+.arch{position:relative;width:min(100%,420px);aspect-ratio:4/5.1;border-radius:999px;overflow:hidden;background:var(--offset);box-shadow:var(--shadow)}
 .arch-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .7s ease}
 .arch-img.active{opacity:1}
 @media (max-height:820px) and (min-width:841px){.arch{width:min(100%,340px)}}
@@ -394,3 +396,24 @@ footer{background:#15191F;color:#B9C0CA;padding:72px 0 36px}
   .nav-cta{margin-left:auto}
   .nav-cta .btn-ghost{display:none}
 }
+
+/* ---------- Green bands: white text and inverted buttons ---------- */
+.quote-band,section.band,.detail.dark,.closing,#message{color:#fff}
+.quote-band h1,section.band h1,.detail.dark h1,.closing h1,#message h1,.quote-band h2,section.band h2,.detail.dark h2,.closing h2,#message h2,.quote-band h3,section.band h3,.detail.dark h3,.closing h3,#message h3,.quote-band p,section.band p,.detail.dark p,.closing p,#message p,.quote-band li,section.band li,.detail.dark li,.closing li,#message li,.quote-band .lead,section.band .lead,.detail.dark .lead,.closing .lead,#message .lead,.quote-band cite,section.band cite,.detail.dark cite,.closing cite,#message cite,.quote-band .cl-lead,section.band .cl-lead,.detail.dark .cl-lead,.closing .cl-lead,#message .cl-lead,.quote-band .cl-note,section.band .cl-note,.detail.dark .cl-note,.closing .cl-note,#message .cl-note,.quote-band .cf-note,section.band .cf-note,.detail.dark .cf-note,.closing .cf-note,#message .cf-note,.quote-band .d-note,section.band .d-note,.detail.dark .d-note,.closing .d-note,#message .d-note,.quote-band .feat p,section.band .feat p,.detail.dark .feat p,.closing .feat p,#message .feat p,.quote-band .icon-box p,section.band .icon-box p,.detail.dark .icon-box p,.closing .icon-box p,#message .icon-box p,.quote-band .aud-side,section.band .aud-side,.detail.dark .aud-side,.closing .aud-side,#message .aud-side,.quote-band .bk-copy .lead,section.band .bk-copy .lead,.detail.dark .bk-copy .lead,.closing .bk-copy .lead,#message .bk-copy .lead,.quote-band .d-prose p,section.band .d-prose p,.detail.dark .d-prose p,.closing .d-prose p,#message .d-prose p,.quote-band .d-side>p,section.band .d-side>p,.detail.dark .d-side>p,.closing .d-side>p,#message .d-side>p,.quote-band .chip,section.band .chip,.detail.dark .chip,.closing .chip,#message .chip,.quote-band .cf-head p,section.band .cf-head p,.detail.dark .cf-head p,.closing .cf-head p,#message .cf-head p,.quote-band .cf-field label,section.band .cf-field label,.detail.dark .cf-field label,.closing .cf-field label,#message .cf-field label{color:#fff}
+.quote-band .d-kicker,section.band .d-kicker,.detail.dark .d-kicker,.closing .d-kicker,#message .d-kicker,.quote-band .svc-card .sc-kicker,section.band .svc-card .sc-kicker,.detail.dark .svc-card .sc-kicker,.closing .svc-card .sc-kicker,#message .svc-card .sc-kicker{color:#C9DDB8}
+.quote-band .svc-card .sc-kicker,section.band .svc-card .sc-kicker,.detail.dark .svc-card .sc-kicker,.closing .svc-card .sc-kicker,#message .svc-card .sc-kicker{color:var(--accent)}
+.quote-band .d-prose a,section.band .d-prose a,.detail.dark .d-prose a,.closing .d-prose a,#message .d-prose a,.quote-band .d-side a,section.band .d-side a,.detail.dark .d-side a,.closing .d-side a,#message .d-side a,.quote-band .feat p a,section.band .feat p a,.detail.dark .feat p a,.closing .feat p a,#message .feat p a,.quote-band .lead a,section.band .lead a,.detail.dark .lead a,.closing .lead a,#message .lead a,.quote-band .cl-note a,section.band .cl-note a,.detail.dark .cl-note a,.closing .cl-note a,#message .cl-note a,.quote-band .cf-note a,section.band .cf-note a,.detail.dark .cf-note a,.closing .cf-note a,#message .cf-note a{color:#fff;text-decoration:underline;text-underline-offset:3px}
+.quote-band .chip,section.band .chip,.detail.dark .chip,.closing .chip,#message .chip{border-bottom-color:rgba(255,255,255,.28)}
+.quote-band .chip::before,section.band .chip::before,.detail.dark .chip::before,.closing .chip::before,#message .chip::before,.quote-band .values-list li::before,section.band .values-list li::before,.detail.dark .values-list li::before,.closing .values-list li::before,#message .values-list li::before,.quote-band .bk-list li::before,section.band .bk-list li::before,.detail.dark .bk-list li::before,.closing .bk-list li::before,#message .bk-list li::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FFFFFF' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7'/%3E%3C/svg%3E")}
+.quote-band .quote,section.band .quote,.detail.dark .quote,.closing .quote,#message .quote{border-left-color:#fff;color:#fff}
+.quote-band .quote cite,section.band .quote cite,.detail.dark .quote cite,.closing .quote cite,#message .quote cite{color:rgba(255,255,255,.8)}
+.quote-band .qmark,section.band .qmark,.detail.dark .qmark,.closing .qmark,#message .qmark{color:rgba(255,255,255,.35)}
+.quote-band .btn.btn-primary,section.band .btn.btn-primary,.detail.dark .btn.btn-primary,.closing .btn.btn-primary,#message .btn.btn-primary{background:#fff;color:var(--accent);border-color:#fff}
+.quote-band .btn.btn-primary:hover,section.band .btn.btn-primary:hover,.detail.dark .btn.btn-primary:hover,.closing .btn.btn-primary:hover,#message .btn.btn-primary:hover{background:#E3EBDA;border-color:#E3EBDA}
+.quote-band .btn.btn-ghost,section.band .btn.btn-ghost,.detail.dark .btn.btn-ghost,.closing .btn.btn-ghost,#message .btn.btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.85)}
+.quote-band .btn.btn-ghost:hover,section.band .btn.btn-ghost:hover,.detail.dark .btn.btn-ghost:hover,.closing .btn.btn-ghost:hover,#message .btn.btn-ghost:hover{background:#fff;color:var(--accent);border-color:#fff}
+.quote-band .svc-card h3,section.band .svc-card h3,.detail.dark .svc-card h3,.closing .svc-card h3,#message .svc-card h3,.quote-band .svc-card p,section.band .svc-card p,.detail.dark .svc-card p,.closing .svc-card p,#message .svc-card p,.quote-band .form-card .fc-name,section.band .form-card .fc-name,.detail.dark .form-card .fc-name,.closing .form-card .fc-name,#message .form-card .fc-name,.quote-band .office p,section.band .office p,.detail.dark .office p,.closing .office p,#message .office p,.quote-band .office h3,section.band .office h3,.detail.dark .office h3,.closing .office h3,#message .office h3{color:var(--ink)}
+.quote-band .svc-card p,section.band .svc-card p,.detail.dark .svc-card p,.closing .svc-card p,#message .svc-card p,.quote-band .office p,section.band .office p,.detail.dark .office p,.closing .office p,#message .office p{color:var(--muted)}
+.quote-band .svc-card .sc-more,section.band .svc-card .sc-more,.detail.dark .svc-card .sc-more,.closing .svc-card .sc-more,#message .svc-card .sc-more,.quote-band .form-card .fc-name a,section.band .form-card .fc-name a,.detail.dark .form-card .fc-name a,.closing .form-card .fc-name a,#message .form-card .fc-name a{color:var(--accent)}
+.quote-band .cf-field input,section.band .cf-field input,.detail.dark .cf-field input,.closing .cf-field input,#message .cf-field input,.quote-band .cf-field textarea,section.band .cf-field textarea,.detail.dark .cf-field textarea,.closing .cf-field textarea,#message .cf-field textarea{border-color:transparent;color:var(--ink)}
+.quote-band .ib-ico,section.band .ib-ico,.detail.dark .ib-ico,.closing .ib-ico,#message .ib-ico{box-shadow:none}
