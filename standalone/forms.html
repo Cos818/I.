@@ -390,6 +390,21 @@ footer{background:#15191F;color:#B9C0CA;padding:72px 0 36px}
 @media (max-height:820px) and (min-width:841px){.arch{width:min(100%,340px)}}
 @media (max-width:640px){.arch{width:min(100%,300px)}}
 @media (prefers-reduced-motion:reduce){.arch-img{transition:none}}
+
+/* ---------- Navigation fit ---------- */
+.nav{gap:20px}
+.nav-links{gap:clamp(16px,1.8vw,30px);flex-wrap:nowrap}
+.nav-links a{white-space:nowrap;font-size:15px}
+.nav-cta{gap:12px;flex:none}
+.nav .btn{padding:13px 24px;font-size:12.5px}
+@media (max-width:1280px){
+  .nav-links{display:none}
+  .nav-links.open{display:flex;position:absolute;top:var(--header);left:0;right:0;flex-direction:column;background:var(--dark);padding:24px 32px 28px;gap:18px;z-index:60;box-shadow:0 24px 48px rgba(0,0,0,.35)}
+  header.scrolled .nav-links.open{top:72px}
+  .nav-toggle{display:inline-flex}
+  .nav-cta{margin-left:auto}
+  .nav-cta .btn-ghost{display:none}
+}
 </style>
 </head>
 <body>
