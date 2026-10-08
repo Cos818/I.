@@ -424,3 +424,11 @@ footer{background:#15191F;color:#B9C0CA;padding:72px 0 36px}
 .info-block p,section.band .info-block p{color:var(--muted)}
 .info-block a,section.band .info-block a{color:var(--accent);font-weight:700;text-decoration:none}
 @media (max-height:820px) and (min-width:841px){.info-block{padding:18px 22px}.info-blocks{gap:14px;margin-top:20px}}
+
+/* ---------- Closing band with a photo ---------- */
+.closing.photo{background:var(--dark) center/cover no-repeat;overflow:hidden}
+.closing.photo.img-beach{background-image:url(../img/wealth-2.jpg);background-position:center 40%}
+.closing.photo.img-map{background-image:url(../img/services.jpg)}
+.closing.photo.img-people{background-image:url(../img/trust.jpg);background-position:center 30%}
+.closing.photo::before{content:"";position:absolute;inset:0;background:rgba(39,53,66,.72);z-index:1}
+.closing.photo .wrap{position:relative;z-index:2}

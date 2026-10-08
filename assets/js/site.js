@@ -130,7 +130,7 @@ document.addEventListener('click',function(e){
 /* Parallax: photo backgrounds drift slower than the page */
 (function(){
   if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-  var secs=[].slice.call(document.querySelectorAll('.hero,.page-hero,.photo-split,.trust'));
+  var secs=[].slice.call(document.querySelectorAll('.hero,.page-hero,.photo-split,.trust,.closing.photo'));
   var layers=[];
   secs.forEach(function(sec){
     var cs=getComputedStyle(sec);
