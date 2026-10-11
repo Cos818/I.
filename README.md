@@ -23,6 +23,6 @@ Deploys as-is to Vercel, Netlify, GitHub Pages or any static host.
 
 ## Content to confirm
 
-- **Services** (`index.html`, section `#services`): six placeholder services for a full-service agency. Replace with the official BBG list.
+- **Services and Work**: the nine services, five anonymous case studies and intro copy are the official BBG content.
 - **Email**: `hello@bbgmedia.com` in the contact section is a placeholder.
 - **Social links** in the footer point to `#` until the real profiles are added.
