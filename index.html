@@ -12,11 +12,11 @@
 <meta property="og:image" content="assets/logo-full.jpg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
 <style>
 /* =========================================================================
    BBG Media. Chrome editorial.
-   Two families: Geist (display + text), Instrument Serif (accent only).
+   Two families: SF Pro Display on Apple devices with Inter as the open fallback, Instrument Serif (accent only).
    ========================================================================= */
 :root {
   --bg: #070708;
@@ -39,7 +39,7 @@
   --pink: #f0c6ff;
   --chrome: linear-gradient(105deg, #8e8e97 0%, #ffffff 22%, #d6ccff 40%, #8c9cff 55%, #f0c6ff 70%, #ffffff 84%, #8e8e97 100%);
 
-  --sans: "Geist", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  --sans: "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --serif: "Instrument Serif", Georgia, "Times New Roman", serif;
 
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -260,57 +260,73 @@ section { scroll-margin-top: var(--nav-h); }
   isolation: isolate;
   background: var(--bg);
 }
-.hero__frame { position: absolute; inset: 0; will-change: clip-path; }
-.hero__canvas {
+.hero__frame { position: absolute; inset: 0; will-change: clip-path; overflow: hidden; }
+.hero__visual {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
   opacity: 0;
   transform: scale(1.04);
   transition: opacity 1100ms var(--ease) 300ms, transform 1300ms var(--ease) 300ms;
   will-change: transform, opacity;
 }
-.hero.ready .hero__canvas { opacity: 1; transform: none; }
-.hero.ready.scrolling .hero__canvas { transition: none; }
+.hero.ready .hero__visual { opacity: 1; transform: none; }
+.hero.ready.scrolling .hero__visual { transition: none; }
+.hero__visual canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-mask-image: linear-gradient(to right, #000 48%, transparent 74%);
+  mask-image: linear-gradient(to right, #000 48%, transparent 74%);
+}
+#heroGlow { filter: blur(18px) saturate(1.25); opacity: 0.9; }
+.hero__orb {
+  position: absolute;
+  right: -10%;
+  bottom: -22%;
+  width: 48vw;
+  height: 48vw;
+  max-width: 760px;
+  max-height: 760px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 42% 42%, rgba(176, 150, 255, 0.5), rgba(110, 80, 220, 0.22) 36%, rgba(7, 7, 8, 0) 70%);
+  filter: blur(42px);
+  pointer-events: none;
+}
 .hero__static {
   position: absolute;
   inset: 0;
   z-index: -1;
   background:
-    radial-gradient(60% 50% at 78% 48%, rgba(201, 201, 207, 0.14), transparent 70%),
-    radial-gradient(30% 24% at 70% 70%, rgba(214, 204, 255, 0.16), transparent 70%);
+    radial-gradient(50% 40% at 0% 50%, rgba(214, 204, 255, 0.22), transparent 70%),
+    radial-gradient(30% 24% at 72% 70%, rgba(214, 204, 255, 0.12), transparent 70%);
 }
 .hero__grid {
   position: relative;
   z-index: 2;
   height: 100%;
   display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   grid-template-rows: 1fr auto;
   padding: calc(var(--nav-h) + 4vh) 0 clamp(32px, 6vh, 64px);
   pointer-events: none;
-  transform-origin: left bottom;
+  transform-origin: right bottom;
 }
-.hero__grid > * { pointer-events: auto; }
+.hero__grid > * { pointer-events: auto; grid-column: 2; padding-left: clamp(0px, 4vw, 64px); }
 .hero__top { align-self: center; }
 .hero__eyebrow { margin-bottom: clamp(20px, 3vh, 36px); }
 .hero__title {
-  font-size: clamp(54px, 9.4vw, 156px);
+  font-size: clamp(54px, 7.6vw, 128px);
   font-weight: 500;
-  line-height: 0.94;
-  letter-spacing: -0.045em;
+  line-height: 0.96;
+  letter-spacing: -0.04em;
   color: var(--fg);
   max-width: 11ch;
   text-shadow: 0 2px 40px rgba(7, 7, 8, 0.6);
 }
 .hero__title .serif { font-size: 1.04em; font-weight: 400; letter-spacing: -0.02em; padding-right: 0.04em; }
-.hero__bottom {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: end;
-  gap: 32px;
-}
-.hero__lead { max-width: 420px; font-size: 17px; line-height: 1.55; color: var(--fg-2); }
+.hero__bottom { display: grid; gap: 28px; }
+.hero__lead { max-width: 460px; font-size: 17px; line-height: 1.55; color: var(--fg-2); }
 .hero__actions { display: flex; gap: 12px; flex-wrap: wrap; }
 
 /* -------------------------------------------------------------------------
@@ -641,14 +657,16 @@ section { scroll-margin-top: var(--nav-h); }
   overflow: hidden;
   isolation: isolate;
 }
+.contact__visual { position: absolute; inset: 0; z-index: -1; }
 .contact__canvas {
   position: absolute;
   inset: 0;
-  z-index: -1;
   width: 100%;
   height: 100%;
-  opacity: 0.85;
+  -webkit-mask-image: linear-gradient(to left, #000 40%, transparent 80%);
+  mask-image: linear-gradient(to left, #000 40%, transparent 80%);
 }
+#contactGlow { filter: blur(16px) saturate(1.2); opacity: 0.8; }
 .contact__title {
   font-size: clamp(48px, 9vw, 150px);
   font-weight: 500;
@@ -713,9 +731,16 @@ section { scroll-margin-top: var(--nav-h); }
 @media (max-width: 900px) {
   .nav__links, .nav__cta { display: none; }
   .burger { display: block; }
-  .hero__grid { padding-top: calc(var(--nav-h) + 2vh); }
+  .hero__grid { grid-template-columns: 1fr; padding-top: calc(var(--nav-h) + 2vh); grid-template-rows: 1fr auto; }
+  .hero__grid > * { grid-column: 1; padding-left: 0; }
+  .hero__top { align-self: end; padding: 24vh 0 28px; }
+  .hero__lead { font-size: 15px; }
   .hero__title { max-width: none; }
-  .hero__bottom { grid-template-columns: 1fr; }
+  .hero__visual canvas {
+    -webkit-mask-image: linear-gradient(to bottom, #000 28%, transparent 60%);
+    mask-image: linear-gradient(to bottom, #000 28%, transparent 60%);
+  }
+  .hero__orb { right: -30%; bottom: auto; top: 10%; width: 90vw; height: 90vw; opacity: 0.7; }
   .sec-head { grid-template-columns: 1fr; }
   .sec-head__aside { justify-self: start; }
   .cases { gap: 12px; }
@@ -740,7 +765,7 @@ section { scroll-margin-top: var(--nav-h); }
 }
 @media (max-width: 560px) {
   :root { --nav-h: 68px; }
-  .hero, .hero-pin { min-height: 560px; }
+  .hero, .hero-pin { min-height: 640px; }
   .hero__title { font-size: clamp(50px, 15.5vw, 72px); }
   .hero__lead { font-size: 16px; }
   .btn { width: 100%; }
@@ -757,7 +782,7 @@ section { scroll-margin-top: var(--nav-h); }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .nav { opacity: 1; transform: none; transition: none; }
-  .hero__canvas { opacity: 1; transform: none; transition: none; }
+  .hero__visual { opacity: 1; transform: none; transition: none; }
   .line > span, .fade, .case__inner { transform: none !important; opacity: 1 !important; transition: none !important; }
   .case::after { display: none; }
   .svc__detail-body, .case__num, .burger span, .menu { transition: none; }
@@ -806,7 +831,11 @@ section { scroll-margin-top: var(--nav-h); }
     <section class="hero" id="hero" aria-label="Introduction">
       <div class="hero__frame" id="heroFrame">
         <div class="hero__static" aria-hidden="true"></div>
-        <canvas class="hero__canvas" id="heroCanvas" aria-hidden="true"></canvas>
+        <div class="hero__visual" id="heroVisual" aria-hidden="true">
+          <canvas id="heroGlow"></canvas>
+          <canvas id="heroCanvas"></canvas>
+          <div class="hero__orb"></div>
+        </div>
       </div>
       <div class="wrap hero__grid" id="heroGrid">
         <div class="hero__top">
@@ -1051,7 +1080,10 @@ section { scroll-margin-top: var(--nav-h); }
 
   <!-- ================= CONTACT ================= -->
   <section class="contact" id="contact" aria-labelledby="contactTitle">
-    <canvas class="contact__canvas" id="contactCanvas" aria-hidden="true"></canvas>
+    <div class="contact__visual" aria-hidden="true">
+      <canvas class="contact__canvas" id="contactGlow"></canvas>
+      <canvas class="contact__canvas" id="contactCanvas"></canvas>
+    </div>
     <div class="wrap">
       <p class="eyebrow fade">Contact</p>
       <h2 class="contact__title lines" id="contactTitle">
@@ -1098,145 +1130,99 @@ section { scroll-margin-top: var(--nav-h); }
   const lerp = (a, b, t) => a + (b - a) * t;
 
   /* =====================================================================
-     Chrome ribbon. Canvas 2D: a twisted band swept along a spline and lit
-     with a chrome reflection palette. Drawn once when motion is reduced.
+     Fibre-optic streaks. Two canvases: a static blurred glow layer and an
+     animated layer of thin strands with travelling light pulses. Drawn once
+     when motion is reduced.
      ===================================================================== */
-  const PALETTE = [
-    [0.00, [20, 20, 24]], [0.16, [150, 150, 160]], [0.30, [250, 250, 252]],
-    [0.40, [214, 204, 255]], [0.50, [140, 156, 255]], [0.60, [240, 198, 255]],
-    [0.70, [255, 255, 255]], [0.84, [96, 96, 106]], [1.00, [20, 20, 24]]
-  ];
-  const LUT = (() => {
-    const out = new Array(256);
-    for (let i = 0; i < 256; i++) {
-      const u = i / 255;
-      let k = 0;
-      while (k < PALETTE.length - 2 && PALETTE[k + 1][0] < u) k++;
-      const [u0, c0] = PALETTE[k], [u1, c1] = PALETTE[k + 1];
-      const t = (u - u0) / (u1 - u0);
-      out[i] = `rgb(${Math.round(lerp(c0[0], c1[0], t))},${Math.round(lerp(c0[1], c1[1], t))},${Math.round(lerp(c0[2], c1[2], t))})`;
-    }
-    return out;
-  })();
+  const PALETTE = [[244, 240, 255], [200, 184, 255], [160, 140, 255], [120, 130, 255], [225, 150, 255]];
+  const rand = (a, b) => a + Math.random() * (b - a);
 
-  function catmull(pts, t) {
-    const n = pts.length - 1;
-    const f = clamp(t, 0, 0.99999) * n;
-    const i = Math.floor(f), u = f - i;
-    const p0 = pts[Math.max(i - 1, 0)], p1 = pts[i], p2 = pts[Math.min(i + 1, n)], p3 = pts[Math.min(i + 2, n)];
-    const u2 = u * u, u3 = u2 * u;
-    return [
-      0.5 * (2 * p1[0] + (-p0[0] + p2[0]) * u + (2 * p0[0] - 5 * p1[0] + 4 * p2[0] - p3[0]) * u2 + (-p0[0] + 3 * p1[0] - 3 * p2[0] + p3[0]) * u3),
-      0.5 * (2 * p1[1] + (-p0[1] + p2[1]) * u + (2 * p0[1] - 5 * p1[1] + 4 * p2[1] - p3[1]) * u2 + (-p0[1] + 3 * p1[1] - 3 * p2[1] + p3[1]) * u3)
-    ];
-  }
-
-  class Ribbon {
-    constructor(canvas, opts) {
-      this.c = canvas;
-      this.ctx = canvas.getContext("2d");
-      this.o = Object.assign({ slices: 320, width: 0.16, twist: 1.6, speed: 0.08, shadow: true, parallax: 1 }, opts);
-      this.W = 0; this.H = 0; this.dpr = 1;
-      this.px = 0; this.py = 0; this.tx = 0; this.ty = 0;
-      this.t0 = performance.now();
-      this.running = false;
+  class Streaks {
+    constructor(glowCanvas, canvas, opts) {
+      this.g = glowCanvas; this.c = canvas;
+      this.glow = glowCanvas.getContext("2d"); this.ctx = canvas.getContext("2d");
+      this.o = Object.assign({ count: 150, parallax: 1, alpha: 1 }, opts);
+      this.W = 0; this.H = 0; this.px = 0; this.py = 0; this.tx = 0; this.ty = 0;
+      this.t0 = performance.now(); this.running = false;
       this.frame = this.frame.bind(this);
       this.resize();
+    }
+    build() {
+      const n = desktop() ? this.o.count : Math.round(this.o.count * 0.7);
+      this.strands = [];
+      for (let i = 0; i < n; i++) {
+        const spread = ((i / (n - 1)) - 0.5) * 2;
+        this.strands.push({
+          endT: 0.5 + spread * rand(0.55, 0.78) * (Math.random() < 0.5 ? 1 : 0.85),
+          mid: rand(0.38, 0.62), wobble: rand(0.012, 0.045), phase: rand(0, Math.PI * 2),
+          speed: rand(0.12, 0.3), width: rand(0.5, 1.5), alpha: rand(0.12, 0.5) * this.o.alpha,
+          color: PALETTE[Math.floor(Math.random() * PALETTE.length)],
+          dashLen: rand(90, 240), dashGap: rand(360, 900), dashSpeed: rand(40, 110), dashOffset: rand(0, 1000)
+        });
+      }
     }
     resize() {
       const r = this.c.getBoundingClientRect();
       this.W = Math.max(1, r.width); this.H = Math.max(1, r.height);
-      this.dpr = Math.min(window.devicePixelRatio || 1, desktop() ? 1.5 : 1.25);
-      this.c.width = Math.round(this.W * this.dpr);
-      this.c.height = Math.round(this.H * this.dpr);
-      this.ctx.setTransform(this.dpr, 0, 0, this.dpr, 0, 0);
-      this.pts = this.o.path(this.W, this.H);
+      const dpr = Math.min(window.devicePixelRatio || 1, desktop() ? 1.5 : 1.25);
+      for (const [cv, cx] of [[this.g, this.glow], [this.c, this.ctx]]) {
+        cv.width = Math.round(this.W * dpr); cv.height = Math.round(this.H * dpr);
+        cx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+      this.L = this.o.layout(this.W, this.H);
+      this.build();
+      this.drawGlow();
       this.draw(motionOK ? (performance.now() - this.t0) / 1000 : 0);
     }
+    path(target, s, time, px, py) {
+      const { W, H, L } = this;
+      const dir = L.dir || 1; // 1: fan to the right, -1: fan to the left
+      const x0 = L.x0 + px * 10, y0 = L.y0 + py * 14;
+      const endY = L.y0 + (s.endT - 0.5) * H * L.yScale + Math.sin(time * s.speed + s.phase) * H * s.wobble;
+      const x3 = L.xEnd;
+      const x1 = x0 + (x3 - x0) * 0.28;
+      const y1 = y0 + (endY - y0) * 0.05 + Math.sin(time * s.speed * 0.7 + s.phase) * H * 0.015;
+      const x2 = x0 + (x3 - x0) * s.mid;
+      const y2 = endY + Math.cos(time * s.speed * 0.9 + s.phase) * H * s.wobble * 1.6;
+      target.beginPath(); target.moveTo(x0, y0); target.bezierCurveTo(x1, y1, x2, y2, x3, endY);
+      void dir; void W;
+    }
+    drawGlow() {
+      const g = this.glow, { W, H, L } = this;
+      g.clearRect(0, 0, W, H);
+      g.globalCompositeOperation = "lighter"; g.lineCap = "round";
+      for (const s of this.strands) {
+        this.path(g, s, 0, 0, 0);
+        const [r, gg, b] = s.color;
+        g.strokeStyle = `rgba(${r},${gg},${b},${s.alpha * 0.55})`; g.lineWidth = s.width * 2.2; g.stroke();
+      }
+      const bx = L.x0 + (L.xEnd > L.x0 ? 1 : -1) * W * 0.08;
+      const grad = g.createRadialGradient(bx, L.y0, 0, bx, L.y0, W * 0.22);
+      grad.addColorStop(0, `rgba(220,205,255,${0.55 * this.o.alpha})`);
+      grad.addColorStop(0.4, `rgba(150,125,255,${0.22 * this.o.alpha})`);
+      grad.addColorStop(1, "rgba(150,125,255,0)");
+      g.fillStyle = grad; g.fillRect(0, 0, W, H);
+    }
     draw(time) {
-      const { ctx, W, H } = this;
-      const o = this.o;
-      const N = desktop() ? o.slices : Math.round(o.slices * 0.65);
-      const base = Math.min(W, H) * o.width;
-      const phase = time * o.speed;
-      const px = this.px * o.parallax, py = this.py * o.parallax;
+      const ctx = this.ctx, { W, H } = this;
       ctx.clearRect(0, 0, W, H);
-
-      // centreline, normals and twist per slice
-      const cx = new Float32Array(N + 1), cy = new Float32Array(N + 1), nx = new Float32Array(N + 1), ny = new Float32Array(N + 1), th = new Float32Array(N + 1), hw = new Float32Array(N + 1);
-      for (let i = 0; i <= N; i++) {
-        const t = i / N;
-        const depth = 0.6 + 0.4 * Math.sin(t * Math.PI * 2 + 1.2);
-        const a = catmull(this.pts, t), b = catmull(this.pts, Math.min(1, t + 0.002));
-        cx[i] = a[0] + px * 28 * depth + Math.sin(phase * 0.7 + t * 4) * 6;
-        cy[i] = a[1] + py * 20 * depth + Math.cos(phase * 0.5 + t * 3) * 6;
-        const dx = b[0] - a[0], dy = b[1] - a[1];
-        const l = Math.hypot(dx, dy) || 1;
-        nx[i] = -dy / l; ny[i] = dx / l;
-        th[i] = t * Math.PI * o.twist + Math.sin(t * 2.4 + phase) * 0.7 + phase * 0.35;
-        hw[i] = base * 0.5 * (0.22 + 0.78 * Math.abs(Math.cos(th[i])));
-      }
-      const edge = (i, side) => [cx[i] + nx[i] * hw[i] * side, cy[i] + ny[i] * hw[i] * side];
-      const chunkPath = (from, to, ox, oy) => {
-        ctx.beginPath();
-        for (let i = from; i <= to; i++) { const [x, y] = edge(i, 1); if (i === from) ctx.moveTo(x + ox, y + oy); else ctx.lineTo(x + ox, y + oy); }
-        for (let i = to; i >= from; i--) { const [x, y] = edge(i, -1); ctx.lineTo(x + ox, y + oy); }
-        ctx.closePath();
-      };
-
-      // The band is drawn in chunks. Each chunk casts a soft shadow only onto chunks already
-      // drawn, so the self-crossing reads as one layer passing over another.
-      const CH = 6, per = Math.ceil(N / CH);
-      for (let c = 0; c < CH; c++) {
-        const from = c * per, to = Math.min(N, from + per);
-        if (c > 1 && o.shadow) {
-          ctx.save();
-          ctx.beginPath();
-          for (let k = 0; k < c - 1; k++) {
-            const f = k * per, t2 = Math.min(N, f + per);
-            for (let i = f; i <= t2; i++) { const [x, y] = edge(i, 1); if (i === f) ctx.moveTo(x, y); else ctx.lineTo(x, y); }
-            for (let i = t2; i >= f; i--) { const [x, y] = edge(i, -1); ctx.lineTo(x, y); }
-            ctx.closePath();
-          }
-          ctx.clip();
-          ctx.fillStyle = "rgba(0,0,0,0.55)";
-          chunkPath(from, to, 6, 22);
-          ctx.fill();
-          ctx.restore();
-        }
-        // body: one quad per slice with a gradient across the band
-        for (let i = from; i < to; i++) {
-          const [ax, ay] = edge(i, 1), [bx, by] = edge(i, -1);
-          const [cx1, cy1] = edge(i + 1, 1), [dx1, dy1] = edge(i + 1, -1);
-          const g = ctx.createLinearGradient(ax, ay, bx, by);
-          const back = Math.cos(th[i]) < 0 ? 1.1 : 0;
-          for (let k = 0; k <= 4; k++) {
-            const am = -1 + k * 0.5;
-            const r = 0.5 + 0.5 * Math.sin(th[i] + am * 1.35 + phase * 0.6 + back);
-            g.addColorStop(k / 4, LUT[Math.round(clamp(r, 0, 1) * 255)]);
-          }
-          ctx.fillStyle = g; ctx.strokeStyle = g; ctx.lineWidth = 1;
-          ctx.beginPath();
-          ctx.moveTo(ax, ay); ctx.lineTo(cx1, cy1); ctx.lineTo(dx1, dy1); ctx.lineTo(bx, by);
-          ctx.closePath(); ctx.fill(); ctx.stroke();
+      ctx.globalCompositeOperation = "lighter"; ctx.lineCap = "round";
+      for (const s of this.strands) {
+        this.path(ctx, s, time, this.px * this.o.parallax, this.py * this.o.parallax);
+        const [r, g, b] = s.color;
+        ctx.setLineDash([]);
+        ctx.strokeStyle = `rgba(${r},${g},${b},${s.alpha})`; ctx.lineWidth = s.width; ctx.stroke();
+        if (motionOK) {
+          ctx.setLineDash([s.dashLen, s.dashGap]);
+          ctx.lineDashOffset = -(s.dashOffset + time * s.dashSpeed);
+          ctx.strokeStyle = `rgba(255,255,255,${s.alpha * 0.9})`; ctx.lineWidth = s.width * 1.4; ctx.stroke();
         }
       }
-
-      // crisp rims: light on one edge, dark on the other
-      ctx.lineWidth = 1;
-      ctx.strokeStyle = "rgba(255,255,255,0.4)";
-      ctx.beginPath();
-      for (let i = 0; i <= N; i++) { const [x, y] = edge(i, 1); if (i) ctx.lineTo(x, y); else ctx.moveTo(x, y); }
-      ctx.stroke();
-      ctx.strokeStyle = "rgba(0,0,0,0.55)";
-      ctx.beginPath();
-      for (let i = 0; i <= N; i++) { const [x, y] = edge(i, -1); if (i) ctx.lineTo(x, y); else ctx.moveTo(x, y); }
-      ctx.stroke();
+      ctx.setLineDash([]);
     }
     frame(now) {
       if (!this.running) return;
-      this.px = lerp(this.px, this.tx, 0.05);
-      this.py = lerp(this.py, this.ty, 0.05);
+      this.px = lerp(this.px, this.tx, 0.04); this.py = lerp(this.py, this.ty, 0.04);
       this.draw((now - this.t0) / 1000);
       requestAnimationFrame(this.frame);
     }
@@ -1246,41 +1232,29 @@ section { scroll-margin-top: var(--nav-h); }
   }
 
   const ribbons = [];
-  function mountRibbon(canvas, opts) {
-    if (!canvas || !canvas.getContext) return null;
-    let rb;
-    try { rb = new Ribbon(canvas, opts); } catch (e) { canvas.remove(); return null; }
-    ribbons.push(rb);
-    new IntersectionObserver((es) => es.forEach((e) => (e.isIntersecting ? rb.play() : rb.pause())), { threshold: 0.02 }).observe(canvas.parentElement);
-    return rb;
+  function mountStreaks(glow, canvas, opts) {
+    if (!glow || !canvas || !canvas.getContext) return null;
+    let st;
+    try { st = new Streaks(glow, canvas, opts); } catch (e) { return null; }
+    ribbons.push(st);
+    new IntersectionObserver((es) => es.forEach((e) => (e.isIntersecting ? st.play() : st.pause())), { threshold: 0.02 }).observe(canvas.parentElement);
+    return st;
   }
 
-  // Hero: one loop that echoes the counter of the logo's letterforms, sweeping in from the top right.
-  mountRibbon($("#heroCanvas"), {
-    width: 0.2, slices: 340, twist: 1.9, speed: 0.09,
-    path: (W, H) => (desktop()
-      ? [[1.2, 0.08], [0.92, 0.26], [0.66, 0.52], [0.68, 0.86], [0.9, 0.98], [1.05, 0.72], [0.93, 0.44], [0.73, 0.32], [0.53, 0.52], [0.45, 0.88], [0.55, 1.27]]
-      : [[1.25, -0.02], [0.88, 0.05], [0.56, 0.17], [0.72, 0.34], [1.08, 0.32], [1.06, 0.11], [0.72, 0.02], [0.32, 0.09], [-0.25, 0.2]]
-    ).map(([x, y]) => [x * W, y * H])
+  // Hero: strands converge off the left edge and fan across the left half, under the headline on the right.
+  mountStreaks($("#heroGlow"), $("#heroCanvas"), {
+    count: 140,
+    layout: (W, H) => (desktop()
+      ? { x0: -W * 0.06, y0: H * 0.5, xEnd: W * 0.8, yScale: 1 }
+      : { x0: -W * 0.06, y0: H * 0.3, xEnd: W * 1.15, yScale: 0.7 })
   });
-  // Contact: a quieter band low in the composition.
-  mountRibbon($("#contactCanvas"), {
-    width: 0.11, slices: 220, twist: 1.3, speed: 0.05, parallax: 0.4,
-    path: (W, H) => (desktop()
-      ? [[1.15, 0.02], [0.92, 0.22], [0.66, 0.3], [0.7, 0.62], [0.96, 0.7], [1.2, 0.5]]
-      : [[1.2, 0.8], [0.9, 0.88], [0.55, 1.04], [0.2, 0.92], [-0.2, 1.02]]
-    ).map(([x, y]) => [x * W, y * H])
+  // Contact: the same light, quieter, entering from the right edge.
+  mountStreaks($("#contactGlow"), $("#contactCanvas"), {
+    count: 90, alpha: 0.7, parallax: 0.5,
+    layout: (W, H) => (desktop()
+      ? { x0: W * 1.06, y0: H * 0.55, xEnd: W * 0.1, yScale: 0.8 }
+      : { x0: W * 1.06, y0: H * 0.2, xEnd: W * -0.1, yScale: 0.45 })
   });
-
-  if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
-    window.addEventListener("pointermove", (e) => {
-      const x = e.clientX / window.innerWidth - 0.5, y = e.clientY / window.innerHeight - 0.5;
-      ribbons.forEach((r) => r.pointer(x, y));
-    }, { passive: true });
-  }
-  let rt;
-  window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => ribbons.forEach((r) => r.resize()), 150); });
-  document.addEventListener("visibilitychange", () => ribbons.forEach((r) => (document.hidden ? r.pause() : r.play())));
 
   /* =====================================================================
      Entrance choreography. Nav, headline lines, ribbon, copy and CTAs.
@@ -1298,7 +1272,7 @@ section { scroll-margin-top: var(--nav-h); }
      Scroll-linked hero: the frame crops inward, the type lifts and the
      ribbon recedes while the next section slides over. Desktop only.
      ===================================================================== */
-  const heroPin = $("#heroPin"), heroFrame = $("#heroFrame"), heroGrid = $("#heroGrid"), heroCanvas = $("#heroCanvas");
+  const heroPin = $("#heroPin"), heroFrame = $("#heroFrame"), heroGrid = $("#heroGrid"), heroCanvas = $("#heroVisual");
   let heroActive = true;
   function heroScroll() {
     if (!heroActive) return;

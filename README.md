@@ -2,6 +2,8 @@
 
 Single-page site for BBG Media, built as one HTML file with inline CSS and JavaScript. No framework, no build step.
 
+Typography: SF Pro Display renders on Apple devices through the system font stack. It cannot be embedded on the web under Apple's licence, so Inter loads from Google Fonts as the fallback everywhere else.
+
 ## Run
 
 Open `index.html`, or serve the folder with any static host (Vercel, Netlify, GitHub Pages).
