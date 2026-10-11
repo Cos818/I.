@@ -41,7 +41,7 @@ Brand and performance in one place (confirmed): identity, content and paid campa
 ## Brand Commitments
 
 - Name: BBG Media. Logo supplied as a square JPG on black with chrome-outlined letterforms; crops live in `assets/` (`logo-nav.jpg`, `logo-lockup.jpg`, `logo-full.jpg`). Use the actual logo, never a typed substitute, and preserve its proportions.
-- A second mark (liquid chrome blob with boxed BB/BG monogram) was supplied as reference for colour only; it is not placed on the site. Palette sampled from it: silver-lilac highlight #edddf8, lilac #9978bf, magenta #d30df6, electric blue #0385ff, deep violet #5b2d79 on black. The site renders its own liquid chrome bodies in these colours (WebGL, with a CSS still as fallback).
+- A second mark (liquid chrome blob with boxed BB/BG monogram) was supplied as reference for colour only; it is not placed on the site. Palette sampled from it: silver-lilac highlight #edddf8, lilac #9978bf, magenta #d30df6, electric blue #0385ff, deep violet #5b2d79 on black. Used as light and accent only.
 - Voice: direct, commercial, lightly playful. The "Finance Barbie" reference is a deliberate part of the personality and stays (confirmed).
 - Copy conventions in force: no em or en dashes; no invented clients, testimonials, awards, results or team members.
 

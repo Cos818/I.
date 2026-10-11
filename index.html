@@ -343,29 +343,6 @@ section { scroll-margin-top: var(--nav-h); }
 .hero__actions { display: flex; gap: 12px; flex-wrap: wrap; }
 
 /* -------------------------------------------------------------------------
-   Liquid chrome: WebGL bodies in the mark's palette. The .chrome box sets the
-   size; the canvas fills it; a CSS fallback paints a still shape if WebGL fails.
-   ------------------------------------------------------------------------- */
-.chrome { position: absolute; pointer-events: none; z-index: 0; }
-.chrome canvas { display: block; width: 100%; height: 100%; }
-.chrome.is-fallback canvas { display: none; }
-.chrome.is-fallback::before {
-  content: "";
-  position: absolute;
-  inset: 12%;
-  border-radius: 58% 42% 55% 45% / 46% 56% 44% 54%;
-  background:
-    radial-gradient(40% 30% at 30% 25%, rgba(255,255,255,0.95), transparent 70%),
-    radial-gradient(35% 30% at 70% 70%, rgba(3,133,255,0.8), transparent 70%),
-    radial-gradient(45% 40% at 65% 30%, rgba(211,13,246,0.75), transparent 70%),
-    linear-gradient(140deg, #edddf8, #9978bf 45%, #21193d 100%);
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.4);
-}
-.chrome--work { right: -3%; top: -16%; width: 40%; max-width: 500px; aspect-ratio: 1; }
-.chrome--paper { position: relative; width: 100%; aspect-ratio: 1; max-width: 460px; justify-self: end; }
-.chrome--contact { right: -6%; top: 50%; width: 42vw; max-width: 560px; aspect-ratio: 1; transform: translateY(-56%); z-index: -1; }
-
-/* -------------------------------------------------------------------------
    Work
    ------------------------------------------------------------------------- */
 .work {
@@ -482,12 +459,6 @@ section { scroll-margin-top: var(--nav-h); }
   color: var(--ink);
 }
 .agency { padding: clamp(72px, 9vw, 136px) 0 clamp(64px, 8vw, 120px); }
-.agency__top {
-  display: grid;
-  grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
-  gap: 32px clamp(32px, 6vw, 96px);
-  align-items: center;
-}
 .agency__display {
   font-size: clamp(40px, 6.6vw, 96px);
   font-weight: 500;
@@ -687,7 +658,6 @@ section { scroll-margin-top: var(--nav-h); }
   overflow: hidden;
   isolation: isolate;
 }
-.contact .wrap { position: relative; z-index: 1; }
 .contact__title {
   font-size: clamp(44px, 6.6vw, 96px);
   font-weight: 500;
@@ -750,8 +720,6 @@ section { scroll-margin-top: var(--nav-h); }
 @media (max-width: 1100px) {
   .agency__body { grid-template-columns: 1fr; }
   .agency__note { max-width: 56ch; }
-  .agency__top { grid-template-columns: 1fr; }
-  .chrome--paper { max-width: 320px; justify-self: start; margin-top: 8px; }
 }
 @media (max-width: 900px) {
   .nav__links, .nav__cta { display: none; }
@@ -769,7 +737,7 @@ section { scroll-margin-top: var(--nav-h); }
   .sec-head__aside { justify-self: start; }
   .cases { gap: 12px; }
   .case { padding: 24px; min-height: 0; }
-  .case--1 { min-height: 0; padding-top: 48vw; }
+  .case--1 { min-height: 70vw; }
   .case--1 .case__inner { grid-template-columns: 1fr; }
   .case--2, .case--3, .case--4, .case--5 { grid-column: 1 / -1; margin-top: 0; }
   .case--2 { min-height: 70vw; }
@@ -783,9 +751,6 @@ section { scroll-margin-top: var(--nav-h); }
   .step { grid-template-columns: 1fr; gap: 12px; padding-bottom: 48px; }
   .step__body { padding-top: 0; }
   .contact__row { grid-template-columns: 1fr; }
-  .contact { display: flex; flex-direction: column; }
-  .contact .wrap { order: 1; }
-  .chrome--contact { order: 2; position: relative; width: 62vw; max-width: 320px; right: auto; top: auto; transform: none; margin: 8px 0 -24px auto; z-index: 0; }
   .stats { grid-template-columns: 1fr; }
   .stat + .stat { padding-left: 0; border-left: 0; border-top: 1px solid var(--ink-line); }
   .stat { grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; padding: 20px 0; }
@@ -797,7 +762,7 @@ section { scroll-margin-top: var(--nav-h); }
   .hero__lead { font-size: 16px; }
   .btn { width: 100%; }
   .hero__actions { width: 100%; }
-  .chrome--work { right: -14%; top: -6%; width: 70%; aspect-ratio: 1; }
+  .case--1 .case__num { font-size: 52vw; top: -0.08em; right: -0.04em; }
   .case--2 .case__num { font-size: 40vw; left: 16px; }
   .svc__btn { font-size: 26px; padding: 16px 0; grid-template-columns: 3ch 1fr; }
   .svc__panel { padding-left: calc(3ch + 16px); }
@@ -897,7 +862,7 @@ section { scroll-margin-top: var(--nav-h); }
 
       <ol class="cases">
         <li class="case case--1">
-          <div class="chrome chrome--work" aria-hidden="true"><canvas></canvas></div>
+          <span class="case__num" aria-hidden="true">I</span>
           <div class="case__inner">
             <p class="case__cat">Mining services group</p>
             <h3 class="case__title">A rebrand 46 years in the making</h3>
@@ -963,14 +928,11 @@ section { scroll-margin-top: var(--nav-h); }
   <!-- ================= AGENCY ================= -->
   <section class="paper agency" id="agency" aria-labelledby="agencyTitle">
     <div class="wrap">
-      <div class="agency__top">
-        <h2 class="agency__display lines" id="agencyTitle">
-          <span class="line"><span>BBG builds brands</span></span>
-          <span class="line"><span>that make</span></span>
-          <span class="line"><span>commercial sense.</span></span>
-        </h2>
-        <div class="chrome chrome--paper" aria-hidden="true"><canvas></canvas></div>
-      </div>
+      <h2 class="agency__display lines" id="agencyTitle">
+        <span class="line"><span>BBG builds brands</span></span>
+        <span class="line"><span>that make</span></span>
+        <span class="line"><span>commercial sense.</span></span>
+      </h2>
       <div class="agency__body">
         <p class="agency__voice fade">Corporate marketer. Brand builder. Scaler. Executor. Six years across financial services, mining, professional services, chemicals and wellness, and on occasion, <i>Finance Barbie.</i></p>
         <p class="agency__note fade" style="--d:160ms">Clients are chosen as much as they choose. Every identity, campaign and asset must earn its keep, or it does not ship. Presence is the entry fee. BBG deals in being noticed and remembered.</p>
@@ -1104,7 +1066,6 @@ section { scroll-margin-top: var(--nav-h); }
 
   <!-- ================= CONTACT ================= -->
   <section class="contact" id="contact" aria-labelledby="contactTitle">
-    <div class="chrome chrome--contact" aria-hidden="true"><canvas></canvas></div>
     <div class="wrap">
       <h2 class="contact__title lines" id="contactTitle">
         <span class="line"><span>Ready to build</span></span>
@@ -1138,145 +1099,6 @@ section { scroll-margin-top: var(--nav-h); }
   </div>
 </footer>
 
-<script>
-/* Liquid chrome: WebGL lobed body with a pillow profile, surface folds, a striped
-   studio reflection and thin-film iridescence. Exposed as window.LiquidBlob. */
-(function () {
-  const VS = `attribute vec2 a; void main(){ gl_Position = vec4(a,0.0,1.0); }`;
-  const FS = `
-precision highp float;
-uniform vec2 u_res; uniform float u_time; uniform vec2 u_ptr; uniform float u_seed; uniform float u_paper; uniform float u_scale;
-const vec3 SILVER_HI = vec3(0.92,0.88,0.97);
-const vec3 SILVER_MID = vec3(0.50,0.47,0.62);
-const vec3 SILVER_LO = vec3(0.06,0.05,0.10);
-const vec3 LILAC = vec3(0.60,0.47,0.75);
-const vec3 MAGENTA = vec3(0.83,0.05,0.96);
-const vec3 BLUE = vec3(0.01,0.52,1.0);
-const vec3 VIOLET = vec3(0.36,0.18,0.47);
-
-float smin(float a, float b, float k){ float h = clamp(0.5+0.5*(b-a)/k, 0.0, 1.0); return mix(b, a, h) - k*h*(1.0-h); }
-mat2 rot(float a){ float c=cos(a), s=sin(a); return mat2(c,-s,s,c); }
-float sd(vec2 p, float t){
-  p = rot(0.25 + 0.06*sin(t*0.17+u_seed)) * p;
-  float d = length(p) - 0.42;
-  for (int i = 0; i < 4; i++) {
-    float fi = float(i);
-    float ang = fi*1.5708 + 0.78 + 0.12*sin(t*0.21 + fi*1.7 + u_seed);
-    float rad = 0.46 + 0.05*sin(t*0.27 + fi*2.3 + u_seed*0.6);
-    vec2 c = vec2(cos(ang), sin(ang)) * rad;
-    float r = 0.31 + 0.04*sin(t*0.19 + fi*1.1);
-    d = smin(d, length(p - c) - r, 0.3);
-  }
-  return d;
-}
-float height(vec2 p, float t){
-  float d = -sd(p, t);
-  if (d <= 0.0) return 0.0;
-  float Rc = 0.3;
-  float hd = d < Rc ? sqrt(max(0.0, Rc*Rc - (Rc-d)*(Rc-d))) : Rc;
-  float h = hd / Rc;
-  float w = sin(p.x*3.1 + t*0.35 + u_seed) * cos(p.y*2.7 - t*0.28) * 0.5 + sin((p.x+p.y)*2.2 - t*0.2) * 0.5;
-  h += 0.13 * w * smoothstep(0.0, 0.22, d);
-  return h;
-}
-void main(){
-  vec2 uv = (gl_FragCoord.xy - 0.5*u_res) / min(u_res.x,u_res.y) * u_scale;
-  float t = u_time;
-  vec2 p = uv - u_ptr*0.04;
-  float d0 = sd(p, t);
-  float px1 = 1.0/min(u_res.x,u_res.y)*u_scale;
-  float a = 1.0 - smoothstep(-px1, px1, d0);
-  if (a <= 0.001) { gl_FragColor = vec4(0.0); return; }
-  float e = 1.5*px1;
-  float h  = height(p, t);
-  float R = 0.3;
-  float hx = (height(p+vec2(e,0.0), t) - height(p-vec2(e,0.0), t)) / (2.0*e) * R;
-  float hy = (height(p+vec2(0.0,e), t) - height(p-vec2(0.0,e), t)) / (2.0*e) * R;
-  vec3 n = normalize(vec3(-hx, -hy, 1.0));
-  vec3 v = vec3(0.0,0.0,1.0);
-  float ndv = clamp(dot(n,v),0.0,1.0);
-  float fres = pow(1.0-ndv, 2.6);
-  vec3 r = reflect(-v, n);
-  float band = r.y*2.0 + r.x*0.6 + h*0.9 + t*0.05 + u_seed*0.7;
-  float s1 = 0.5+0.5*sin(band*2.6);
-  float s2 = 0.5+0.5*sin(band*5.2+1.3);
-  float env = smoothstep(0.46,0.8, s1*0.72 + s2*0.34);
-  env *= 1.0 - 0.35*smoothstep(0.05,0.6,-r.y);
-  // coloured troughs: violet, magenta and blue where the chrome goes dark
-  vec3 dark = mix(VIOLET, MAGENTA*0.8, smoothstep(-0.35,0.45, r.x + 0.3*sin(t*0.1+u_seed)));
-  dark = mix(dark, BLUE*0.75, smoothstep(0.15,0.75, -r.y));
-  dark = mix(SILVER_LO, dark, 0.7);
-  vec3 col = env < 0.5 ? mix(dark, SILVER_MID, env*2.0) : mix(SILVER_MID, SILVER_HI, (env-0.5)*2.0);
-  float film = sin(ndv*4.0 + r.x*2.0 + u_seed)*0.5+0.5;
-  vec3 iri = mix(MAGENTA, BLUE, smoothstep(0.2,0.8,film));
-  iri = mix(iri, LILAC, 0.3);
-  col = mix(col, iri, 0.18*(1.0-abs(env-0.5)*2.0) + 0.2*fres);
-  // one broad sky highlight from the upper left
-  col += SILVER_HI * smoothstep(0.55, 0.98, dot(n, normalize(vec3(-0.35,0.6,0.72)))) * 0.12;
-  vec3 l1 = normalize(vec3(-0.45,0.75,0.55)); vec3 h1 = normalize(l1+v);
-  col += vec3(1.0,0.98,1.0)*pow(max(dot(n,h1),0.0),48.0)*0.9;
-  vec3 l2 = normalize(vec3(0.7,-0.45,0.45)); vec3 h2 = normalize(l2+v);
-  col += vec3(1.0,0.78,1.0)*pow(max(dot(n,h2),0.0),30.0)*0.4;
-  col += mix(vec3(0.9,0.86,1.0), MAGENTA, 0.25)*pow(fres,1.4)*0.75;
-  col = mix(col, col*0.9, u_paper*0.4);
-  gl_FragColor = vec4(col*a, a);
-}`;
-  function compile(gl, type, src) {
-    const sh = gl.createShader(type); gl.shaderSource(sh, src); gl.compileShader(sh);
-    if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(sh));
-    return sh;
-  }
-  class LiquidBlob {
-    constructor(canvas, opts) {
-      this.c = canvas; this.o = Object.assign({ seed: 0, scale: 2.2, paper: 0, speed: 1, dprMax: 1.5 }, opts);
-      const gl = canvas.getContext('webgl', { alpha: true, premultipliedAlpha: true, antialias: true, powerPreference: 'low-power' });
-      if (!gl) throw new Error('no webgl');
-      this.gl = gl;
-      const prog = gl.createProgram();
-      gl.attachShader(prog, compile(gl, gl.VERTEX_SHADER, VS));
-      gl.attachShader(prog, compile(gl, gl.FRAGMENT_SHADER, FS));
-      gl.linkProgram(prog);
-      if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(prog));
-      gl.useProgram(prog);
-      const buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf);
-      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
-      const a = gl.getAttribLocation(prog, 'a'); gl.enableVertexAttribArray(a); gl.vertexAttribPointer(a, 2, gl.FLOAT, false, 0, 0);
-      this.u = {}; for (const k of ['u_res','u_time','u_ptr','u_seed','u_paper','u_scale']) this.u[k] = gl.getUniformLocation(prog, k);
-      gl.uniform1f(this.u.u_seed, this.o.seed); gl.uniform1f(this.u.u_paper, this.o.paper); gl.uniform1f(this.u.u_scale, this.o.scale);
-      gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA); gl.enable(gl.BLEND);
-      this.px = 0; this.py = 0; this.tx = 0; this.ty = 0; this.t0 = performance.now(); this.running = false;
-      this.frame = this.frame.bind(this);
-      this.resize();
-    }
-    resize() {
-      const r = this.c.getBoundingClientRect();
-      const dpr = Math.min(window.devicePixelRatio || 1, this.o.dprMax);
-      this.c.width = Math.max(1, Math.round(r.width * dpr)); this.c.height = Math.max(1, Math.round(r.height * dpr));
-      this.gl.viewport(0, 0, this.c.width, this.c.height);
-      this.gl.uniform2f(this.u.u_res, this.c.width, this.c.height);
-      this.draw((performance.now() - this.t0) / 1000);
-    }
-    draw(time) {
-      const gl = this.gl;
-      gl.uniform1f(this.u.u_time, time * this.o.speed);
-      gl.uniform2f(this.u.u_ptr, this.px, this.py);
-      gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT);
-      gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-    }
-    frame(now) {
-      if (!this.running) return;
-      this.px += (this.tx - this.px) * 0.05; this.py += (this.ty - this.py) * 0.05;
-      this.draw((now - this.t0) / 1000);
-      requestAnimationFrame(this.frame);
-    }
-    play() { if (this.running) return; this.running = true; requestAnimationFrame(this.frame); }
-    pause() { this.running = false; }
-    pointer(x, y) { this.tx = x; this.ty = y; }
-  }
-  window.LiquidBlob = LiquidBlob;
-})();
-
-</script>
 <script>
 (function () {
   "use strict";
@@ -1407,28 +1229,6 @@ void main(){
       ? { x0: -W * 0.06, y0: H * 0.5, xEnd: W * 0.8, yScale: 1 }
       : { x0: -W * 0.06, y0: H * 0.3, xEnd: W * 1.15, yScale: 0.7 })
   });
-
-  /* =====================================================================
-     Liquid chrome bodies.
-     ===================================================================== */
-  const blobs = [];
-  $$(".chrome").forEach((box, i) => {
-    const canvas = box.querySelector("canvas");
-    const paper = box.classList.contains("chrome--paper") ? 1 : 0;
-    let b = null;
-    try { b = new window.LiquidBlob(canvas, { seed: 1.3 + i * 2.1, scale: 2.15, paper, speed: motionOK ? 1 : 0 }); }
-    catch (e) { box.classList.add("is-fallback"); return; }
-    blobs.push(b);
-    if (motionOK) new IntersectionObserver((es) => es.forEach((e) => (e.isIntersecting ? b.play() : b.pause())), { threshold: 0.05 }).observe(box);
-  });
-  window.addEventListener("resize", () => { clearTimeout(window.__bt); window.__bt = setTimeout(() => blobs.forEach((b) => b.resize()), 150); });
-  document.addEventListener("visibilitychange", () => blobs.forEach((b) => (document.hidden ? b.pause() : motionOK && b.play())));
-  if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
-    window.addEventListener("pointermove", (e) => {
-      const x = e.clientX / window.innerWidth - 0.5, y = 0.5 - e.clientY / window.innerHeight;
-      blobs.forEach((b) => b.pointer(x, y));
-    }, { passive: true });
-  }
 
   /* =====================================================================
      Entrance choreography. Nav, headline lines, ribbon, copy and CTAs.
