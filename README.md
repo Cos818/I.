@@ -1,28 +1,20 @@
-# BBG Media — website
+# BBG Media. Website
 
-Dark, cinematic single-page site for BBG Media (marketing agency). Static HTML, CSS and JS with no build step.
+Single-page site for BBG Media, built as one HTML file with inline CSS and JavaScript. No framework, no build step.
 
 ## Run
 
-Open `index.html` directly, or serve the folder:
-
-```
-npx serve .
-```
-
-Deploys as-is to Vercel, Netlify, GitHub Pages or any static host.
+Open `index.html`, or serve the folder with any static host (Vercel, Netlify, GitHub Pages).
 
 ## Files
 
-- `index.html` — page structure and all copy
-- `styles.css` — design tokens, layout, motion
-- `script.js` — hero light-streak animation, nav, mobile menu, scroll reveal
-- `assets/logo.jpg` — wordmark crop used in the footer
-- `assets/logo-full.jpg` — original square logo (social share image)
+- `index.html`: the whole site
+- `assets/logo-nav.jpg`: supplied logo, wordmark crop, used in the navigation
+- `assets/logo-lockup.jpg`: supplied logo with tagline, used in the footer
+- `assets/logo-full.jpg`: original square logo, used for social sharing
 - `assets/favicon.png`
 
 ## Content to confirm
 
-- **Services and Work**: the nine services, five anonymous case studies and intro copy are the official BBG content.
-- **Email**: `hello@bbgmedia.com` in the contact section is a placeholder.
-- **Social links** in the footer point to `#` until the real profiles are added.
+- `hello@bbgmedia.com` is the contact address used throughout. Change it in one search-and-replace if it differs.
+- Social links were removed because no real profile URLs were supplied. Add them to the footer row when available.
