@@ -52,6 +52,10 @@ Brand and performance in one place (confirmed): identity, content and paid campa
 - Nine service descriptions.
 - Absent and not to be fabricated: client names, project imagery or screenshots, testimonials, performance numbers, team bios, pricing, office location.
 
+## Surface Notes
+
+- Landing page motion vocabulary in force: inline chrome pill in the headline, one kinetic service strip, horizontal accordion for the five cases, scroll-scrubbed voice paragraph, magnetic CTAs, pointer spotlight on contact. All collapse to static under reduced motion.
+
 ## Product Principles
 
 1. Every element must earn its keep: if it does not help a visitor decide to make contact, it does not ship.

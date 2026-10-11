@@ -330,17 +330,73 @@ section { scroll-margin-top: var(--nav-h); }
 }
 .hero__grid > * { pointer-events: auto; grid-column: 2; padding-left: clamp(0px, 4vw, 64px); }
 .hero__title {
-  font-size: clamp(48px, 6.6vw, 96px);
+  font-size: clamp(48px, 6vw, 88px);
   font-weight: 500;
   line-height: 0.98;
   letter-spacing: -0.04em;
   color: var(--fg);
-  max-width: 11ch;
+  max-width: 14ch;
   text-shadow: 0 2px 40px rgba(7, 7, 8, 0.6);
 }
+.pill {
+  display: inline-block;
+  vertical-align: -0.08em;
+  width: 1.5em;
+  height: 0.72em;
+  margin: 0 0.04em 0 0.02em;
+  border-radius: 999px;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(60% 90% at 25% 20%, rgba(255,255,255,0.9), transparent 60%),
+    linear-gradient(118deg, #edddf8 0%, #9978bf 32%, #21193d 50%, #0385ff 68%, #d30df6 86%, #edddf8 100%);
+  background-size: 100% 100%, 220% 100%;
+  box-shadow: inset 0 1px 1px rgba(255,255,255,0.7), inset 0 -2px 6px rgba(0,0,0,0.5), 0 12px 28px -12px rgba(0,0,0,0.7);
+  animation: pillsweep 7s var(--ease-io) infinite alternate;
+}
+.pill i {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 30%, rgba(255,255,255,0.75) 50%, transparent 70%);
+  transform: translateX(-120%);
+  animation: pillshine 5.5s var(--ease-out) 1.4s infinite;
+}
+@keyframes pillsweep { from { background-position: 0 0, 0% 0; } to { background-position: 0 0, 100% 0; } }
+@keyframes pillshine { 0% { transform: translateX(-120%); } 35% { transform: translateX(120%); } 100% { transform: translateX(120%); } }
+
 .hero__bottom { display: grid; gap: 28px; }
 .hero__lead { max-width: 440px; font-size: 16px; line-height: 1.6; color: var(--fg-2); }
 .hero__actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+/* -------------------------------------------------------------------------
+   Kinetic strip: the nine services at a glance, one marquee on the page
+   ------------------------------------------------------------------------- */
+.strip {
+  position: relative;
+  z-index: 2;
+  background: var(--bg);
+  border-top: 1px solid var(--line);
+  padding: 22px 0;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+}
+.strip__track {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  width: max-content;
+  animation: strip 48s linear infinite;
+}
+.strip__track span {
+  font-size: clamp(22px, 2.6vw, 40px);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  color: var(--fg-3);
+  white-space: nowrap;
+}
+.strip__track i { width: 6px; height: 6px; border-radius: 50%; background: var(--iris-magenta); flex: none; }
+@keyframes strip { to { transform: translateX(-50%); } }
 
 /* -------------------------------------------------------------------------
    Work
@@ -350,7 +406,6 @@ section { scroll-margin-top: var(--nav-h); }
   z-index: 2;
   padding: clamp(72px, 9vw, 128px) 0 clamp(64px, 8vw, 112px);
   background: var(--bg);
-  border-top: 1px solid var(--line);
 }
 .sec-head {
   display: grid;
@@ -369,72 +424,82 @@ section { scroll-margin-top: var(--nav-h); }
 .paper .sec-head__aside { color: var(--ink-2); }
 
 .cases {
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  gap: 16px;
+  display: flex;
+  gap: 10px;
+  height: min(72vh, 640px);
+  min-height: 480px;
 }
 .case {
   position: relative;
-  display: grid;
-  padding: 32px;
-  min-height: 360px;
-  background: var(--bg-2);
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  min-width: 0;
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: 14px;
   overflow: hidden;
+  background:
+    radial-gradient(120% 80% at var(--gx, 80%) var(--gy, 100%), var(--tint) 0%, transparent 60%),
+    var(--bg-2);
+  --tint: rgba(91, 45, 121, 0.35);
+  transition: flex 640ms var(--ease), border-color var(--t-s) var(--ease);
+  opacity: 0;
+  transform: translateY(10px);
 }
-.case:hover { border-color: var(--line-2); }
-.case { opacity: 0; transform: translateY(10px); transition: opacity var(--t-l) var(--ease-out), transform var(--t-l) var(--ease-out), border-color var(--t-s) var(--ease); transition-delay: var(--d, 0ms); }
-.case.in { opacity: 1; transform: none; }
-.case__inner { position: relative; display: grid; gap: 24px; }
-
+.cases.in .case { opacity: 1; transform: none; transition: flex 640ms var(--ease), border-color var(--t-s) var(--ease), opacity var(--t-l) var(--ease-out), transform var(--t-l) var(--ease-out); transition-delay: 0ms, 0ms, calc(var(--k) * 50ms), calc(var(--k) * 50ms); }
+.case:nth-child(1) { --tint: rgba(153, 120, 191, 0.3); --gx: 85%; --gy: 100%; }
+.case:nth-child(2) { --tint: rgba(3, 133, 255, 0.22); --gx: 20%; --gy: 100%; }
+.case:nth-child(3) { --tint: rgba(211, 13, 246, 0.2); --gx: 80%; --gy: 0%; }
+.case:nth-child(4) { --tint: rgba(237, 221, 248, 0.14); --gx: 30%; --gy: 0%; }
+.case:nth-child(5) { --tint: rgba(33, 25, 61, 0.9); --gx: 70%; --gy: 100%; }
+.case.is-open { flex: 3.4 1 0; border-color: var(--line-2); }
+.case__head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  width: 100%;
+  padding: 26px 24px;
+  text-align: left;
+  cursor: pointer;
+}
+.case__head:focus-visible { outline-offset: -4px; }
 .case__num {
-  position: absolute;
-  z-index: 0;
   font-family: var(--serif);
-  font-style: normal;
+  font-size: 44px;
   line-height: 0.8;
   color: var(--silver);
-  opacity: 0.18;
-  pointer-events: none;
-  user-select: none;
-  transition: transform 600ms var(--ease-out), opacity var(--t-m) var(--ease);
+  opacity: 0.55;
+  transition: opacity var(--t-s) var(--ease), color var(--t-s) var(--ease);
 }
-.case:hover .case__num { opacity: 0.24; }
-.case__cat { font-size: 13px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg-3); }
-.case__title { font-weight: 500; letter-spacing: -0.035em; line-height: 1.0; color: var(--fg); }
+.case.is-open .case__num { opacity: 1; color: var(--fg); }
+.case__cat {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+  white-space: nowrap;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  transition: color var(--t-s) var(--ease);
+}
+.case.is-open .case__cat { writing-mode: horizontal-tb; transform: none; color: var(--fg-2); }
+.case__body {
+  flex: 1;
+  display: grid;
+  align-content: end;
+  padding: 0 24px 28px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 200ms var(--ease), transform 200ms var(--ease);
+  pointer-events: none;
+}
+.case.is-open .case__body { opacity: 1; transform: none; pointer-events: auto; transition: opacity 360ms var(--ease-out) 240ms, transform 420ms var(--ease-out) 240ms; }
+.case__inner { display: grid; gap: 18px; max-width: 56ch; }
+.case__title { font-size: clamp(28px, 3vw, 48px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.02; color: var(--fg); max-width: 16ch; }
 .case__desc { font-size: 16px; line-height: 1.6; color: var(--fg-2); max-width: 46ch; }
-.case__link { align-self: start; justify-self: start; }
-
-/* I: wide feature */
-.case--1 { grid-column: 1 / -1; min-height: min(64vh, 600px); align-content: end; }
-.case--1 .case__num { right: -0.02em; top: -0.12em; font-size: clamp(220px, 44vw, 720px); }
-.case--1 .case__title { font-size: clamp(36px, 4.8vw, 72px); max-width: 14ch; }
-.case--1 .case__inner { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); align-items: end; gap: 32px 64px; }
-.case--1 .case__cat { grid-column: 1 / -1; }
-.case--1 .case__side { display: grid; gap: 20px; }
-.case--1:hover .case__num { transform: translateX(-2%); }
-
-/* II + III: offset pair */
-.case--2 { grid-column: 1 / 8; min-height: min(52vh, 500px); align-content: end; }
-.case--2 .case__num { left: 24px; top: 16px; font-size: clamp(140px, 19vw, 280px); }
-.case--2 .case__title { font-size: clamp(30px, 3.4vw, 52px); max-width: 14ch; }
-.case--2:hover .case__num { transform: translateY(-3%); }
-
-.case--3 { grid-column: 8 / -1; margin-top: clamp(40px, 8vw, 120px); min-height: min(56vh, 540px); align-content: center; }
-.case--3 .case__num { right: 24px; bottom: 16px; font-size: clamp(140px, 16vw, 240px); }
-.case--3 .case__title { font-size: clamp(26px, 2.6vw, 40px); max-width: 14ch; }
-.case--3 .case__inner { gap: 20px; }
-.case--3:hover .case__num { transform: translateY(3%); }
-
-/* IV + V: supporting rows */
-.case--4, .case--5 { min-height: 300px; align-content: space-between; }
-.case--4 { grid-column: 1 / 6; }
-.case--5 { grid-column: 6 / -1; }
-.case--4 .case__num, .case--5 .case__num { position: static; font-size: 56px; line-height: 1; opacity: 0.6; }
-.case--4 .case__title, .case--5 .case__title { font-size: clamp(24px, 2.2vw, 34px); max-width: 18ch; }
-.case--4 .case__inner, .case--5 .case__inner { grid-template-columns: auto minmax(0, 1fr); gap: 24px 32px; align-items: start; }
-.case--4 .case__body, .case--5 .case__body { display: grid; gap: 16px; }
+.case__link { justify-self: start; }
 
 .work__foot {
   margin-top: clamp(40px, 5vw, 64px);
@@ -481,6 +546,17 @@ section { scroll-margin-top: var(--nav-h); }
   color: var(--ink);
 }
 .agency__voice i { font-style: italic; }
+.agency__voice .w { display: inline-block; }
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .agency__voice .w {
+      animation: wordin linear both;
+      animation-timeline: view();
+      animation-range: entry 60% entry 120%;
+    }
+  }
+}
+@keyframes wordin { from { opacity: 0.14; } to { opacity: 1; } }
 .agency__note {
   max-width: 40ch;
   padding-top: 10px;
@@ -658,6 +734,17 @@ section { scroll-margin-top: var(--nav-h); }
   overflow: hidden;
   isolation: isolate;
 }
+.contact::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(520px 520px at var(--sx, 70%) var(--sy, 40%), rgba(153, 120, 191, 0.22), rgba(211, 13, 246, 0.05) 45%, transparent 70%);
+  opacity: 0;
+  transition: opacity var(--t-l) var(--ease);
+  pointer-events: none;
+}
+.contact.is-lit::after { opacity: 1; }
 .contact__title {
   font-size: clamp(44px, 6.6vw, 96px);
   font-weight: 500;
@@ -735,15 +822,12 @@ section { scroll-margin-top: var(--nav-h); }
   .hero__orb { right: -30%; bottom: auto; top: 10%; width: 90vw; height: 90vw; opacity: 0.7; }
   .sec-head { grid-template-columns: 1fr; }
   .sec-head__aside { justify-self: start; }
-  .cases { gap: 12px; }
-  .case { padding: 24px; min-height: 0; }
-  .case--1 { min-height: 70vw; }
-  .case--1 .case__inner { grid-template-columns: 1fr; }
-  .case--2, .case--3, .case--4, .case--5 { grid-column: 1 / -1; margin-top: 0; }
-  .case--2 { min-height: 70vw; }
-  .case--3 { min-height: 0; padding-top: 120px; }
-  .case--3 .case__num { top: 12px; bottom: auto; right: 20px; font-size: 120px; }
-  .case--4 .case__inner, .case--5 .case__inner { grid-template-columns: 1fr; }
+  .cases { flex-direction: column; height: auto; min-height: 0; gap: 12px; }
+  .case, .case.is-open { flex: none; }
+  .case__head { flex-direction: row; align-items: baseline; gap: 16px; padding: 22px 22px 0; cursor: default; }
+  .case__cat, .case.is-open .case__cat { writing-mode: horizontal-tb; transform: none; }
+  .case__num, .case.is-open .case__num { font-size: 36px; opacity: 0.7; }
+  .case__body, .case.is-open .case__body { opacity: 1; transform: none; pointer-events: auto; padding: 16px 22px 26px; transition: none; }
   .svc { grid-template-columns: 1fr; }
   .svc__detail { display: none; }
   .process__grid { grid-template-columns: 1fr; }
@@ -758,12 +842,10 @@ section { scroll-margin-top: var(--nav-h); }
 @media (max-width: 560px) {
   :root { --nav-h: 68px; }
   .hero, .hero-pin { min-height: 640px; }
-  .hero__title { font-size: clamp(50px, 15.5vw, 72px); }
+  .hero__title { font-size: clamp(38px, 12.2vw, 60px); }
   .hero__lead { font-size: 16px; }
   .btn { width: 100%; }
   .hero__actions { width: 100%; }
-  .case--1 .case__num { font-size: 52vw; top: -0.08em; right: -0.04em; }
-  .case--2 .case__num { font-size: 40vw; left: 16px; }
   .svc__btn { font-size: 26px; padding: 16px 0; grid-template-columns: 3ch 1fr; }
   .svc__panel { padding-left: calc(3ch + 16px); }
 }
@@ -778,6 +860,10 @@ section { scroll-margin-top: var(--nav-h); }
   .line > span, .fade, .case { transform: none !important; opacity: 1 !important; filter: none !important; transition: none !important; }
   .svc__detail-body, .case__num, .burger span, .menu { transition: none; }
   .tlink:hover::after { animation: none; transform: scaleX(1); }
+  .pill, .pill i, .strip__track { animation: none; }
+  .case, .case__body, .case__head { transition: none; }
+  .cases .case { opacity: 1; transform: none; }
+  .contact::after { display: none; }
 }
 </style>
 </head>
@@ -832,7 +918,7 @@ section { scroll-margin-top: var(--nav-h); }
         <div class="hero__top">
           <h1 class="hero__title lines" id="heroTitle">
             <span class="line"><span>Marketing</span></span>
-            <span class="line"><span>that moves</span></span>
+            <span class="line"><span style="white-space: nowrap">that <span class="pill" aria-hidden="true"><i></i></span> moves</span></span>
             <span class="line"><span>people.</span></span>
           </h1>
         </div>
@@ -845,6 +931,14 @@ section { scroll-margin-top: var(--nav-h); }
         </div>
       </div>
     </section>
+  </div>
+
+  <!-- ================= STRIP ================= -->
+  <div class="strip" aria-hidden="true">
+    <div class="strip__track">
+      <span>Brand Identity</span><i></i><span>Go-to-Market</span><i></i><span>Website Development</span><i></i><span>Paid Campaigns</span><i></i><span>Social Media</span><i></i><span>Video Content</span><i></i><span>Creative and Artwork</span><i></i><span>Email and Newsletters</span><i></i><span>Blogs and SEO Content</span><i></i>
+      <span>Brand Identity</span><i></i><span>Go-to-Market</span><i></i><span>Website Development</span><i></i><span>Paid Campaigns</span><i></i><span>Social Media</span><i></i><span>Video Content</span><i></i><span>Creative and Artwork</span><i></i><span>Email and Newsletters</span><i></i><span>Blogs and SEO Content</span><i></i>
+    </div>
   </div>
 
   <!-- ================= WORK ================= -->
@@ -860,56 +954,66 @@ section { scroll-margin-top: var(--nav-h); }
         <p class="sec-head__aside fade" style="--d:200ms">Presented anonymously, out of respect for the clients served. Every piece is real, recent and reference-checkable on request.</p>
       </div>
 
-      <ol class="cases">
-        <li class="case case--1">
-          <span class="case__num" aria-hidden="true">I</span>
-          <div class="case__inner">
-            <p class="case__cat">Mining services group</p>
-            <h3 class="case__title">A rebrand 46 years in the making</h3>
-            <div class="case__side">
+      <ol class="cases" id="cases">
+        <li class="case is-open" style="--k:0">
+          <button class="case__head" type="button" id="case-btn-1" aria-expanded="true" aria-controls="case-body-1">
+            <span class="case__num" aria-hidden="true">I</span>
+            <span class="case__cat">Mining services group</span>
+          </button>
+          <div class="case__body" id="case-body-1" role="region" aria-labelledby="case-btn-1">
+            <div class="case__inner">
+              <h3 class="case__title">A rebrand 46 years in the making</h3>
               <p class="case__desc">A corporate name carrying nearly five decades of legacy, and none of it visible online. A complete rebrand and a first true digital presence, built to match the weight of the name.</p>
               <a class="tlink case__link" href="mailto:hello@bbgmedia.com?subject=Case%20I%3A%20Mining%20services%20group">Ask about this case</a>
             </div>
           </div>
         </li>
-
-        <li class="case case--2" style="--d:60ms">
-          <span class="case__num" aria-hidden="true">II</span>
-          <div class="case__inner">
-            <p class="case__cat">Financial services</p>
-            <h3 class="case__title">Two brokerages, grown</h3>
-            <p class="case__desc">Brand, campaigns and lead generation for two regulated brokerages: compliant creative across Meta and LinkedIn that turned attention into pipeline.</p>
-            <a class="tlink case__link" href="mailto:hello@bbgmedia.com?subject=Case%20II%3A%20Financial%20services">Ask about this case</a>
+        <li class="case" style="--k:1">
+          <button class="case__head" type="button" id="case-btn-2" aria-expanded="false" aria-controls="case-body-2">
+            <span class="case__num" aria-hidden="true">II</span>
+            <span class="case__cat">Financial services</span>
+          </button>
+          <div class="case__body" id="case-body-2" role="region" aria-labelledby="case-btn-2">
+            <div class="case__inner">
+              <h3 class="case__title">Two brokerages, grown</h3>
+              <p class="case__desc">Brand, campaigns and lead generation for two regulated brokerages: compliant creative across Meta and LinkedIn that turned attention into pipeline.</p>
+              <a class="tlink case__link" href="mailto:hello@bbgmedia.com?subject=Case%20II%3A%20Financial%20services">Ask about this case</a>
+            </div>
           </div>
         </li>
-
-        <li class="case case--3" style="--d:120ms">
-          <span class="case__num" aria-hidden="true">III</span>
-          <div class="case__inner">
-            <p class="case__cat">Tax advisory firm</p>
-            <h3 class="case__title">Spirited words, serious credibility</h3>
-            <p class="case__desc">A firm with true personality and no digital home for it. Brand voice, full website and company profile, advisory-grade credibility that still sounds like them.</p>
-            <a class="tlink case__link" href="mailto:hello@bbgmedia.com?subject=Case%20III%3A%20Tax%20advisory%20firm">Ask about this case</a>
+        <li class="case" style="--k:2">
+          <button class="case__head" type="button" id="case-btn-3" aria-expanded="false" aria-controls="case-body-3">
+            <span class="case__num" aria-hidden="true">III</span>
+            <span class="case__cat">Tax advisory firm</span>
+          </button>
+          <div class="case__body" id="case-body-3" role="region" aria-labelledby="case-btn-3">
+            <div class="case__inner">
+              <h3 class="case__title">Spirited words, serious credibility</h3>
+              <p class="case__desc">A firm with true personality and no digital home for it. Brand voice, full website and company profile, advisory-grade credibility that still sounds like them.</p>
+              <a class="tlink case__link" href="mailto:hello@bbgmedia.com?subject=Case%20III%3A%20Tax%20advisory%20firm">Ask about this case</a>
+            </div>
           </div>
         </li>
-
-        <li class="case case--4" style="--d:60ms">
-          <div class="case__inner">
+        <li class="case" style="--k:3">
+          <button class="case__head" type="button" id="case-btn-4" aria-expanded="false" aria-controls="case-body-4">
             <span class="case__num" aria-hidden="true">IV</span>
-            <div class="case__body">
-              <p class="case__cat">Raw chemicals supplier</p>
+            <span class="case__cat">Raw chemicals supplier</span>
+          </button>
+          <div class="case__body" id="case-body-4" role="region" aria-labelledby="case-btn-4">
+            <div class="case__inner">
               <h3 class="case__title">From quiet to formidable</h3>
               <p class="case__desc">A supplier that had quietly been a formidable player for years, modernised digitally to finally reflect it. New identity, new presence, same substance.</p>
               <a class="tlink case__link" href="mailto:hello@bbgmedia.com?subject=Case%20IV%3A%20Raw%20chemicals%20supplier">Ask about this case</a>
             </div>
           </div>
         </li>
-
-        <li class="case case--5" style="--d:120ms">
-          <div class="case__inner">
+        <li class="case" style="--k:4">
+          <button class="case__head" type="button" id="case-btn-5" aria-expanded="false" aria-controls="case-body-5">
             <span class="case__num" aria-hidden="true">V</span>
-            <div class="case__body">
-              <p class="case__cat">Wellness and founders</p>
+            <span class="case__cat">Wellness and founders</span>
+          </button>
+          <div class="case__body" id="case-body-5" role="region" aria-labelledby="case-btn-5">
+            <div class="case__inner">
               <h3 class="case__title">First hires, first wins</h3>
               <p class="case__desc">Sales and marketing strategy, brand collections and launch support for owner-run businesses, built to win clients rather than compliments.</p>
               <a class="tlink case__link" href="mailto:hello@bbgmedia.com?subject=Case%20V%3A%20Wellness%20and%20founders">Ask about this case</a>
@@ -1297,7 +1401,7 @@ section { scroll-margin-top: var(--nav-h); }
   const revealObs = new IntersectionObserver((es) => {
     es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); revealObs.unobserve(e.target); } });
   }, { threshold: 0.18, rootMargin: "0px 0px -6% 0px" });
-  $$(".lines, .fade, .case").forEach((el) => { if (!el.closest("#hero")) revealObs.observe(el); });
+  $$(".lines, .fade, .cases").forEach((el) => { if (!el.closest("#hero")) revealObs.observe(el); });
 
   if (motionOK) {
     const statObs = new IntersectionObserver((es) => {
@@ -1310,6 +1414,77 @@ section { scroll-margin-top: var(--nav-h); }
       });
     }, { threshold: 0.6 });
     $$("[data-count]").forEach((el) => { el.textContent = "0"; statObs.observe(el); });
+  }
+
+  /* =====================================================================
+     Work: horizontal accordion on desktop, stacked panels on phones.
+     ===================================================================== */
+  const caseList = $("#cases"), caseItems = $$(".case", caseList), caseBtns = $$(".case__head", caseList);
+  let caseOpen = 0;
+  function openCase(i) {
+    caseOpen = i;
+    caseItems.forEach((li, k) => { li.classList.toggle("is-open", k === i); caseBtns[k].setAttribute("aria-expanded", String(k === i)); });
+  }
+  function caseMode() {
+    if (desktop()) { caseBtns.forEach((b) => { b.tabIndex = 0; b.removeAttribute("aria-disabled"); }); openCase(caseOpen); }
+    else { caseBtns.forEach((b, k) => { b.tabIndex = -1; b.setAttribute("aria-disabled", "true"); b.setAttribute("aria-expanded", "true"); caseItems[k].classList.add("is-open"); }); }
+  }
+  caseBtns.forEach((b, i) => {
+    b.addEventListener("click", () => { if (desktop()) openCase(i); });
+    b.addEventListener("pointerenter", (e) => { if (desktop() && e.pointerType === "mouse") openCase(i); });
+    b.addEventListener("focus", () => { if (desktop()) openCase(i); });
+    b.addEventListener("keydown", (e) => {
+      if (!desktop()) return;
+      const n = caseBtns.length;
+      if (e.key === "ArrowRight" || e.key === "ArrowDown") { e.preventDefault(); caseBtns[(i + 1) % n].focus(); }
+      else if (e.key === "ArrowLeft" || e.key === "ArrowUp") { e.preventDefault(); caseBtns[(i - 1 + n) % n].focus(); }
+      else if (e.key === "Home") { e.preventDefault(); caseBtns[0].focus(); }
+      else if (e.key === "End") { e.preventDefault(); caseBtns[n - 1].focus(); }
+    });
+  });
+  caseMode();
+  desktopMQ.addEventListener("change", caseMode);
+
+  /* =====================================================================
+     Agency: wrap words so the voice paragraph can scrub in on scroll.
+     ===================================================================== */
+  const voice = $(".agency__voice");
+  if (voice) {
+    const wrapWords = (node) => {
+      if (node.nodeType === 3) {
+        const frag = document.createDocumentFragment();
+        node.textContent.split(/(\s+)/).forEach((part) => {
+          if (!part) return;
+          if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+          const w = document.createElement("span"); w.className = "w"; w.textContent = part; frag.appendChild(w);
+        });
+        node.replaceWith(frag);
+      } else if (node.nodeType === 1) Array.from(node.childNodes).forEach(wrapWords);
+    };
+    Array.from(voice.childNodes).forEach(wrapWords);
+  }
+
+  /* =====================================================================
+     Magnetic CTAs and the contact spotlight. Fine pointers only.
+     ===================================================================== */
+  if (window.matchMedia("(hover: hover) and (pointer: fine)").matches && motionOK) {
+    $$(".btn, .contact__mail").forEach((el) => {
+      el.style.transition += ", transform 240ms cubic-bezier(0.22, 1, 0.36, 1)";
+      el.addEventListener("pointermove", (e) => {
+        const r = el.getBoundingClientRect();
+        const dx = (e.clientX - (r.left + r.width / 2)) / r.width, dy = (e.clientY - (r.top + r.height / 2)) / r.height;
+        el.style.transform = `translate(${(dx * 8).toFixed(1)}px, ${(dy * 6).toFixed(1)}px)`;
+      });
+      el.addEventListener("pointerleave", () => { el.style.transform = ""; });
+    });
+    const contact = $("#contact");
+    contact.addEventListener("pointermove", (e) => {
+      const r = contact.getBoundingClientRect();
+      contact.style.setProperty("--sx", ((e.clientX - r.left) / r.width * 100).toFixed(1) + "%");
+      contact.style.setProperty("--sy", ((e.clientY - r.top) / r.height * 100).toFixed(1) + "%");
+      contact.classList.add("is-lit");
+    });
+    contact.addEventListener("pointerleave", () => contact.classList.remove("is-lit"));
   }
 
   /* =====================================================================
