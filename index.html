@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BBG Media — Marketing Agency</title>
+  <meta name="description" content="BBG Media is a marketing agency building brands, content and growth systems that move people and markets." />
+  <meta name="theme-color" content="#050507" />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <meta property="og:title" content="BBG Media — Marketing Agency" />
+  <meta property="og:description" content="Brand, content and growth, built with intent." />
+  <meta property="og:image" content="assets/logo-full.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav" id="top">
+    <a class="brand" href="#top" aria-label="BBG Media home">
+      <span class="brand__mark">BBG</span>
+      <span class="brand__sub">Media</span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#services">Services</a>
+      <a href="#approach">Approach</a>
+      <a href="#about">Agency</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="btn btn--ghost nav__cta" href="#contact">Start a project</a>
+    <button class="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+      <span></span><span></span>
+    </button>
+  </header>
+
+  <div class="menu" id="menu" aria-hidden="true">
+    <nav class="menu__links" aria-label="Mobile">
+      <a href="#services" style="--i:0">Services</a>
+      <a href="#approach" style="--i:1">Approach</a>
+      <a href="#about" style="--i:2">Agency</a>
+      <a href="#contact" style="--i:3">Contact</a>
+    </nav>
+  </div>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="hero__visual" aria-hidden="true">
+        <canvas id="glow"></canvas>
+        <canvas id="streaks"></canvas>
+        <div class="hero__orb"></div>
+      </div>
+
+      <div class="hero__content">
+        <p class="eyebrow reveal">Marketing agency</p>
+        <h1 class="hero__title reveal" style="--d:.08s">
+          Marketing that<br />
+          <em>moves</em> people.
+        </h1>
+        <p class="hero__lead reveal" style="--d:.16s">
+          We build brands, content and growth systems for companies that want to be
+          seen, remembered and chosen. Strategy first. Craft always.
+        </p>
+        <div class="hero__actions reveal" style="--d:.24s">
+          <a class="btn btn--primary" href="#contact">
+            Start a project
+            <span class="btn__icon" aria-hidden="true">↗</span>
+          </a>
+          <a class="btn btn--ghost" href="#services">Our services</a>
+        </div>
+      </div>
+
+      <div class="hero__scroll" aria-hidden="true"><span></span></div>
+    </section>
+
+    <!-- ============ MARQUEE ============ -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span>Brand Strategy</span><i></i>
+        <span>Social Media</span><i></i>
+        <span>Paid Advertising</span><i></i>
+        <span>Content Production</span><i></i>
+        <span>Web Design</span><i></i>
+        <span>Growth</span><i></i>
+        <span>Brand Strategy</span><i></i>
+        <span>Social Media</span><i></i>
+        <span>Paid Advertising</span><i></i>
+        <span>Content Production</span><i></i>
+        <span>Web Design</span><i></i>
+        <span>Growth</span><i></i>
+      </div>
+    </div>
+
+    <!-- ============ MANIFESTO ============ -->
+    <section class="manifesto" id="about">
+      <p class="manifesto__text reveal">
+        Attention is the scarcest resource on earth.
+        <em>We earn it</em> with ideas that look like nothing else,
+        and keep it with systems that compound.
+      </p>
+    </section>
+
+    <!-- ============ SERVICES ============ -->
+    <!--
+      SERVICES CONTENT
+      The six services below are placeholders structured for a full-service marketing agency.
+      Replace titles and descriptions with the official BBG service list when available.
+    -->
+    <section class="services" id="services">
+      <div class="section__head">
+        <p class="eyebrow reveal">Services</p>
+        <h2 class="section__title reveal" style="--d:.06s">Everything a brand needs<br />to be <em>unforgettable</em>.</h2>
+      </div>
+
+      <ol class="services__list">
+        <li class="service reveal">
+          <span class="service__num">01</span>
+          <h3 class="service__title">Brand Identity</h3>
+          <p class="service__desc">Positioning, naming, visual identity and voice. The foundation every campaign is built on, designed to last beyond the trend cycle.</p>
+          <span class="service__arrow" aria-hidden="true">↗</span>
+        </li>
+        <li class="service reveal" style="--d:.05s">
+          <span class="service__num">02</span>
+          <h3 class="service__title">Social Media Management</h3>
+          <p class="service__desc">Always-on content, community and channel strategy across Instagram, TikTok, LinkedIn and YouTube. Consistent presence, measurable growth.</p>
+          <span class="service__arrow" aria-hidden="true">↗</span>
+        </li>
+        <li class="service reveal" style="--d:.1s">
+          <span class="service__num">03</span>
+          <h3 class="service__title">Paid Advertising</h3>
+          <p class="service__desc">Meta, Google, TikTok and programmatic campaigns run on creative testing and clean attribution. Every dollar accountable to a result.</p>
+          <span class="service__arrow" aria-hidden="true">↗</span>
+        </li>
+        <li class="service reveal" style="--d:.15s">
+          <span class="service__num">04</span>
+          <h3 class="service__title">Content Production</h3>
+          <p class="service__desc">Photo, video, motion and copy produced in-house. Cinematic quality, built for the feed and for the screen.</p>
+          <span class="service__arrow" aria-hidden="true">↗</span>
+        </li>
+        <li class="service reveal" style="--d:.2s">
+          <span class="service__num">05</span>
+          <h3 class="service__title">Web Design &amp; Development</h3>
+          <p class="service__desc">Fast, beautiful websites and landing pages engineered to convert. Designed around your story, built on modern stacks.</p>
+          <span class="service__arrow" aria-hidden="true">↗</span>
+        </li>
+        <li class="service reveal" style="--d:.25s">
+          <span class="service__num">06</span>
+          <h3 class="service__title">Growth Strategy</h3>
+          <p class="service__desc">Funnels, email and lifecycle marketing, analytics and reporting. The operating system that turns attention into revenue.</p>
+          <span class="service__arrow" aria-hidden="true">↗</span>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ============ APPROACH ============ -->
+    <section class="approach" id="approach">
+      <div class="section__head">
+        <p class="eyebrow reveal">Approach</p>
+        <h2 class="section__title reveal" style="--d:.06s">Simple process.<br /><em>Serious</em> outcomes.</h2>
+      </div>
+
+      <div class="steps">
+        <article class="step reveal">
+          <div class="step__inner">
+            <span class="step__num">Step 01</span>
+            <h3>Discover</h3>
+            <p>We study your market, audience and competitors until we know exactly where the opportunity is.</p>
+          </div>
+        </article>
+        <article class="step reveal" style="--d:.08s">
+          <div class="step__inner">
+            <span class="step__num">Step 02</span>
+            <h3>Design</h3>
+            <p>Strategy becomes creative. Brand, content and campaigns are built as one coherent system.</p>
+          </div>
+        </article>
+        <article class="step reveal" style="--d:.16s">
+          <div class="step__inner">
+            <span class="step__num">Step 03</span>
+            <h3>Launch</h3>
+            <p>We ship across every channel with precision, then watch the numbers in real time.</p>
+          </div>
+        </article>
+        <article class="step reveal" style="--d:.24s">
+          <div class="step__inner">
+            <span class="step__num">Step 04</span>
+            <h3>Scale</h3>
+            <p>What works gets more. What doesn't gets cut. Growth that compounds month after month.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ CTA ============ -->
+    <section class="cta" id="contact">
+      <div class="cta__glow" aria-hidden="true"></div>
+      <p class="eyebrow reveal">Let's talk</p>
+      <h2 class="cta__title reveal" style="--d:.06s">Ready to build<br />something <em>remarkable</em>?</h2>
+      <p class="cta__lead reveal" style="--d:.12s">Tell us about your brand and where you want it to go. We'll reply within one business day.</p>
+      <div class="cta__actions reveal" style="--d:.18s">
+        <a class="btn btn--primary btn--lg" href="mailto:hello@bbgmedia.com">
+          hello@bbgmedia.com
+          <span class="btn__icon" aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="footer__brand">
+      <img src="assets/logo.jpg" alt="BBG Media" width="954" height="330" />
+    </div>
+    <div class="footer__cols">
+      <nav aria-label="Footer">
+        <a href="#services">Services</a>
+        <a href="#approach">Approach</a>
+        <a href="#about">Agency</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <nav aria-label="Social">
+        <a href="#" rel="noopener">Instagram</a>
+        <a href="#" rel="noopener">TikTok</a>
+        <a href="#" rel="noopener">LinkedIn</a>
+        <a href="#" rel="noopener">YouTube</a>
+      </nav>
+    </div>
+    <div class="footer__bottom">
+      <span>© <span id="year"></span> BBG Media. All rights reserved.</span>
+      <a href="#top">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
