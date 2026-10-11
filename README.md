@@ -14,7 +14,6 @@ Open `index.html`, or serve the folder with any static host (Vercel, Netlify, Gi
 - `assets/logo-nav.jpg`: supplied logo, wordmark crop, used in the navigation
 - `assets/logo-lockup.jpg`: supplied logo with tagline, used in the footer
 - `assets/logo-full.jpg`: original square logo, used for social sharing
-- `assets/logo-liquid.jpg`: liquid chrome mark, used in the footer; `assets/liquid-blob.jpg` is its crop used in the feature work panel
 - `assets/favicon.png`
 
 ## Content to confirm

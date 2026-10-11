@@ -40,8 +40,8 @@ Brand and performance in one place (confirmed): identity, content and paid campa
 
 ## Brand Commitments
 
-- Name: BBG Media. Two supplied logo files, both square JPGs on black: the chrome-outlined wordmark (`assets/logo-full.jpg`, crops `logo-nav.jpg` and `logo-lockup.jpg`) and the liquid chrome mark with the boxed BB/BG monogram (`assets/logo-liquid.jpg`, blob crop `liquid-blob.jpg`). Use the actual logos, never a typed substitute, and preserve their proportions.
-- Palette sampled from the liquid mark: silver-lilac highlight #edddf8, lilac #9978bf, magenta #d30df6, electric blue #0385ff, deep violet #5b2d79 on black. Used as light and accent, never as flat fills.
+- Name: BBG Media. Logo supplied as a square JPG on black with chrome-outlined letterforms; crops live in `assets/` (`logo-nav.jpg`, `logo-lockup.jpg`, `logo-full.jpg`). Use the actual logo, never a typed substitute, and preserve its proportions.
+- A second mark (liquid chrome blob with boxed BB/BG monogram) was supplied as reference for colour only; it is not placed on the site. Palette sampled from it: silver-lilac highlight #edddf8, lilac #9978bf, magenta #d30df6, electric blue #0385ff, deep violet #5b2d79 on black. The site renders its own liquid chrome bodies in these colours (WebGL, with a CSS still as fallback).
 - Voice: direct, commercial, lightly playful. The "Finance Barbie" reference is a deliberate part of the personality and stays (confirmed).
 - Copy conventions in force: no em or en dashes; no invented clients, testimonials, awards, results or team members.
 
