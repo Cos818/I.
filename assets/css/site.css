@@ -432,3 +432,8 @@ footer{background:#15191F;color:#B9C0CA;padding:72px 0 36px}
 .closing.photo.img-people{background-image:url(../img/trust.jpg);background-position:center 30%}
 .closing.photo::before{content:"";position:absolute;inset:0;background:rgba(39,53,66,.72);z-index:1}
 .closing.photo .wrap{position:relative;z-index:2}
+
+/* ---------- Approved generated photos ---------- */
+.photo-split.img-pay{background-image:url(../img/bofpay.jpg);background-position:center 45%}
+.closing.photo.img-pay{background-image:url(../img/bofpay.jpg);background-position:center 45%}
+.page-hero.img-towers{background-image:url(../img/towers.jpg);background-position:center 40%}
