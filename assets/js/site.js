@@ -48,12 +48,22 @@
   }
 })();
 
+/* Rails ticker: duplicate the chips once so the scrolling strip loops seamlessly. */
+(function () {
+  'use strict';
+  var list = document.querySelector('.rails__list');
+  if (!list) return;
+  Array.prototype.slice.call(list.children).forEach(function (li) {
+    var c = li.cloneNode(true); c.setAttribute('data-clone', ''); c.setAttribute('aria-hidden', 'true'); list.appendChild(c);
+  });
+})();
+
 /* Panel fit: every band is a full-screen panel. When a panel's content is taller than the
    space below the header, scale the content down just enough to fit (desktop widths only). */
 (function () {
   'use strict';
   var header = document.querySelector('.site-header');
-  var panels = Array.prototype.slice.call(document.querySelectorAll('.hero, main > .section, .cta-band'));
+  var panels = Array.prototype.slice.call(document.querySelectorAll('.hero, main > .section:not(.glance), .cta-band'));
   if (!header || !panels.length) return;
   var MIN_ZOOM = 0.5, raf = null;
   function fit() {
