@@ -385,7 +385,11 @@ address { font-style: normal; }
 .compare-table .is-toniva { color: var(--mint-glass); font-weight: 500; background: #91eccd0d; }
 
 /* Audiences: full-bleed photo, centred one-line heading, two cards side by side */
-.audiences { position: relative; overflow: hidden; color: var(--mineral-paper); background: var(--eclipse-ink); min-height: 560px; display: flex; align-items: center; }
+.audiences {
+  position: relative; overflow: hidden; color: var(--mineral-paper); background: var(--eclipse-ink);
+  min-height: calc(100vh - var(--header-h)); min-height: calc(100svh - var(--header-h));
+  display: flex; align-items: center;
+}
 .audiences__bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 60%; }
 .audiences__shade { position: absolute; inset: 0; background: linear-gradient(180deg, #06100d8c 0%, #06100d66 50%, #06100da6 100%); }
 .audiences__inner { position: relative; }
