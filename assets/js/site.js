@@ -48,6 +48,39 @@
   }
 })();
 
+/* Panel fit: every band is a full-screen panel. When a panel's content is taller than the
+   space below the header, scale the content down just enough to fit (desktop widths only). */
+(function () {
+  'use strict';
+  var header = document.querySelector('.site-header');
+  var panels = Array.prototype.slice.call(document.querySelectorAll('.hero, main > .section, .cta-band'));
+  if (!header || !panels.length) return;
+  var MIN_ZOOM = 0.5, raf = null;
+  function fit() {
+    raf = null;
+    var avail = window.innerHeight - header.offsetHeight;
+    var narrow = window.innerWidth < 700;
+    panels.forEach(function (p) {
+      var inner = p.querySelector(':scope > .container');
+      if (!inner) return;
+      inner.style.zoom = '';
+      if (narrow) return;
+      var cs = getComputedStyle(p);
+      var pad = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom);
+      var room = avail - pad - 2, need = inner.offsetHeight;
+      if (need <= room) return;
+      var z = Math.max(MIN_ZOOM, room / need);
+      inner.style.zoom = z.toFixed(3);
+    });
+  }
+  function schedule() { if (!raf) raf = requestAnimationFrame(fit); }
+  fit();
+  window.addEventListener('resize', schedule);
+  window.addEventListener('load', schedule);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(schedule);
+  setTimeout(schedule, 400);
+})();
+
 /* Enquiry forms (hero and dialog). This preview is not connected to an inbox. */
 (function () {
   'use strict';
