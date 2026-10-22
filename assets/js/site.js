@@ -548,10 +548,10 @@
     africa: { col: [143, 53, 39],  label: 'Africa' }
   };
   var PINS = [
-    ['gcc', 'Riyadh', 24.7, 46.7], ['gcc', 'Dubai', 25.2, 55.3],
-    ['apac', 'Manila', 14.6, 121], ['apac', 'Jakarta', -6.2, 106.8], ['apac', 'Mumbai', 19.1, 72.9],
-    ['latam', 'São Paulo', -23.5, -46.6], ['latam', 'Mexico City', 19.4, -99.1],
-    ['africa', 'Lagos', 6.5, 3.4], ['africa', 'Nairobi', -1.3, 36.8], ['africa', 'Johannesburg', -26.2, 28]
+    ['gcc', 'Riyadh', 24.7, 46.7, 1], ['gcc', 'Dubai', 25.2, 55.3, 0],
+    ['apac', 'Manila', 14.6, 121, 0], ['apac', 'Jakarta', -6.2, 106.8, 0], ['apac', 'Mumbai', 19.1, 72.9, 1],
+    ['latam', 'São Paulo', -23.5, -46.6, 1], ['latam', 'Mexico City', 19.4, -99.1, 0],
+    ['africa', 'Lagos', 6.5, 3.4, 1], ['africa', 'Nairobi', -1.3, 36.8, 0], ['africa', 'Johannesburg', -26.2, 28, 0]
   ];
 
   // Map window: centred on the Gulf so all four regions are in view.
@@ -579,7 +579,7 @@
     W = Math.max(1, Math.round(b.width)); H = Math.max(1, Math.round(b.height));
     canvas.width = W * DPR; canvas.height = H * DPR; canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
     ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-    STEP = Math.max(5, Math.round(W / 118));
+    STEP = Math.max(6, Math.round(W / 92));
     dots = [];
     var cx = W / 2, cy = H * 0.62, rx = W * 0.5, ry = H * 0.62;
     for (var y = STEP / 2; y < H; y += STEP) for (var x = STEP / 2; x < W; x += STEP) {
@@ -592,21 +592,32 @@
       var fade = Math.max(0, 1 - Math.max(0, (y - H * 0.78) / (H * 0.24)));
       dots.push({ x: x, y: y, land: land, a: (land ? 1 : 0.22) * edge * fade, i: dots.length });
     }
-    pins = PINS.map(function (p) { var q = project(p[2], p[3]); return { region: p[0], name: p[1], x: q[0], y: q[1], order: Math.random() }; });
+    pins = PINS.map(function (p, i) { var q = project(p[2], p[3]); return { region: p[0], name: p[1], x: q[0], y: q[1], tall: !!p[4], order: (i * 0.37) % 1 }; });
   }
 
   function rgba(c, a) { return 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a + ')'; }
   function drawPin(p, t, big) {
     var col = REGION[p.region].col;
-    var r = Math.max(13, STEP * 3) * (big ? 1.25 : 1), stem = r * 2.6;
     var rise = reduced ? 1 : Math.min(1, Math.max(0, (t - 300 - p.order * 900) / 700));
     if (rise <= 0) return;
     var ease = 1 - Math.pow(1 - rise, 3);
+    if (!p.tall) {
+      // secondary market: a ringed dot with a soft halo
+      var sr = Math.max(4, STEP * 0.9) * ease;
+      ctx.globalAlpha = ease;
+      ctx.beginPath(); ctx.arc(p.x, p.y, sr * 2.2, 0, Math.PI * 2); ctx.fillStyle = rgba(col, 0.12); ctx.fill();
+      ctx.beginPath(); ctx.arc(p.x, p.y, sr, 0, Math.PI * 2); ctx.fillStyle = rgba(col, 1); ctx.fill();
+      ctx.lineWidth = Math.max(1.2, STEP * 0.18); ctx.strokeStyle = 'rgba(251,255,246,1)';
+      ctx.beginPath(); ctx.arc(p.x, p.y, sr * 0.55, 0, Math.PI * 2); ctx.stroke();
+      ctx.globalAlpha = 1; p.hx = p.x; p.hy = p.y; p.hr = sr * 2.2;
+      return;
+    }
+    var r = Math.max(16, STEP * 4.2) * (big ? 1.2 : 1), stem = r * 2.9;
     var top = p.y - stem * ease;
     ctx.globalAlpha = ease;
     // stem as dots
     ctx.fillStyle = rgba(col, 0.9);
-    for (var sy = p.y; sy > top + r; sy -= Math.max(3, STEP * 0.7)) { ctx.beginPath(); ctx.arc(p.x, sy, Math.max(1.2, STEP * 0.22), 0, Math.PI * 2); ctx.fill(); }
+    for (var sy = p.y; sy > top + r; sy -= Math.max(4, STEP * 0.6)) { ctx.beginPath(); ctx.arc(p.x, sy, Math.max(1.4, STEP * 0.2), 0, Math.PI * 2); ctx.fill(); }
     // foot
     ctx.beginPath(); ctx.arc(p.x, p.y, Math.max(2, STEP * 0.45), 0, Math.PI * 2); ctx.fill();
     // head: dotted disc with a dark centre and a tick
@@ -629,14 +640,14 @@
       var appear = reduced ? 1 : Math.min(1, Math.max(0, (el - (d.y / H) * 500 - (d.x / W) * 300) / 400));
       if (appear <= 0) continue;
       if (d.land) {
-        var rr = STEP * 0.3 * appear;
-        ctx.strokeStyle = 'rgba(18,50,37,' + (0.55 * d.a * appear).toFixed(3) + ')'; ctx.lineWidth = 1.1;
+        var rr = STEP * 0.34 * appear;
+        ctx.strokeStyle = 'rgba(18,50,37,' + (0.7 * d.a * appear).toFixed(3) + ')'; ctx.lineWidth = Math.max(1.2, STEP * 0.16);
         ctx.beginPath(); ctx.arc(d.x, d.y, rr, 0, Math.PI * 2); ctx.stroke();
-        ctx.fillStyle = 'rgba(6,16,13,' + (0.7 * d.a * appear).toFixed(3) + ')';
-        ctx.beginPath(); ctx.arc(d.x, d.y, Math.max(0.8, STEP * 0.1), 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = 'rgba(6,16,13,' + (0.55 * d.a * appear).toFixed(3) + ')';
+        ctx.beginPath(); ctx.arc(d.x, d.y, Math.max(0.9, STEP * 0.11), 0, Math.PI * 2); ctx.fill();
       } else {
-        ctx.fillStyle = 'rgba(6,16,13,' + (0.38 * d.a * appear).toFixed(3) + ')';
-        ctx.beginPath(); ctx.arc(d.x, d.y, STEP * 0.13 * appear, 0, Math.PI * 2); ctx.fill();
+        ctx.strokeStyle = 'rgba(6,16,13,' + (0.3 * d.a * appear).toFixed(3) + ')'; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.arc(d.x, d.y, STEP * 0.2 * appear, 0, Math.PI * 2); ctx.stroke();
       }
     }
     // pins
