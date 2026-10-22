@@ -150,39 +150,44 @@
     </div>
   </section>
 
-  <!-- Stats band -->
-  <section class="stats" aria-label="Toniva at a glance">
-    <div class="container stats__grid">
-      <div class="stat"><p class="stat__value">4</p><p class="stat__label">Regions with local rails: GCC, APAC, LATAM and Africa</p></div>
-      <div class="stat"><p class="stat__value">90+</p><p class="stat__label">Markets for local payouts to banks, wallets and cash-out networks</p></div>
-      <div class="stat"><p class="stat__value">30+</p><p class="stat__label">Currencies, with named USD, EUR, GBP, CHF and CAD accounts</p></div>
-      <div class="stat"><p class="stat__value">1</p><p class="stat__label">Counterparty, integration and reconciliation model, end to end</p></div>
-    </div>
-  </section>
-
-  <!-- Rails strip -->
-  <section class="rails" aria-label="Local payment rails">
+  <!-- At a glance: stats and local rails -->
+  <section class="section section--bright glance" id="glance" aria-label="Toniva at a glance">
     <div class="container">
-      <p class="rails__title">Local payment rails available by market</p>
-      <ul class="rails__list">
-        <li>mada</li><li>SARIE</li><li>UAEFTS</li><li>AFAQ</li><li>IPP</li><li>GCCNet</li>
-        <li>UPI</li><li>IMPS</li><li>Raast</li><li>InstaPay</li><li>PromptPay</li><li>DuitNow</li><li>bKash</li><li>GCash</li><li>QRIS</li>
-        <li>Pix</li><li>SPEI</li><li>CoDi</li><li>PSE</li><li>Transferencias 3.0</li>
-        <li>NIBSS Instant</li><li>M-Pesa</li><li>PesaLink</li><li>MTN MoMo</li><li>Airtel Money</li><li>InstantEFT</li><li>SWIFT</li>
-      </ul>
+      <div class="stats__grid">
+        <div class="stat"><p class="stat__value">4</p><p class="stat__label">Regions with local rails: GCC, APAC, LATAM and Africa</p></div>
+        <div class="stat"><p class="stat__value">90+</p><p class="stat__label">Markets for local payouts to banks, wallets and cash-out networks</p></div>
+        <div class="stat"><p class="stat__value">30+</p><p class="stat__label">Currencies, with named USD, EUR, GBP, CHF and CAD accounts</p></div>
+        <div class="stat"><p class="stat__value">1</p><p class="stat__label">Counterparty, integration and reconciliation model, end to end</p></div>
+      </div>
+      <div class="rails">
+        <p class="rails__title">Local payment rails available by market</p>
+        <ul class="rails__list">
+          <li>mada</li><li>SARIE</li><li>UAEFTS</li><li>AFAQ</li><li>IPP</li><li>GCCNet</li>
+          <li>UPI</li><li>IMPS</li><li>Raast</li><li>InstaPay</li><li>PromptPay</li><li>DuitNow</li><li>bKash</li><li>GCash</li><li>QRIS</li>
+          <li>Pix</li><li>SPEI</li><li>CoDi</li><li>PSE</li><li>Transferencias 3.0</li>
+          <li>NIBSS Instant</li><li>M-Pesa</li><li>PesaLink</li><li>MTN MoMo</li><li>Airtel Money</li><li>InstantEFT</li><li>SWIFT</li>
+        </ul>
+      </div>
     </div>
   </section>
 
   <!-- Live FX -->
   <section class="section section--dark" id="route" aria-labelledby="home-route">
     <div class="container">
-      <div class="section__head section__head--light">
+      <div class="section__head section__head--light section__head--tight">
         <h2 class="h2" id="home-route">Live rates, one view.</h2>
+      </div>
+      <div class="route-row">
+      <div class="route-row__copy">
         <p class="lede">Type an amount, pick two currencies and see today's mid-market rate instantly, across every currency Toniva's clients move.</p>
         <p class="note">Mid-market reference rates from a public daily feed. They are not a Toniva quote. All-in pricing, routing and timing are confirmed per corridor, client and use case.</p>
+        <div class="btn-row">
+          <a class="btn btn--primary" href="contact.html?topic=corridor">Get an all-in quote</a>
+          <a class="btn btn--outline-light" href="#solutions">See the solutions</a>
+        </div>
       </div>
 
-      <aside class="card fx-widget fx-widget--centred" aria-label="Live currency converter" data-state="loading" style="--state-tone:var(--arc-cyan)">
+      <aside class="card fx-widget" aria-label="Live currency converter" data-state="loading" style="--state-tone:var(--arc-cyan)">
         <div class="fx-widget__head">
           <p class="fx-widget__id">LIVE FX / <span class="fx-widget__pair">SAR → NGN</span></p>
           <div class="pill fx-widget__pill" role="status" aria-live="polite"><span class="fx-widget__dot" aria-hidden="true"></span><span class="fx-widget__status">Loading rates</span></div>
@@ -211,11 +216,8 @@
           <div class="fx-widget__row"><span>Mid-market rate</span><strong class="fx-widget__rate">…</strong></div>
           <div class="fx-widget__row"><span>Rates updated</span><strong class="fx-widget__updated">…</strong></div>
         </div>
-        <p class="fx-widget__note">Indicative mid-market reference, not a Toniva quote. All-in pricing is confirmed per corridor, client and use case. Rates by <a href="https://www.exchangerate-api.com" rel="noopener" target="_blank">Exchange Rate API</a>.</p>
+        <p class="fx-widget__note">Indicative mid-market reference, not a Toniva quote. Rates by <a href="https://www.exchangerate-api.com" rel="noopener" target="_blank">Exchange Rate API</a>.</p>
       </aside>
-      <div class="section__cta">
-        <a class="btn btn--primary" href="contact.html?topic=corridor">Get an all-in quote</a>
-        <a class="btn btn--outline-light" href="#solutions">See the solutions</a>
       </div>
     </div>
   </section>
@@ -345,7 +347,7 @@
         <h2 class="h2" id="home-product">The field, end to end.</h2>
         <p class="lede">Five surfaces. One integration and reconciliation model, with the field logic that runs behind each of them.</p>
       </div>
-      <ul class="grid grid--3 solution-grid">
+      <ul class="grid grid--5 solution-grid">
         <li class="card solution">
           <span class="icon-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-4-4m4 4 4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg></span>
           <h3 class="h3">Local collections</h3>
@@ -376,12 +378,10 @@
           <p>Corridor-priced spot and forward cover, quoted all-in against the payout leg.</p>
           <a class="link" href="contact.html?topic=fx">Enquire <span aria-hidden="true">→</span></a>
         </li>
-        <li class="card solution solution--cta">
-          <h3 class="h3">All five, one integration.</h3>
-          <p>The five surfaces side by side, with one reconciliation model behind them.</p>
-          <a class="btn btn--primary" href="contact.html?topic=platform">Talk to us about all five</a>
-        </li>
       </ul>
+      <div class="section__cta">
+        <a class="btn btn--primary" href="contact.html?topic=platform">Talk to us about all five</a>
+      </div>
     </div>
   </section>
 
