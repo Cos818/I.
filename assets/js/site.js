@@ -326,3 +326,123 @@
   load();
   setInterval(load, 6 * 60 * 60 * 1000);
 })();
+
+/* Toniva hero: a dotted sphere whose upper arc rises across the banner. Rotates slowly,
+   ripples around the pointer, and reveals the market under the cursor. No dependencies. */
+(function () {
+  'use strict';
+  var canvas = document.getElementById('hero-arc');
+  if (!canvas || !canvas.getContext) return;
+  var ctx = canvas.getContext('2d');
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Currencies shown on the coverage section. Each owns a longitude band on the sphere.
+  var MARKETS = [
+    ['USD', 'US dollar', '$'], ['EUR', 'Euro', '\u20ac'], ['GBP', 'British pound', '\u00a3'],
+    ['SAR', 'Saudi riyal', '\u0631.\u0633'], ['AED', 'UAE dirham', '\u062f.\u0625'], ['KWD', 'Kuwaiti dinar', '\u062f.\u0643'], ['QAR', 'Qatari riyal', '\u0631.\u0642'], ['BHD', 'Bahraini dinar', '\u062f.\u0628'], ['OMR', 'Omani rial', '\u0631.\u0639.'],
+    ['EGP', 'Egyptian pound', '\u062c.\u0645'], ['NGN', 'Nigerian naira', '\u20a6'], ['KES', 'Kenyan shilling', 'KSh'], ['GHS', 'Ghanaian cedi', '\u20b5'], ['ZAR', 'South African rand', 'R'],
+    ['INR', 'Indian rupee', '\u20b9'], ['PHP', 'Philippine peso', '\u20b1'], ['IDR', 'Indonesian rupiah', 'Rp'], ['MYR', 'Malaysian ringgit', 'RM'], ['THB', 'Thai baht', '\u0e3f'],
+    ['BRL', 'Brazilian real', 'R$'], ['MXN', 'Mexican peso', '$'], ['COP', 'Colombian peso', '$'], ['CLP', 'Chilean peso', '$']
+  ];
+  var BANDS = MARKETS.length;
+
+  // Points on the upper cap of the sphere only (that is all that shows), front and back.
+  var N = 6500, pts = [];
+  var seed = 7; function rnd() { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }
+  for (var i = 0; i < N; i++) {
+    var y = 0.12 + rnd() * 0.88, a = rnd() * Math.PI * 2;
+    var rr = Math.sqrt(1 - y * y);
+    var spark = rnd() < 0.06;
+    pts.push({ x: Math.cos(a) * rr, y: y, z: Math.sin(a) * rr, lon: a / (2 * Math.PI), off: 0, vel: 0, size: (spark ? 2.2 : 1.2) + rnd() * 1.4, alpha: (spark ? 0.85 : 0.4) + rnd() * 0.45, spark: spark });
+  }
+
+  var W = 0, H = 0, DPR = 1, cx = 0, cy = 0, R = 0;
+  function resize() {
+    var b = canvas.parentNode.getBoundingClientRect(); DPR = Math.min(window.devicePixelRatio || 1, 2);
+    W = Math.max(1, Math.round(b.width)); H = Math.max(1, Math.round(b.height));
+    canvas.width = W * DPR; canvas.height = H * DPR; canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    // Sphere centred below the banner so only its upper cap shows, spanning the full width.
+    var wide = W >= 900;
+    R = wide ? Math.max(W * 0.72, H * 1.15) : Math.max(W * 0.85, H * 0.5);
+    cx = wide ? W * 0.62 : W / 2;
+    cy = (wide ? H * 0.1 : H * 0.72) + R;    // crest high near the centre so the arc sweeps up from the lower left
+  }
+
+  var pointer = { x: -1e4, y: -1e4, active: false, band: -1, lx: 0, ly: 0 };
+  var hero = canvas.parentNode.parentNode;
+  hero.addEventListener('pointermove', function (e) {
+    var b = canvas.getBoundingClientRect(); pointer.x = e.clientX - b.left; pointer.y = e.clientY - b.top; pointer.active = true;
+  });
+  hero.addEventListener('pointerleave', function () { pointer.active = false; pointer.x = -1e4; pointer.y = -1e4; });
+
+  var TILT = 0.28, spin = 0, last = 0;
+  function frame(t) {
+    var dt = last ? Math.min(40, t - last) : 16; last = t;
+    if (!reduced) spin += dt * 2 * Math.PI / 110000;             // one revolution every 110 s
+    ctx.clearRect(0, 0, W, H);
+    var gx = cx, gy = cy - R;                                  // crest point
+    var glow = ctx.createRadialGradient(gx, gy, 0, gx, gy, R * 0.75);
+    glow.addColorStop(0, 'rgba(145,236,205,0.16)'); glow.addColorStop(0.45, 'rgba(67,232,255,0.05)'); glow.addColorStop(1, 'rgba(2,8,6,0)');
+    ctx.fillStyle = glow; ctx.fillRect(0, 0, W, H);
+    var cs = Math.cos(spin), sn = Math.sin(spin), ct = Math.cos(TILT), st = Math.sin(TILT);
+    var nearest = -1, nearestD = 48 * 48, hoverBand = -1;
+    var bandOf = new Array(N);
+
+    // First pass: project, find the dot under the pointer.
+    var proj = new Array(N);
+    for (var i = 0; i < N; i++) {
+      var p = pts[i];
+      var x = p.x * cs + p.z * sn, z = -p.x * sn + p.z * cs, y = p.y;
+      var y2 = y * ct - z * st, z2 = y * st + z * ct;
+      var sx = cx + x * R, sy = cy - y2 * R;
+      if (sy > H + 10 || sy < -10) { proj[i] = null; continue; }
+      proj[i] = [sx, sy, z2, x, y2];
+      bandOf[i] = Math.floor(((p.lon + spin / (2 * Math.PI)) % 1 + 1) % 1 * BANDS);
+      if (z2 > 0.05) { var dx = sx - pointer.x, dy = sy - pointer.y, d2 = dx * dx + dy * dy; if (d2 < nearestD) { nearestD = d2; nearest = i; } }
+    }
+    hoverBand = (pointer.active && nearest >= 0) ? bandOf[nearest] : -1;
+    pointer.band = hoverBand;
+
+    // Second pass: ripple physics and draw.
+    for (i = 0; i < N; i++) {
+      var q = proj[i]; if (!q) continue;
+      p = pts[i]; var front = q[2] >= 0;
+      var ddx = q[0] - pointer.x, ddy = q[1] - pointer.y, dd = Math.sqrt(ddx * ddx + ddy * ddy);
+      var target = pointer.active && front && dd < 170 ? Math.cos(dd / 170 * Math.PI / 2) * 26 : 0;  // lift dots near the pointer
+      if (!reduced) { p.vel += (target - p.off) * 0.14 - p.vel * 0.22; p.off += p.vel; }
+      // lifted dots move outward along the sphere normal
+      var lift = p.off / R;
+      var sx2 = cx + q[3] * R * (1 + lift), sy2 = cy - q[4] * R * (1 + lift);
+      var depth = front ? 0.75 + 0.25 * q[2] : 0.28 + 0.2 * (1 + q[2]);
+      var inBand = hoverBand >= 0 && bandOf[i] === hoverBand;
+      var s = p.size * (inBand ? 1.35 : 1) + Math.min(2, p.off / 12);
+      ctx.fillStyle = inBand ? 'rgba(221,251,101,' + (front ? 0.95 : 0.35) + ')' : (p.spark ? 'rgba(200,245,228,' + (p.alpha * depth) + ')' : 'rgba(168,206,196,' + (p.alpha * depth) + ')');
+      ctx.fillRect(sx2 - s / 2, sy2 - s / 2, s, s);
+    }
+
+    // Market readout near the pointer.
+    if (hoverBand >= 0 && pointer.active) {
+      pointer.lx += (pointer.x - pointer.lx) * 0.25; pointer.ly += (pointer.y - pointer.ly) * 0.25;
+      var m = MARKETS[hoverBand], lx = pointer.lx + 18, ly = pointer.ly;
+      var big = '700 14px "Roboto", "Segoe UI", Arial, sans-serif';
+      ctx.font = big; ctx.textBaseline = 'middle';
+      var wSym = ctx.measureText(m[2]).width, pw = wSym + 18;
+      ctx.fillStyle = 'rgba(2,8,6,0.84)'; ctx.beginPath(); ctx.roundRect(lx - 9, ly - 13, pw, 26, 4); ctx.fill();
+      ctx.strokeStyle = 'rgba(221,251,101,0.35)'; ctx.lineWidth = 1; ctx.stroke();
+      ctx.fillStyle = 'rgba(221,251,101,0.98)'; ctx.fillText(m[2], lx, ly);
+      ctx.beginPath(); ctx.moveTo(pointer.lx + 7, pointer.ly); ctx.lineTo(lx - 9, pointer.ly); ctx.strokeStyle = 'rgba(221,251,101,0.6)'; ctx.lineWidth = 1; ctx.stroke();
+      ctx.beginPath(); ctx.arc(pointer.lx, pointer.ly, 2.5, 0, Math.PI * 2); ctx.fillStyle = 'rgba(221,251,101,1)'; ctx.fill();
+    } else { pointer.lx = pointer.x; pointer.ly = pointer.y; }
+  }
+
+  var raf = null, running = false;
+  function loop(t) { frame(t); raf = requestAnimationFrame(loop); }
+  function start() { if (running) return; running = true; last = 0; raf = requestAnimationFrame(loop); }
+  function stop() { running = false; if (raf) cancelAnimationFrame(raf); raf = null; }
+  function relayout() { resize(); if (!running) frame(0); }
+  resize(); window.addEventListener('resize', relayout); window.addEventListener('load', relayout);
+  if ('ResizeObserver' in window) new ResizeObserver(relayout).observe(hero);
+  if ('IntersectionObserver' in window) new IntersectionObserver(function (en) { en[0].isIntersecting ? start() : stop(); }, { threshold: 0.05 }).observe(canvas); else start();
+  document.addEventListener('visibilitychange', function () { document.hidden ? stop() : start(); });
+})();

@@ -159,13 +159,12 @@ address { font-style: normal; }
 /* ---------- Hero ---------- */
 .hero {
   position: relative; overflow: hidden; color: var(--mineral-paper);
-  background: radial-gradient(1200px 600px at 10% -10%, #123225 0%, transparent 60%), linear-gradient(180deg, var(--deep-teal) 0%, var(--eclipse-ink) 100%);
+  background: linear-gradient(180deg, var(--deep-teal) 0%, var(--eclipse-ink) 100%);
   padding: clamp(3.5rem, 7vw, 6.5rem) 0 clamp(4rem, 8vw, 7rem);
 }
-.hero__glow { position: absolute; border-radius: 50%; filter: blur(90px); opacity: .45; pointer-events: none; }
-.hero__glow--a { width: 520px; height: 520px; right: -140px; top: -180px; background: var(--signal-ink); }
-.hero__glow--b { width: 360px; height: 360px; left: 30%; bottom: -220px; background: #0d606a; opacity: .5; }
-.hero__inner { position: relative; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: clamp(2rem, 5vw, 5rem); align-items: center; }
+.hero__arc { position: absolute; inset: 0; pointer-events: none; }
+.hero__arc canvas { display: block; width: 100%; height: 100%; }
+.hero__inner { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: clamp(2rem, 5vw, 5rem); align-items: center; }
 .hero__title { font-size: clamp(2.4rem, 1.3rem + 3.4vw, 3.9rem); font-weight: 900; letter-spacing: -0.03em; }
 .hero__lede { margin-top: 1.5rem; font-size: clamp(1.05rem, 1rem + .35vw, 1.25rem); color: var(--paper-dim); max-width: 58ch; }
 .hero__points { margin-top: 1.75rem; display: grid; gap: .7rem; }
