@@ -48,13 +48,15 @@
   }
 })();
 
-/* Rails ticker: duplicate the chips once so the scrolling strip loops seamlessly. */
+/* Tickers (rails chips, partner logos): duplicate the items once so each strip loops seamlessly. */
 (function () {
   'use strict';
-  var list = document.querySelector('.rails__list');
-  if (!list) return;
-  Array.prototype.slice.call(list.children).forEach(function (li) {
-    var c = li.cloneNode(true); c.setAttribute('data-clone', ''); c.setAttribute('aria-hidden', 'true'); list.appendChild(c);
+  Array.prototype.forEach.call(document.querySelectorAll('.rails__list, .partners__list'), function (list) {
+    Array.prototype.slice.call(list.children).forEach(function (li) {
+      var c = li.cloneNode(true); c.setAttribute('data-clone', ''); c.setAttribute('aria-hidden', 'true');
+      Array.prototype.forEach.call(c.querySelectorAll('a'), function (a) { a.tabIndex = -1; });
+      list.appendChild(c);
+    });
   });
 })();
 
@@ -63,7 +65,7 @@
 (function () {
   'use strict';
   var header = document.querySelector('.site-header');
-  var panels = Array.prototype.slice.call(document.querySelectorAll('.hero, main > .section:not(.glance), .cta-band'));
+  var panels = Array.prototype.slice.call(document.querySelectorAll('.hero, main > .section:not(.glance):not(.partners), .cta-band'));
   if (!header || !panels.length) return;
   var MIN_ZOOM = 0.5, raf = null;
   function fit() {
