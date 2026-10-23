@@ -468,10 +468,10 @@ address { font-style: normal; }
 .partners__track:hover .partners__list, .partners__track:focus-within .partners__list { animation-play-state: paused; }
 .partner {
   display: inline-flex; align-items: center; justify-content: center; height: 3rem; padding: 0 .5rem;
-  color: var(--text); opacity: .72; filter: grayscale(1); transition: opacity .2s, filter .2s, transform .2s var(--ease);
+  color: var(--text); opacity: .92; transition: opacity .2s, transform .2s var(--ease);
 }
-.partner:hover, .partner:focus-visible { opacity: 1; filter: none; transform: translateY(-2px); }
-.partner img { height: 2.25rem; width: auto; max-width: 11rem; object-fit: contain; }
+.partner:hover, .partner:focus-visible { opacity: 1; transform: translateY(-2px); }
+.partner img { height: 2.1rem; width: auto; max-width: 12rem; object-fit: contain; }
 .partner__name { font-size: 1.6rem; font-weight: 900; letter-spacing: -0.03em; white-space: nowrap; }
 @media (prefers-reduced-motion: reduce) {
   .partners__track { mask-image: none; -webkit-mask-image: none; }
