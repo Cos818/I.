@@ -575,8 +575,6 @@ html.dialog-open { overflow: hidden; }
 
 /* Voltage lime accents */
 .accent { color: var(--voltage-lime); }
-.dot { color: var(--voltage-lime); }
-.section--paper .dot, .section--bright .dot { color: var(--lime-ink); }
 .stat { border-left-color: var(--voltage-lime); }
 .region__count { color: var(--lime-ink); background: #ddfb6566; }
 .hero .btn--primary:hover, .cta-band .btn--primary:hover, .section--dark .btn--primary:hover, .site-footer .btn--primary:hover { background: var(--voltage-lime); border-color: var(--voltage-lime); box-shadow: 0 8px 24px -10px #ddfb6599; }
