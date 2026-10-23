@@ -572,3 +572,18 @@ html.dialog-open { overflow: hidden; }
   .hero__points { gap: .35rem; }
   .lead-form__legal { display: none; }
 }
+
+/* Voltage lime accents */
+.accent { color: var(--voltage-lime); }
+.dot { color: var(--voltage-lime); }
+.section--paper .dot, .section--bright .dot { color: var(--lime-ink); }
+.stat { border-left-color: var(--voltage-lime); }
+.region__count { color: var(--lime-ink); background: #ddfb6566; }
+.hero .btn--primary:hover, .cta-band .btn--primary:hover, .section--dark .btn--primary:hover, .site-footer .btn--primary:hover { background: var(--voltage-lime); border-color: var(--voltage-lime); box-shadow: 0 8px 24px -10px #ddfb6599; }
+.card--dark:hover { border-color: #ddfb6580; }
+.compare-table .is-toniva { color: var(--voltage-lime); }
+.fx-widget__result { color: var(--voltage-lime); }
+.site-footer__heading { color: var(--voltage-lime); }
+.site-nav a:hover, .site-nav a[aria-current="true"] { border-color: var(--lime-ink); }
+.rails__list li:hover { border-color: var(--lime-ink); background: #ddfb6540; }
+.audience:hover { border-color: var(--lime-ink); }
