@@ -500,15 +500,14 @@ footer .bottom{grid-column:1/-1;display:flex;justify-content:space-between;flex-
     var FS=[
       "precision mediump float;varying vec2 v;uniform sampler2D tex;uniform float t;uniform vec2 ptr,fit,off;",
       "void main(){vec2 uv=v*fit+off;",
-      " float w=.006;",
-      " uv.x+=sin(uv.y*7.+t*.55)*w+sin(uv.y*13.-t*.9)*w*.5;",
-      " uv.y+=cos(uv.x*6.+t*.45)*w+cos(uv.x*11.+t*.8)*w*.5;",
-      " vec2 d=v-ptr;float r=length(d*vec2(1.6,1.));uv+=normalize(d+1e-4)*.018*smoothstep(.35,0.,r);",
+      " float w=.0035;",
+      " uv.x+=sin(uv.y*2.2+t*.22)*w+sin(uv.y*3.7-t*.17+1.3)*w*.5;",
+      " uv.y+=cos(uv.x*1.9+t*.19)*w*.8+cos(uv.x*3.1+t*.26+.7)*w*.4;",
+      " vec2 d=v-ptr;float r=length(d*vec2(1.6,1.));uv+=normalize(d+1e-4)*.006*smoothstep(.45,0.,r);",
       " vec3 col=texture2D(tex,clamp(uv,0.,1.)).rgb;",
       " float lum=dot(col,vec3(.3,.59,.11));",
-      " float pulse=.5+.5*sin(uv.x*9.-t*1.4+uv.y*3.);",
-      " col+=col*pulse*.35*smoothstep(.25,.9,lum);",
-      " col+=vec3(.55,.35,1.)*.08*smoothstep(.35,0.,r);",
+      " float breathe=.5+.5*sin(t*.35+uv.x*1.5);",
+      " col+=col*breathe*.12*smoothstep(.3,.9,lum);",
       " gl_FragColor=vec4(col,1.);}"].join("\n");
     var sh=function(ty,src){var o=gl.createShader(ty);gl.shaderSource(o,src);gl.compileShader(o);return o;};
     var pr=gl.createProgram();gl.attachShader(pr,sh(gl.VERTEX_SHADER,VS));gl.attachShader(pr,sh(gl.FRAGMENT_SHADER,FS));gl.linkProgram(pr);
@@ -532,10 +531,10 @@ footer .bottom{grid-column:1/-1;display:flex;justify-content:space-between;flex-
     host.addEventListener("pointermove",function(e){var r=host.getBoundingClientRect();tx=(e.clientX-r.left)/r.width;ty=(e.clientY-r.top)/r.height;},{passive:true});
     host.addEventListener("pointerleave",function(){tx=.5;ty=.5;});
     new IntersectionObserver(function(e){vis=e[0].isIntersecting;},{threshold:0}).observe(host);
-    function draw(now){px+=(tx-px)*.06;py+=(ty-py)*.06;gl.uniform1f(U("t"),reduce?0:now/1000);gl.uniform2f(U("ptr"),px,py);gl.drawArrays(gl.TRIANGLE_STRIP,0,4);}
+    function draw(now){px+=(tx-px)*.03;py+=(ty-py)*.03;gl.uniform1f(U("t"),reduce?0:now/1000);gl.uniform2f(U("ptr"),px,py);gl.drawArrays(gl.TRIANGLE_STRIP,0,4);}
     if(!reduce){(function loop(now){if(ready&&vis)draw(now);requestAnimationFrame(loop);})(0);}
     /* parallax */
-    if(!reduce){var onScroll=function(){var y=Math.min(window.scrollY,900);c.style.transform="translateY("+(y*.12)+"px) scale(1.06)";};addEventListener("scroll",onScroll,{passive:true});onScroll();}
+    if(!reduce){var onScroll=function(){var y=Math.min(window.scrollY,900);c.style.transform="translateY("+(y*.08)+"px) scale(1.04)";};addEventListener("scroll",onScroll,{passive:true});onScroll();}
   })();
 
   var cp=document.getElementById("copyBtn"),msg=document.getElementById("copied"),em=document.getElementById("email");
