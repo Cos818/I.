@@ -68,6 +68,7 @@ body.menu-open .sheet{display:flex}
 .hero .media.playing>video{opacity:1}
 .hero .media.playing>img,.hero .media.playing>canvas{visibility:hidden}
 .hero .media.playing>span{display:none}
+.hero .media.novideo>video{display:none}
 .hero .media>img{will-change:transform;transform:scale(1.08);animation:kb 26s ease-in-out infinite alternate}
 @keyframes kb{from{transform:scale(1.08) translate(0,0)}to{transform:scale(1.16) translate(-2%,1.5%)}}
 .hero canvas.live{position:absolute;inset:0;width:100%;height:100%;display:block}
@@ -512,12 +513,19 @@ footer .bottom{grid-column:1/-1;display:flex;justify-content:space-between;flex-
     /* Safari will not stream an embedded data: video; hand it a blob URL instead */
     var src=vid.querySelector("source");
     var data=src?src.getAttribute("src"):"";
-    var start=function(){vid.load();tryPlay();};
-    if(data&&data.indexOf("data:")===0&&window.fetch&&window.URL&&URL.createObjectURL){
+    var stage=0;
+    var started=function(){return host.classList.contains("playing");};
+    var useDirect=function(){if(started())return;stage=2;try{vid.removeAttribute("src");if(src&&!src.parentNode)vid.appendChild(src);}catch(e){}vid.load();tryPlay();setTimeout(function(){if(!started())host.classList.add("novideo");},4000);};
+    var useBlob=function(){
+      if(!(data&&data.indexOf("data:")===0&&window.fetch&&window.URL&&URL.createObjectURL)){useDirect();return;}
+      stage=1;
       fetch(data).then(function(r){return r.blob();}).then(function(b){
-        var url=URL.createObjectURL(b);src.remove();vid.src=url;start();
-      }).catch(start);
-    }else{start();}
+        var url=URL.createObjectURL(b);if(src&&src.parentNode)src.remove();vid.src=url;vid.load();tryPlay();
+        setTimeout(function(){if(!started())useDirect();},3500);
+      }).catch(useDirect);
+    };
+    vid.addEventListener("error",function(){if(stage===1)useDirect();});
+    useBlob();
     /* if autoplay was blocked, start on the first interaction */
     var kick=function(){tryPlay();};
     ["pointerdown","touchstart","keydown","scroll"].forEach(function(ev){addEventListener(ev,kick,{passive:true,once:true});});
