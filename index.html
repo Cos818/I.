@@ -85,7 +85,7 @@ section{padding:clamp(72px,9vw,150px) var(--pad)}
 .sec{display:grid;grid-template-columns:1fr 3fr;gap:24px;align-items:start}
 .side{display:flex;flex-direction:column;gap:32px;align-self:stretch;min-width:0}
 .tag{display:inline-flex;align-items:center;gap:12px;font-size:17px;font-weight:500;letter-spacing:-.01em;position:sticky;top:112px;align-self:flex-start}
-.strip{flex:1;min-height:280px;width:clamp(64px,8.5vw,150px);border-radius:var(--radius);background:var(--chrome) 0% 50%/cover no-repeat;animation:slide 30s ease-in-out infinite alternate;box-shadow:inset 0 0 0 1px rgba(255,255,255,.25)}
+.strip{flex:1;min-height:280px;width:min(100%,clamp(120px,17vw,300px));border-radius:var(--radius);background:var(--chrome) 0% 50%/cover no-repeat;animation:slide 30s ease-in-out infinite alternate;box-shadow:inset 0 0 0 1px rgba(255,255,255,.25)}
 @keyframes slide{to{background-position:100% 50%}}
 .strip:nth-of-type(odd){animation-delay:-8s}
 .tag::before{content:"";width:26px;height:26px;flex:none;background:no-repeat center/contain url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230a0a0a' stroke-width='2' stroke-linecap='round'><path d='M3 12a9 9 0 1 1 9 9a6.5 6.5 0 1 1 6.5-6.5a4 4 0 1 1-4-4a1.8 1.8 0 1 1 1.8 1.8'/></svg>")}
