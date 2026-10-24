@@ -83,7 +83,11 @@ body.menu-open .sheet{display:flex}
 /* section skeleton: left label, offset content */
 section{padding:clamp(72px,9vw,150px) var(--pad)}
 .sec{display:grid;grid-template-columns:1fr 3fr;gap:24px;align-items:start}
-.tag{display:inline-flex;align-items:center;gap:12px;font-size:17px;font-weight:500;letter-spacing:-.01em;position:sticky;top:112px}
+.side{display:flex;flex-direction:column;gap:32px;align-self:stretch;min-width:0}
+.tag{display:inline-flex;align-items:center;gap:12px;font-size:17px;font-weight:500;letter-spacing:-.01em;position:sticky;top:112px;align-self:flex-start}
+.strip{flex:1;min-height:280px;width:clamp(64px,8.5vw,150px);border-radius:var(--radius);background:var(--chrome) 0% 50%/cover no-repeat;animation:slide 30s ease-in-out infinite alternate;box-shadow:inset 0 0 0 1px rgba(255,255,255,.25)}
+@keyframes slide{to{background-position:100% 50%}}
+.strip:nth-of-type(odd){animation-delay:-8s}
 .tag::before{content:"";width:26px;height:26px;flex:none;background:no-repeat center/contain url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230a0a0a' stroke-width='2' stroke-linecap='round'><path d='M3 12a9 9 0 1 1 9 9a6.5 6.5 0 1 1 6.5-6.5a4 4 0 1 1-4-4a1.8 1.8 0 1 1 1.8 1.8'/></svg>")}
 .body{max-width:860px;display:flex;flex-direction:column;gap:clamp(28px,4vw,56px)}
 h2{font-size:clamp(38px,5vw,84px)}
@@ -197,6 +201,8 @@ footer .bottom{grid-column:1/-1;display:flex;justify-content:space-between;flex-
   .nav ul{display:none}
   .sec{grid-template-columns:1fr;gap:28px}
   .tag{position:static}
+  .side{flex-direction:row;align-items:center;gap:18px}
+  .strip{min-height:0;height:6px;width:auto;flex:1;border-radius:3px}
   .projects .top{grid-template-columns:1fr}
   .projects .top p{justify-self:start}
   .list,.people,.facts{grid-template-columns:1fr}
@@ -263,7 +269,7 @@ footer .bottom{grid-column:1/-1;display:flex;justify-content:space-between;flex-
   <!-- ABOUT -->
   <section id="about">
     <div class="sec">
-      <span class="tag rv">About Us</span>
+      <div class="side"><span class="tag rv">About Us</span><div class="strip rv" aria-hidden="true"></div></div>
       <div class="body">
         <h2 class="rv">The two people you meet<span class="g">are the two who build your brand.</span></h2>
         <div class="copy rv">
@@ -309,7 +315,7 @@ footer .bottom{grid-column:1/-1;display:flex;justify-content:space-between;flex-
   <!-- SERVICES -->
   <section id="services">
     <div class="sec">
-      <span class="tag rv">Services</span>
+      <div class="side"><span class="tag rv">Services</span><div class="strip rv" aria-hidden="true"></div></div>
       <div class="body">
         <h2 class="rv">Eight arms.<span class="g">One brand.</span></h2>
         <div class="copy grey rv">
@@ -332,7 +338,7 @@ footer .bottom{grid-column:1/-1;display:flex;justify-content:space-between;flex-
   <!-- WHY BBG -->
   <section id="why" style="padding-bottom:0">
     <div class="sec">
-      <span class="tag rv">Why BBG</span>
+      <div class="side"><span class="tag rv">Why BBG</span><div class="strip rv" aria-hidden="true"></div></div>
       <div class="body">
         <h2 class="rv">From eight arms<span class="g">to one brand.</span></h2>
         <div class="copy grey rv">
@@ -353,7 +359,7 @@ footer .bottom{grid-column:1/-1;display:flex;justify-content:space-between;flex-
   <!-- OCTOPUS FACTS -->
   <section id="facts">
     <div class="sec">
-      <span class="tag rv">Why the octopus</span>
+      <div class="side"><span class="tag rv">Why the octopus</span><div class="strip rv" aria-hidden="true"></div></div>
       <div class="body">
         <h2 class="rv">Facts we take<span class="g">personally.</span></h2>
         <div class="copy grey rv"><p>It has three hearts, so we took these four to heart.</p></div>
@@ -370,7 +376,7 @@ footer .bottom{grid-column:1/-1;display:flex;justify-content:space-between;flex-
   <!-- THE STUDIO -->
   <section id="studio">
     <div class="sec">
-      <span class="tag rv">The Studio</span>
+      <div class="side"><span class="tag rv">The Studio</span><div class="strip rv" aria-hidden="true"></div></div>
       <div class="body">
         <h2 class="rv">Meet the<span class="g">two brains.</span></h2>
         <div class="copy grey rv">
@@ -405,7 +411,7 @@ footer .bottom{grid-column:1/-1;display:flex;justify-content:space-between;flex-
   <!-- PROCESS -->
   <section id="process" style="padding-top:0">
     <div class="sec">
-      <span class="tag rv">How a brief moves</span>
+      <div class="side"><span class="tag rv">How a brief moves</span><div class="strip rv" aria-hidden="true"></div></div>
       <div class="body">
         <h2 class="rv">Four steps.<span class="g">One studio.</span></h2>
         <div class="steps rv">
@@ -421,7 +427,7 @@ footer .bottom{grid-column:1/-1;display:flex;justify-content:space-between;flex-
   <!-- CLIENTS -->
   <section id="clients" style="padding-top:0">
     <div class="sec">
-      <span class="tag rv">Partners</span>
+      <div class="side"><span class="tag rv">Partners</span><div class="strip rv" aria-hidden="true"></div></div>
       <div class="body">
         <h2 class="rv">Our partners<span class="g">at the moment.</span></h2>
         <div class="copy grey rv">
@@ -438,7 +444,7 @@ footer .bottom{grid-column:1/-1;display:flex;justify-content:space-between;flex-
   <!-- CONTACT -->
   <section class="contact" id="contact">
     <div class="sec">
-      <span class="tag rv">Contact</span>
+      <div class="side"><span class="tag rv">Contact</span><div class="strip rv" aria-hidden="true"></div></div>
       <div class="body">
         <h2 class="rv">Bring us<span class="g">the brief.</span></h2>
         <div class="copy grey rv">
