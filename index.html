@@ -503,10 +503,25 @@ footer .bottom{grid-column:1/-1;display:flex;justify-content:space-between;flex-
   (function(){
     var host=document.getElementById("heroMedia"),vid=document.getElementById("heroVideo");
     if(!vid)return;
+    var reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
     var mark=function(){host.classList.add("playing");};
     vid.addEventListener("playing",mark);
-    if(matchMedia("(prefers-reduced-motion: reduce)").matches){vid.removeAttribute("autoplay");vid.pause();}
-    vid.play&&vid.play().then(mark).catch(function(){});
+    vid.addEventListener("timeupdate",function(){if(vid.currentTime>0)mark();});
+    vid.muted=true;vid.setAttribute("muted","");vid.setAttribute("playsinline","");vid.setAttribute("webkit-playsinline","");
+    var tryPlay=function(){if(reduce)return;var p=vid.play();if(p&&p.catch)p.catch(function(){});};
+    /* Safari will not stream an embedded data: video; hand it a blob URL instead */
+    var src=vid.querySelector("source");
+    var data=src?src.getAttribute("src"):"";
+    var start=function(){vid.load();tryPlay();};
+    if(data&&data.indexOf("data:")===0&&window.fetch&&window.URL&&URL.createObjectURL){
+      fetch(data).then(function(r){return r.blob();}).then(function(b){
+        var url=URL.createObjectURL(b);src.remove();vid.src=url;start();
+      }).catch(start);
+    }else{start();}
+    /* if autoplay was blocked, start on the first interaction */
+    var kick=function(){tryPlay();};
+    ["pointerdown","touchstart","keydown","scroll"].forEach(function(ev){addEventListener(ev,kick,{passive:true,once:true});});
+    document.addEventListener("visibilitychange",function(){if(!document.hidden)tryPlay();});
   })();
   (function(){
     var host=document.getElementById("heroMedia"),img=document.getElementById("heroImg");
